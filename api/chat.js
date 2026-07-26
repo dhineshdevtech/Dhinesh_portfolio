@@ -365,20 +365,47 @@ const isPortfolioLikely = (message) => {
 };
 
 const safeParseGroqResponse = (content, sourceBadges) => {
+    // Resolve any templated contact placeholders that the LLM may output literal string for
+    let cleanContent = (content || "")
+        .replace(/\[contact\.email\]|\{contact\.email\}/gi, "dhineshbuilder@gmail.com")
+        .replace(/\[contact\.phone\]|\{contact\.phone\}/gi, "+91 9025873422")
+        .replace(/\[contact\.address\]|\{contact\.address\}/gi, "Tamilnadu, India");
+
+    let fallbackAnswer = cleanText(cleanContent) || "I do not know from the portfolio files yet.";
+
+    // Guard against raw JSON string output in fallback
+    if (fallbackAnswer.trim().startsWith("{")) {
+        const match = fallbackAnswer.match(/"answer"\s*:\s*"([\s\S]*?)"/);
+        if (match && match[1]) {
+            fallbackAnswer = cleanText(match[1].replace(/\\n/g, "\n").replace(/\\"/g, '"'));
+        }
+    }
+
     const fallback = {
-        answer: cleanText(content) || "I do not know from the portfolio files yet.",
+        answer: fallbackAnswer,
         sourceBadges,
     };
 
     try {
-        const jsonStart = content.indexOf("{");
-        const jsonEnd = content.lastIndexOf("}");
+        const jsonStart = cleanContent.indexOf("{");
+        const jsonEnd = cleanContent.lastIndexOf("}");
 
         if (jsonStart === -1 || jsonEnd === -1) {
             return fallback;
         }
 
-        const parsed = JSON.parse(content.slice(jsonStart, jsonEnd + 1));
+        const jsonString = cleanContent.slice(jsonStart, jsonEnd + 1);
+        
+        let parsed;
+        try {
+            parsed = JSON.parse(jsonString);
+        } catch {
+            // Attempt to parse by escaping literal newlines which break native JSON.parse
+            const escapedString = jsonString
+                .replace(/\n/g, "\\n")
+                .replace(/\r/g, "\\r");
+            parsed = JSON.parse(escapedString);
+        }
 
         return {
             answer: cleanText(parsed.answer || fallback.answer),
@@ -387,6 +414,22 @@ const safeParseGroqResponse = (content, sourceBadges) => {
                 : sourceBadges,
         };
     } catch {
+        // Fallback to regex extraction if JSON parsing completely fails
+        try {
+            const answerMatch = cleanContent.match(/"answer"\s*:\s*"([\s\S]*?)"\s*(,|\})/);
+            if (answerMatch && answerMatch[1]) {
+                const extractedText = answerMatch[1]
+                    .replace(/\\n/g, "\n")
+                    .replace(/\\"/g, '"');
+                return {
+                    answer: cleanText(extractedText),
+                    sourceBadges,
+                };
+            }
+        } catch (regexError) {
+            console.error("Regex backup parsing failed:", regexError);
+        }
+        
         return fallback;
     }
 };
