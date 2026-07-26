@@ -496,7 +496,7 @@ export default async function handler(req, res) {
     } catch (error) {
         console.error(error);
         res.status(502).json({
-            answer: `I could not reach AIRA right now. Error details: ${error.message || error}`,
+            answer: "I could not reach AIRA right now. Please try again shortly.",
             sourceBadges: ["Website"],
         });
     }
