@@ -1,12 +1,13 @@
+import React from "react";
 import { Link } from "react-scroll";
-import { FaArrowRight, FaDownload, FaEnvelope, FaGithub, FaLinkedinIn } from "react-icons/fa6";
+import { FaArrowUpRightFromSquare, FaDownload, FaEnvelope, FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import { useContent } from "../../context/ContentContext";
 
 const fallbackProofPoints = [
-    "Hackathon winner",
-    "AI products",
-    "Full-stack apps",
-    "Technical training",
+    { number: "8+", label: "AI & SaaS Builds" },
+    { number: "3+", label: "Hackathon Wins" },
+    { number: "100%", label: "Client Satisfaction" },
+    { number: "2026", label: "Modern Tech Stack" },
 ];
 
 const socialIconMap = {
@@ -17,132 +18,143 @@ const socialIconMap = {
 const Hero = () => {
     const { content } = useContent();
     const { hero } = content;
-    const proofPoints = hero.proofPoints?.length ? hero.proofPoints : fallbackProofPoints;
 
     return (
         <section
             id="hero"
-            className="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden border-b border-main/10 bg-[linear-gradient(135deg,#F8FAFC_0%,rgba(239,246,255,0.86)_50%,rgba(236,254,255,0.72)_100%)] pt-20 pb-8 sm:pt-24 lg:pt-20"
+            className="relative min-h-[100dvh] flex flex-col justify-between pt-32 pb-12 overflow-hidden border-b border-slate-200/60 dark:border-slate-800/60"
         >
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(37,99,235,0.06)_0%,transparent_34%,rgba(6,182,212,0.08)_100%)]" />
+            {/* Background Grid Pattern & Ambient Glow Orbs */}
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+            <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-tr from-blue-600/15 via-cyan-500/10 to-indigo-600/15 blur-[140px] rounded-full dark:from-blue-600/25 dark:via-cyan-400/15" />
 
-            <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.04fr)_minmax(20rem,0.96fr)] lg:gap-14">
+            <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 my-auto">
+                <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+                    {/* Left Column: Headline & Action CTA */}
                     <div className="text-center lg:text-left">
-                        <p className="mx-auto inline-flex rounded-full border border-accent/20 bg-white/80 px-4 py-1.5 text-xs font-black uppercase tracking-[0.22em] text-accent shadow-sm lg:mx-0">
-                            {hero.badgeText}
-                        </p>
+                        {/* Status Eyebrow Badge */}
+                        <div className="inline-flex items-center gap-2.5 rounded-full border border-blue-500/25 bg-blue-500/10 px-4 py-1.5 text-[11px] font-mono font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 backdrop-blur-md shadow-sm">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                            </span>
+                            <span>{hero.badgeText || "Available for AI & Full Stack Roles"}</span>
+                        </div>
 
-                        <div className="mt-5 space-y-3">
-                            <h1 className="text-4xl font-black tracking-tight text-main sm:text-5xl lg:text-6xl">
+                        {/* Main Title Stack */}
+                        <div className="mt-6 max-w-4xl">
+                            <h1 className="text-5xl font-black tracking-tight text-slate-900 dark:text-white sm:text-7xl lg:text-8xl font-display leading-[1.02]">
                                 {hero.name}
                             </h1>
-                            <h2 className="text-3xl font-black tracking-tight text-accent sm:text-4xl lg:text-5xl">
+                            <p className="mt-3 text-2xl font-extrabold sm:text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 dark:from-blue-400 dark:via-indigo-300 dark:to-cyan-400 font-display">
                                 {hero.role}
-                            </h2>
+                            </p>
                         </div>
 
-                        <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-main/70 sm:text-lg lg:mx-0">
-                            {hero.subheading}
+                        {/* Concise Pitch */}
+                        <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-slate-600 dark:text-slate-300 sm:text-lg lg:mx-0 font-sans">
+                            Engineers intelligent full-stack applications, LLM agent workflows, and high-performance digital products.
                         </p>
 
-                        <div className="mx-auto mt-6 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4 lg:mx-0">
-                            {proofPoints.map((point) => (
-                                <div
-                                    key={point}
-                                    className="rounded-2xl border border-main/10 bg-white/72 px-3 py-3 text-center shadow-sm"
-                                >
-                                    <p className="text-xs font-black uppercase tracking-[0.12em] text-main/70">
-                                        {point}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-
-                        <div className="mt-7 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap lg:justify-start">
+                        {/* CTA Buttons & Social Roundels */}
+                        <div className="mt-9 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:flex-wrap lg:justify-start">
+                            {/* Primary Button-in-Button CTA */}
                             <Link
                                 to={hero.primaryCtaTarget || "projects"}
                                 smooth
-                                duration={500}
-                                offset={-72}
-                                className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-black text-onaccent shadow-[0_14px_32px_rgba(37,99,235,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent/90"
+                                duration={250}
+                                offset={-80}
+                                className="group btn-primary"
                             >
-                                {hero.primaryCtaText}
-                                <FaArrowRight className="text-sm" />
+                                <span className="font-extrabold tracking-wide">{hero.primaryCtaText || "Explore Work"}</span>
+                                <span className="btn-icon-circle">
+                                    <FaArrowUpRightFromSquare className="text-xs" />
+                                </span>
                             </Link>
 
+                            {/* Resume CTA */}
                             <a
                                 href={hero.resumeLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center gap-2 rounded-full border border-accent/25 bg-white/80 px-6 py-3 text-sm font-black text-accent shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-secondary"
+                                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 px-6 py-3.5 text-xs font-bold text-slate-800 dark:text-slate-200 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-500/50 hover:bg-slate-50 dark:hover:bg-slate-800"
                             >
-                                <FaDownload className="text-sm" />
-                                {hero.resumeCtaText}
+                                <FaDownload className="text-xs text-blue-500" />
+                                <span>{hero.resumeCtaText || "Download Resume"}</span>
                             </a>
 
-                            <Link
-                                to={hero.secondaryCtaTarget || "contact"}
-                                smooth
-                                duration={500}
-                                offset={-72}
-                                className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-main/12 bg-white/75 px-6 py-3 text-sm font-black text-main/72 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/30 hover:text-accent"
-                            >
-                                <FaEnvelope className="text-sm" />
-                                {hero.secondaryCtaText}
-                            </Link>
-                        </div>
-
-                        <div className="mt-6 flex items-center justify-center gap-3 lg:justify-start">
-                            {hero.socialLinks.map((item) => {
-                                const Icon = socialIconMap[item.icon];
-
-                                if (!Icon) {
-                                    return null;
-                                }
-
-                                return (
-                                    <a
-                                        key={item.label}
-                                        href={item.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        aria-label={item.label}
-                                        className="flex h-11 w-11 items-center justify-center rounded-full border border-main/10 bg-white/75 text-main/65 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/30 hover:text-accent"
-                                    >
-                                        <Icon />
-                                    </a>
-                                );
-                            })}
+                            {/* Social Icons */}
+                            <div className="flex items-center justify-center gap-2 lg:ml-2">
+                                {hero.socialLinks.map((item) => {
+                                    const Icon = socialIconMap[item.icon];
+                                    if (!Icon) return null;
+                                    return (
+                                        <a
+                                            key={item.label}
+                                            href={item.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label={item.label}
+                                            className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 text-slate-600 dark:text-slate-300 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-500/40 hover:text-blue-600 dark:hover:text-blue-400"
+                                        >
+                                            <Icon className="text-base" />
+                                        </a>
+                                    );
+                                })}
+                            </div>
                         </div>
                     </div>
 
+                    {/* Right Column: Double-Bezel Hardware Showcase */}
                     <div className="flex justify-center lg:justify-end">
-                        <div className="relative w-full max-w-[22rem] sm:max-w-[25rem] lg:max-w-[28rem]">
-                            <div className="absolute inset-x-8 -top-4 h-16 rounded-full bg-[linear-gradient(135deg,#2563EB_0%,#4F46E5_50%,#06B6D4_100%)] opacity-15 blur-2xl" />
+                        <div className="relative w-full max-w-[22rem] sm:max-w-[25rem]">
+                            {/* Outer Hardware Shell */}
+                            <div className="double-bezel-outer group transition-all duration-500 hover:-translate-y-1">
+                                <div className="double-bezel-inner p-3.5">
+                                    <div className="relative aspect-[4/5] overflow-hidden rounded-[calc(2.5rem-0.75rem)] bg-slate-100 dark:bg-slate-900">
+                                        <img
+                                            src={hero.profileImage}
+                                            alt={hero.profileAlt}
+                                            loading="eager"
+                                            decoding="sync"
+                                            fetchPriority="high"
+                                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                        />
+                                    </div>
 
-                            <div className="relative rounded-[2rem] border border-white/80 bg-white/72 p-4 shadow-[0_28px_70px_rgba(15,23,42,0.12)]">
-                                <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-secondary">
-                                    <img
-                                        src={hero.profileImage}
-                                        alt={hero.profileAlt}
-                                        loading="eager"
-                                        decoding="sync"
-                                        fetchPriority="high"
-                                        className="h-full w-full object-cover"
-                                    />
-                                </div>
-
-                                <div className="absolute -bottom-5 left-5 right-5 rounded-2xl border border-main/10 bg-white/92 px-4 py-3 shadow-[0_16px_36px_rgba(15,23,42,0.10)] backdrop-blur-xl">
-                                    <p className="text-xs font-black uppercase tracking-[0.18em] text-accent">
-                                        Building
-                                    </p>
-                                    <p className="mt-1 text-sm font-bold text-main">
-                                        AI tools, SaaS dashboards, automation workflows
-                                    </p>
+                                    {/* Hardware Live Status Badge */}
+                                    <div className="mt-3.5 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-slate-50/90 dark:bg-slate-900/90 px-4 py-3 backdrop-blur-md">
+                                        <div className="flex items-center gap-2">
+                                            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                                            <p className="text-[10px] font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-bold">
+                                                Current Focus
+                                            </p>
+                                        </div>
+                                        <p className="mt-1 text-xs font-bold text-slate-900 dark:text-slate-100 truncate">
+                                            LLM Multi-Agent Workflows & Full Stack SaaS
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Proof Metrics Strip */}
+            <div className="relative z-10 w-full border-t border-slate-200/60 dark:border-slate-800/60 bg-white/60 dark:bg-slate-900/40 py-5 backdrop-blur-md mt-12">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                        {fallbackProofPoints.map((point) => (
+                            <div key={point.label} className="flex flex-col items-center text-center">
+                                <span className="text-xl sm:text-2xl font-black font-display text-blue-600 dark:text-blue-400">
+                                    {point.number}
+                                </span>
+                                <span className="mt-0.5 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">
+                                    {point.label}
+                                </span>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

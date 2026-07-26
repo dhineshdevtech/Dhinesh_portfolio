@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { FaAward, FaArrowUpRightFromSquare } from "react-icons/fa6";
+import { FaAward, FaArrowUpRightFromSquare, FaCalendarDays, FaCheck } from "react-icons/fa6";
 import { useLoadMore } from "../../hooks/useLoadMore";
 import Modal from "../common/Modal";
 import { useContent } from "../../context/ContentContext";
@@ -15,16 +15,15 @@ const getCertificateType = (link) => {
     return "embed";
 };
 
-const priorityStyles = {
-    High: "border-accent/25 bg-accent/10 text-accent",
-    Medium: "border-brand-accent/25 bg-brand-accent/10 text-cyan-700",
-    Low: "border-main/10 bg-main/5 text-main/55",
-};
-
-const getPriorityClassName = (priority = "") => {
-    if (priority.toLowerCase().includes("high")) return priorityStyles.High;
-    if (priority.toLowerCase().includes("medium")) return priorityStyles.Medium;
-    return priorityStyles.Low;
+const getProfessionalBadge = (priority = "", title = "") => {
+    const combined = `${priority} ${title}`.toLowerCase();
+    if (combined.includes("first prize") || combined.includes("winner") || combined.includes("runner up") || combined.includes("3rd prize") || combined.includes("prize")) {
+        return { label: "🏆 Hackathon Award", style: "bg-blue-600 text-white" };
+    }
+    if (combined.includes("reputed") || combined.includes("cmti") || combined.includes("clinic") || combined.includes("national")) {
+        return { label: "🏛️ National Program", style: "bg-indigo-600 text-white" };
+    }
+    return { label: "📜 Verified Credential", style: "bg-slate-800 dark:bg-slate-700 text-white" };
 };
 
 const CertificatePreview = ({ certificate }) => {
@@ -32,8 +31,8 @@ const CertificatePreview = ({ certificate }) => {
 
     if (type !== "image") {
         return (
-            <div className="flex h-full items-center justify-center bg-secondary/60 text-accent">
-                <FaAward className="text-5xl" />
+            <div className="flex h-full items-center justify-center bg-slate-100 dark:bg-slate-950 text-blue-600 dark:text-blue-400">
+                <FaAward className="text-4xl opacity-80" />
             </div>
         );
     }
@@ -45,8 +44,76 @@ const CertificatePreview = ({ certificate }) => {
             loading="lazy"
             decoding="async"
             draggable={false}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover/img:scale-105"
         />
+    );
+};
+
+const HRCertificateCard = ({ certificate, onSelect }) => {
+    const badge = getProfessionalBadge(certificate.priority, certificate.title);
+
+    return (
+        <article className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-blue-500/50">
+            <div>
+                {/* Certificate Image Thumbnail */}
+                <div
+                    onClick={() => onSelect(certificate)}
+                    className="relative aspect-[16/10] w-full cursor-pointer overflow-hidden rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-100 dark:bg-slate-950 mb-4 group/img"
+                >
+                    <CertificatePreview certificate={certificate} />
+                    <span className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/60 dark:border-slate-700 bg-white/90 dark:bg-slate-950/90 text-blue-600 dark:text-blue-400 shadow-md backdrop-blur-md transition-transform duration-300 group-hover/img:scale-110">
+                        <FaArrowUpRightFromSquare size={11} />
+                    </span>
+                </div>
+
+                {/* Badges & Date */}
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <span className={`rounded-full px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-wider shadow-xs ${badge.style}`}>
+                        {badge.label}
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                        <FaCalendarDays size={10} />
+                        <span>{certificate.date}</span>
+                    </span>
+                </div>
+
+                {/* Title */}
+                <h3
+                    onClick={() => onSelect(certificate)}
+                    className="text-base font-bold leading-snug text-slate-900 dark:text-white font-display cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                    {certificate.title}
+                </h3>
+
+                {/* Issuing Authority */}
+                <p className="mt-1 text-xs font-bold text-blue-600 dark:text-blue-400 font-sans">
+                    {certificate.issuer}
+                </p>
+
+                {/* Description */}
+                {certificate.description && (
+                    <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-300 font-sans line-clamp-3">
+                        {certificate.description}
+                    </p>
+                )}
+            </div>
+
+            {/* Action Footer */}
+            <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-emerald-600 dark:text-emerald-400">
+                    <FaCheck size={10} />
+                    <span>Verified Credential</span>
+                </span>
+                <button
+                    type="button"
+                    onClick={() => onSelect(certificate)}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 dark:bg-slate-800 px-3.5 py-1.5 text-xs font-bold text-slate-800 dark:text-slate-200 hover:bg-blue-600 hover:text-white transition-all cursor-pointer"
+                >
+                    <span>View Certificate</span>
+                    <FaArrowUpRightFromSquare size={9} />
+                </button>
+            </div>
+        </article>
     );
 };
 
@@ -69,100 +136,67 @@ const Certificates = () => {
     return (
         <section
             id="certificates"
-            className="relative overflow-hidden border-b border-main/10 bg-[linear-gradient(180deg,rgba(239,246,255,0.72)_0%,#F8FAFC_100%)] py-14 sm:py-16 lg:py-20"
+            className="relative overflow-hidden border-b border-slate-200/60 dark:border-slate-800/60 py-24"
         >
             <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+                {/* Header */}
                 <div className="mx-auto max-w-3xl text-center">
-                    <p className="text-xs font-black uppercase tracking-[0.24em] text-accent sm:text-sm">
-                        {certificates.eyebrow || "Recognition"}
-                    </p>
-                    <h2 className="mt-3 text-3xl font-black tracking-tight text-main sm:text-4xl lg:text-5xl">
-                        {certificates.title || `${certificates.titlePrefix} ${certificates.titleHighlight}`}
+                    <h2 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl font-display">
+                        {certificates.title || "Certificates & Verified Credentials"}
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-main/68 sm:text-base">
-                        {certificates.description}
+                    <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-600 dark:text-slate-300 font-sans">
+                        {certificates.description || "Official certifications, hackathon awards, and verified technical training records."}
                     </p>
                 </div>
 
-                <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+                {/* HR Certificate Cards Grid */}
+                <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
                     {visibleCertificates.map((certificate) => (
-                        <article
+                        <HRCertificateCard
                             key={certificate.id}
-                            className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-main/10 bg-white/84 shadow-[0_16px_42px_rgba(15,23,42,0.07)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/25 hover:shadow-[0_22px_56px_rgba(37,99,235,0.11)]"
-                        >
-                            <button
-                                type="button"
-                                onClick={() => setSelectedCertificate(certificate)}
-                                className="relative aspect-[16/10] w-full overflow-hidden border-b border-main/10 text-left"
-                            >
-                                <CertificatePreview certificate={certificate} />
-                                <span className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/70 bg-white/88 text-accent shadow-sm">
-                                    <FaArrowUpRightFromSquare size={13} />
-                                </span>
-                            </button>
-
-                            <div className="flex flex-1 flex-col p-5">
-                                <div className="flex items-center justify-between gap-3">
-                                    <span className={`rounded-full border px-3 py-1 text-[0.62rem] font-black uppercase tracking-[0.14em] ${getPriorityClassName(certificate.priority)}`}>
-                                        {certificate.priority || "Certificate"}
-                                    </span>
-                                    <span className="text-xs font-bold text-main/48">
-                                        {certificate.date}
-                                    </span>
-                                </div>
-
-                                <h3 className="mt-4 text-lg font-black leading-tight text-main">
-                                    {certificate.title}
-                                </h3>
-                                <p className="mt-2 text-sm font-bold text-accent">
-                                    {certificate.issuer}
-                                </p>
-                                {certificate.description && (
-                                    <p className="mt-3 flex-1 text-sm leading-relaxed text-main/64">
-                                        {certificate.description}
-                                    </p>
-                                )}
-                            </div>
-                        </article>
+                            certificate={certificate}
+                            onSelect={setSelectedCertificate}
+                        />
                     ))}
                 </div>
 
-                <div className="mt-9 flex justify-center">
-                    {hasMore ? (
+                {/* Load More Button */}
+                {hasMore && (
+                    <div className="mt-12 flex justify-center">
                         <button
                             type="button"
                             onClick={handleLoadMore}
-                            className="rounded-full border border-accent/25 bg-white/82 px-6 py-3 text-sm font-black text-accent shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-accent hover:text-onaccent"
+                            className="group btn-primary"
                         >
-                            {certificates.loadMoreText}
+                            <span className="font-bold">{certificates.loadMoreText || "Load More Credentials"}</span>
+                            <span className="btn-icon-circle">
+                                <FaArrowUpRightFromSquare size={10} />
+                            </span>
                         </button>
-                    ) : (
-                        <p className="text-sm italic text-main/50">
-                            {certificates.endText}
-                        </p>
-                    )}
-                </div>
+                    </div>
+                )}
             </div>
 
+            {/* Modal Lightbox */}
             <Modal
                 isOpen={Boolean(selectedCertificate)}
                 onClose={() => setSelectedCertificate(null)}
-                title={selectedCertificate ? `${selectedCertificate.title} - ${selectedCertificate.issuer}` : "Certificate Preview"}
-                maxWidthClass="max-w-6xl"
+                title={selectedCertificate ? `${selectedCertificate.title} (Issued by ${selectedCertificate.issuer})` : "Credential Details"}
+                maxWidthClass="max-w-4xl"
             >
                 {selectedCertificate && (
                     <div className="space-y-4">
-                        <p className="text-sm leading-relaxed text-main/70">
+                        <p className="text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300 font-sans">
                             {selectedCertificate.description}
                         </p>
 
-                        <div className="overflow-hidden rounded-xl border border-main/15 bg-secondary/35">
+                        <div className="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-950">
                             {selectedType === "image" && (
-                                <div className="flex min-h-[35vh] items-center justify-center bg-primary sm:min-h-[60vh]">
+                                <div className="flex min-h-[40vh] items-center justify-center bg-slate-950 sm:min-h-[55vh]">
                                     <img
                                         src={selectedCertificate.link}
                                         alt={selectedCertificate.title}
-                                        className="max-h-[70vh] w-full object-contain sm:max-h-[75vh]"
+                                        className="max-h-[70vh] w-full object-contain"
                                     />
                                 </div>
                             )}
@@ -171,7 +205,7 @@ const Certificates = () => {
                                 <iframe
                                     title={selectedCertificate.title}
                                     src={selectedCertificate.link}
-                                    className="h-[75vh] w-full bg-white"
+                                    className="h-[70vh] w-full bg-white"
                                 />
                             )}
                         </div>

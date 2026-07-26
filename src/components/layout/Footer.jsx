@@ -1,56 +1,69 @@
-import { Link } from "react-scroll";
+import { FaGithub, FaLinkedinIn, FaEnvelope, FaPhone } from "react-icons/fa6";
 import { useContent } from "../../context/ContentContext";
-import { socialIconMap } from "../../utils/socialLinks";
 
 const Footer = () => {
     const { content } = useContent();
-    const { contact, footer, hero, navigation } = content;
-    const footerLinks = navigation.links.filter((link) => link.enabled !== false).slice(0, 6);
+    const { contact, hero } = content;
 
     return (
-        <footer className="relative z-10 border-t border-main/10 bg-primary py-8">
-            <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-                <div>
-                    <p className="text-xl font-black text-main">{hero.name}</p>
-                    <p className="mt-1 max-w-xl text-sm leading-relaxed text-main/60">
-                        {footer.description}
+        <footer className="relative z-10 border-t border-slate-200/80 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950 py-12">
+            <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 text-center">
+                {/* Brand Logo & Title */}
+                <div className="space-y-1">
+                    <span className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white font-display">
+                        {hero.name || "DHINESH"}
+                    </span>
+                    <p className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">
+                        AI & Full-Stack Software Engineer
+                    </p>
+                    <p className="mx-auto mt-2 max-w-md text-xs text-slate-600 dark:text-slate-400 font-sans leading-relaxed">
+                        Building intelligent AI products, RAG pipelines, and high-performance web applications.
                     </p>
                 </div>
 
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-                    <div className="flex flex-wrap gap-2">
-                        {footerLinks.map((link) => (
-                            <Link
-                                key={`${link.to}-footer`}
-                                to={link.to}
-                                smooth
-                                duration={500}
-                                offset={-72}
-                                className="cursor-pointer rounded-full px-3 py-1.5 text-sm font-bold text-main/58 transition-colors hover:bg-secondary hover:text-accent"
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
-                    </div>
+                {/* Centered Contact & Social Pills */}
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs font-sans">
+                    <a
+                        href={`mailto:${contact.email}`}
+                        className="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2 font-bold text-slate-800 dark:text-slate-200 shadow-xs hover:border-blue-500/50 hover:text-blue-600 transition-all"
+                    >
+                        <FaEnvelope className="text-blue-600 dark:text-blue-400" size={13} />
+                        <span>{contact.email}</span>
+                    </a>
 
-                    <div className="flex gap-3">
-                        {contact.socialLinks.map((link) => {
-                            const Icon = socialIconMap[link.icon] || socialIconMap.globe;
+                    <a
+                        href={`tel:${contact.phone}`}
+                        className="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2 font-bold text-slate-800 dark:text-slate-200 shadow-xs hover:border-blue-500/50 hover:text-blue-600 transition-all"
+                    >
+                        <FaPhone className="text-blue-600 dark:text-blue-400" size={13} />
+                        <span>{contact.phone}</span>
+                    </a>
 
-                            return (
-                                <a
-                                    key={`${link.label}-footer`}
-                                    href={link.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label={link.label}
-                                    className="flex h-10 w-10 items-center justify-center rounded-full border border-main/10 bg-white/70 text-main/58 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/25 hover:text-accent"
-                                >
-                                    <Icon />
-                                </a>
-                            );
-                        })}
+                    <div className="inline-flex items-center gap-2">
+                        <a
+                            href="https://www.linkedin.com/in/dhineshbuilder/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:border-blue-500/50 hover:text-blue-600 transition-all shadow-xs"
+                            aria-label="LinkedIn"
+                        >
+                            <FaLinkedinIn size={13} />
+                        </a>
+                        <a
+                            href="https://github.com/dhineshbuilder"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:border-blue-500/50 hover:text-blue-600 transition-all shadow-xs"
+                            aria-label="GitHub"
+                        >
+                            <FaGithub size={13} />
+                        </a>
                     </div>
+                </div>
+
+                {/* Sub-Footer Copyright */}
+                <div className="mt-8 pt-6 border-t border-slate-200/60 dark:border-slate-800/60 text-[11px] font-mono text-slate-400">
+                    <p>&copy; {new Date().getFullYear()} {hero.name}. All rights reserved.</p>
                 </div>
             </div>
         </footer>

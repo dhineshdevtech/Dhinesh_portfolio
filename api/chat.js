@@ -7,7 +7,7 @@ const ROOT_DIR = process.cwd();
 const MAX_FILE_BYTES = 700_000;
 const MAX_CHUNKS = 9;
 const REFUSAL_TEXT =
-    "I can only answer questions about my portfolio, projects, skills, achievements, resume, and related personal information.";
+    "I am AIRA, Dhinesh's AI portfolio assistant. I am specialized to talk only about Dhinesh, his projects, skills, achievements, background, and contact information.";
 
 const TEXT_EXTENSIONS = new Set([
     ".css",
@@ -59,34 +59,91 @@ const ALLOWED_BADGES = [
 const PORTFOLIO_TERMS = [
     "about",
     "achievement",
+    "achievements",
     "ai",
     "aira",
     "attendance",
     "award",
+    "awards",
+    "background",
+    "bio",
+    "builder",
     "bus",
     "canteen",
     "certificate",
+    "certificates",
     "certification",
+    "code",
+    "college",
     "contact",
+    "demo",
+    "developer",
     "dhinesh",
     "education",
     "email",
+    "engineer",
     "experience",
+    "frontend",
+    "fullstack",
     "github",
     "hackathon",
+    "hackathons",
+    "hello",
+    "hey",
+    "hi",
+    "hire",
+    "info",
+    "interview",
+    "introduce",
     "invoice",
+    "job",
+    "known",
     "linkedin",
+    "location",
     "mpnmjec",
+    "name",
+    "phone",
     "portfolio",
+    "profile",
     "project",
+    "projects",
+    "qualifications",
     "quiz",
     "resume",
-    "skill",
+    "role",
+    "saas",
+    "school",
+    "services",
     "sixquest",
+    "skill",
+    "skills",
     "stack",
+    "tech",
+    "technologies",
     "technology",
+    "tell",
     "timeline",
+    "trainer",
     "training",
+    "vanakkam",
+    "who",
+    "work",
+    "you",
+    "yourself",
+];
+
+const OFF_TOPIC_TERMS = [
+    "weather",
+    "recipe",
+    "cook",
+    "president",
+    "football",
+    "cricket score",
+    "movie",
+    "capital of",
+    "quantum physics",
+    "write a script for",
+    "solve calculus",
 ];
 
 const normalizeSlashes = (value) => value.replaceAll("\\", "/");
@@ -262,9 +319,9 @@ const scoreChunk = (chunk, queryTokens, queryText) => {
     if ((queryText.includes("achievement") || queryText.includes("hackathon") || queryText.includes("award")) && badge === "achievement") score += 6;
     if ((queryText.includes("certificate") || queryText.includes("certification")) && badge === "certification") score += 6;
     if ((queryText.includes("contact") || queryText.includes("email") || queryText.includes("phone")) && badge === "contact") score += 6;
-    if ((queryText.includes("about") || queryText.includes("who")) && badge === "about") score += 5;
+    if ((queryText.includes("about") || queryText.includes("who") || queryText.includes("dhinesh")) && badge === "about") score += 5;
 
-    if (chunk.path.includes("src/data/content.js")) score += 3;
+    if (chunk.path.includes("src/data/content.js")) score += 4;
     if (chunk.path.includes("src/utils/timelineContent")) score += 2;
 
     return score;
@@ -293,9 +350,14 @@ const retrieveContext = (message) => {
 
 const isPortfolioLikely = (message) => {
     const normalized = message.toLowerCase();
-    const greetingOnly = /^(hi|hello|hey|vanakkam|start|help)[!.\s]*$/i.test(message.trim());
 
-    if (greetingOnly) {
+    // Check if explicitly off-topic
+    if (OFF_TOPIC_TERMS.some((term) => normalized.includes(term))) {
+        return false;
+    }
+
+    // Default greetings & general portfolio inquiries
+    if (/^(hi|hello|hey|vanakkam|start|help|who are you|tell me|who is dhinesh)[!.\s]*$/i.test(message.trim())) {
         return true;
     }
 
@@ -343,14 +405,13 @@ const buildPrompt = ({ message, contextChunks, history }) => {
         {
             role: "system",
             content: [
-                "You are Dhinesh Portfolio Assistant, a chatbot embedded in Dhinesh's personal portfolio website.",
-                "You must answer only about Dhinesh, his portfolio website, projects, skills, achievements, education, certifications, resume, contact details, and personal brand.",
-                "Use only the supplied PORTFOLIO_CONTEXT. Never invent facts. Never use unrelated general knowledge.",
-                `If the user asks anything unrelated, respond exactly: "${REFUSAL_TEXT}"`,
-                "If the user asks a general technical question, refuse unless they ask how it relates to Dhinesh or his projects.",
-                "If the portfolio context does not contain enough information, say you do not know from the portfolio files yet.",
-                "Keep answers short, clear, recruiter-friendly, and confident.",
-                "For project questions, include what it does, main features, tech stack, and why it is useful when those details exist in context.",
+                "You are AIRA, the dedicated AI Portfolio Assistant for Dhinesh V (AI Software Engineer & Full-Stack Developer).",
+                "Your SOLE Purpose is to tell visitors about Dhinesh: his background, projects, technical skills, hackathon wins, education, experience, resume, and contact details.",
+                "ALWAYS speak about Dhinesh with high confidence, accuracy, and enthusiasm to anyone visiting his portfolio.",
+                "STRICT BOUNDARY: You must NEVER discuss off-topic subjects (e.g. general math homework, sports scores, recipes, politics, general coding tutorials unrelated to Dhinesh).",
+                `If the visitor asks an off-topic question, respond exactly with: "${REFUSAL_TEXT}"`,
+                "Use only the provided PORTFOLIO_CONTEXT. Never invent false facts about Dhinesh.",
+                "Keep your answers concise, engaging, recruiter-friendly, and well-structured.",
                 `Return JSON only with this shape: {"answer":"short answer","sourceBadges":["Project"]}. Badges can only be: ${ALLOWED_BADGES.join(", ")}.`,
             ].join("\n"),
         },
@@ -383,7 +444,7 @@ export default async function handler(req, res) {
     const history = Array.isArray(req.body?.history) ? req.body.history : [];
 
     if (!message) {
-        res.status(400).json({ answer: "Please ask a portfolio-related question.", sourceBadges: [] });
+        res.status(400).json({ answer: "Please ask a question about Dhinesh.", sourceBadges: [] });
         return;
     }
 
@@ -435,7 +496,7 @@ export default async function handler(req, res) {
     } catch (error) {
         console.error(error);
         res.status(502).json({
-            answer: "I could not reach the portfolio chatbot service right now. Please try again shortly.",
+            answer: "I could not reach AIRA right now. Please try again shortly.",
             sourceBadges: ["Website"],
         });
     }

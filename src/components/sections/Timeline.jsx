@@ -1,7 +1,8 @@
-import { useMemo } from "react";
-import { FaAward, FaCalendarDays } from "react-icons/fa6";
+import { useMemo, useState } from "react";
+import { FaAward, FaCalendarDays, FaTrophy, FaLocationDot } from "react-icons/fa6";
 import { useContent } from "../../context/ContentContext";
 import { NODE_TYPES } from "../../utils/timelineContent";
+import Modal from "../common/Modal";
 
 const buildAchievementItems = (items = []) => {
     const records = [];
@@ -26,45 +27,69 @@ const buildAchievementItems = (items = []) => {
     return records;
 };
 
-const AchievementCard = ({ item, index }) => (
-    <article className="group relative grid gap-4 rounded-[24px] border border-main/10 bg-white/82 p-4 shadow-[0_16px_42px_rgba(15,23,42,0.07)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/25 hover:shadow-[0_22px_56px_rgba(37,99,235,0.12)] sm:p-5 lg:grid-cols-[13rem_minmax(0,1fr)]">
-        <div className="relative min-h-[10rem] overflow-hidden rounded-2xl border border-main/10 bg-secondary/50">
+const HRAchievementCard = ({ item, index, onSelect }) => (
+    <article className="group relative flex flex-col sm:flex-row gap-5 overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/50 hover:shadow-lg">
+        {/* Photo Thumbnail */}
+        <div
+            onClick={() => onSelect(item)}
+            className="relative h-44 w-full sm:w-48 shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950"
+        >
             <img
                 src={item.slideImage}
                 alt={item.title}
-                loading="eager"
-                decoding={index < 3 ? "sync" : "async"}
-                fetchPriority={index < 3 ? "high" : "auto"}
-                draggable={false}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
+            <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-mono font-bold">
+                View Photo &rarr;
+            </div>
         </div>
 
-        <div className="min-w-0">
-            <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-3 py-1 text-xs font-black text-accent">
-                    <FaCalendarDays size={12} />
-                    {item.year}
-                </span>
-                {item.image && (
-                    <img
-                        src={item.image}
-                        alt=""
-                        loading="lazy"
-                        draggable={false}
-                        className="h-8 max-w-[9rem] object-contain"
-                    />
+        {/* Details Content */}
+        <div className="flex flex-1 flex-col justify-between min-w-0">
+            <div>
+                {/* Year & Category Badge */}
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-600 px-3 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider text-white">
+                        <FaTrophy size={10} />
+                        <span>{item.year || "Award"}</span>
+                    </span>
+                    {item.issuer && (
+                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-500 dark:text-slate-400">
+                            <FaLocationDot size={10} />
+                            <span className="truncate">{item.issuer}</span>
+                        </span>
+                    )}
+                </div>
+
+                {/* Title */}
+                <h3
+                    onClick={() => onSelect(item)}
+                    className="text-lg font-bold text-slate-900 dark:text-white font-display cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors leading-snug"
+                >
+                    {item.title}
+                </h3>
+
+                {/* Subtitle / Description */}
+                {item.subtitle && (
+                    <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300 font-sans line-clamp-3">
+                        {item.subtitle}
+                    </p>
                 )}
             </div>
 
-            <h3 className="mt-4 text-xl font-black leading-tight text-main">
-                {item.title}
-            </h3>
-            {item.subtitle && (
-                <p className="mt-3 text-sm leading-relaxed text-main/66">
-                    {item.subtitle}
-                </p>
-            )}
+            {/* Bottom Link Action */}
+            <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span className="text-[11px] font-mono font-bold text-slate-400">Official Achievement Record</span>
+                <button
+                    type="button"
+                    onClick={() => onSelect(item)}
+                    className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
+                >
+                    Expand &rarr;
+                </button>
+            </div>
         </div>
     </article>
 );
@@ -72,6 +97,8 @@ const AchievementCard = ({ item, index }) => (
 const Timeline = () => {
     const { content } = useContent();
     const timelineContent = content.timeline;
+    const [selectedItem, setSelectedItem] = useState(null);
+
     const achievements = useMemo(
         () => buildAchievementItems(timelineContent?.items || []).slice(0, timelineContent?.displayCount || 8),
         [timelineContent?.displayCount, timelineContent?.items]
@@ -84,39 +111,49 @@ const Timeline = () => {
     return (
         <section
             id="timeline"
-            className="relative overflow-hidden border-b border-main/10 bg-white/64 py-14 sm:py-16 lg:py-20"
+            className="relative border-b border-slate-200/60 dark:border-slate-800/60 py-24"
         >
             <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+                {/* Header */}
                 <div className="mx-auto max-w-3xl text-center">
-                    <p className="text-xs font-black uppercase tracking-[0.24em] text-accent sm:text-sm">
-                        {timelineContent.eyebrow}
-                    </p>
-                    <h2 className="mt-3 text-3xl font-black tracking-tight text-main sm:text-4xl lg:text-5xl">
-                        {timelineContent.title}
+                    <h2 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl font-display">
+                        {timelineContent.title || "Key Achievements & Honors"}
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-main/68 sm:text-base">
-                        {timelineContent.subtitle}
+                    <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-600 dark:text-slate-300 font-sans">
+                        National hackathon victories, engineering awards, leadership records, and technical training highlights.
                     </p>
                 </div>
 
-                <div className="mx-auto mt-10 grid max-w-5xl gap-5">
+                {/* Scannable HR Grid */}
+                <div className="mx-auto mt-12 grid max-w-6xl grid-cols-1 md:grid-cols-2 gap-6">
                     {achievements.map((item, index) => (
-                        <div key={`${item.year}-${item.title}`} className="relative">
-                            <div className="absolute -left-1 top-7 hidden h-3 w-3 rounded-full bg-accent shadow-[0_0_0_6px_rgba(37,99,235,0.10)] lg:block" />
-                            <AchievementCard item={item} index={index} />
-                        </div>
+                        <HRAchievementCard key={`${item.year}-${item.title}`} item={item} index={index} onSelect={setSelectedItem} />
                     ))}
                 </div>
-
-                <div className="mx-auto mt-8 flex max-w-5xl items-center gap-3 rounded-[22px] border border-accent/15 bg-accent/10 p-4 text-sm text-main/68">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-accent/10 text-accent">
-                        <FaAward />
-                    </span>
-                    <p>
-                        Focused highlights from hackathons, innovation programs, technical training, and project recognition.
-                    </p>
-                </div>
             </div>
+
+            {/* Modal Lightbox */}
+            <Modal
+                isOpen={Boolean(selectedItem)}
+                onClose={() => setSelectedItem(null)}
+                title={selectedItem?.title || "Achievement Details"}
+                maxWidthClass="max-w-4xl"
+            >
+                {selectedItem && (
+                    <div className="space-y-4">
+                        <div className="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-950 max-h-[70vh] flex items-center justify-center">
+                            <img
+                                src={selectedItem.slideImage}
+                                alt={selectedItem.title}
+                                className="max-h-[70vh] w-full object-contain"
+                            />
+                        </div>
+                        <p className="text-sm font-medium text-slate-700 dark:text-slate-300 font-sans">
+                            {selectedItem.subtitle}
+                        </p>
+                    </div>
+                )}
+            </Modal>
         </section>
     );
 };

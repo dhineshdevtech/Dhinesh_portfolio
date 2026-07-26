@@ -10,6 +10,8 @@ import Timeline from "./components/sections/Timeline";
 import Certificates from "./components/sections/Certificates";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/layout/Footer";
+import BackToTop from "./components/common/BackToTop";
+import Background3D from "./components/common/Background3D";
 
 const PortfolioChatbot = lazy(() => import("./components/common/PortfolioChatbot"));
 
@@ -17,7 +19,10 @@ const PortfolioShell = () => {
     const { content } = useContent();
 
     return (
-        <div className="min-h-screen bg-[linear-gradient(140deg,#F8FAFC_0%,rgba(239,246,255,0.94)_42%,rgba(238,242,255,0.86)_72%,rgba(236,254,255,0.78)_100%)] text-main font-sans selection:bg-accent selection:text-onaccent transition-colors duration-300 relative overflow-x-hidden">
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans selection:bg-blue-600 selection:text-white transition-colors duration-300 relative overflow-x-hidden">
+            {/* Background 3D Constellation Stars */}
+            <Background3D />
+
             <div className="relative z-10 transition-opacity duration-300 opacity-100">
                 <Navbar />
                 <main className="relative z-10">
@@ -30,6 +35,9 @@ const PortfolioShell = () => {
                     {content.contact.enabled && <Contact />}
                 </main>
                 {content.footer.enabled && <Footer />}
+                
+                <BackToTop />
+
                 <Suspense fallback={null}>
                     <PortfolioChatbot />
                 </Suspense>

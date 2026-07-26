@@ -325,7 +325,7 @@ export const defaultSiteContent = {
         secondaryCtaText: "Contact Me",
         secondaryCtaTarget: "contact",
         resumeCtaText: "Download Resume",
-        resumeLink: "https://drive.google.com/file/d/1g4PGaMFEDcwiZGpevaMnlUq5KOoj2TDH/view?usp=sharing",
+        resumeLink: "https://drive.google.com/file/d/1XgTs1GWg3Yao87z7sof8y1RH6O6CQd2d/view?usp=sharing",
         profileImage: "/homeprofile.jpeg",
         profileAlt: "Dhinesh professional AI software engineer portrait",
         proofPoints: ["Hackathon wins", "Projects built", "AI products", "Technical training"],
@@ -361,7 +361,7 @@ export const defaultSiteContent = {
                 category: "Backend & Databases",
                 description: "Designing scalable APIs, backend services, and data-driven applications.",
                 summary: "Designing scalable APIs, backend services, and data-driven applications.",
-                skills: ["Node.js", "Express.js", "PostgreSQL", "MongoDB", "Supabase", "Firebase", "REST APIs", "Authentication"],
+                skills: ["Node.js", "Python", "Express.js", "PostgreSQL", "MongoDB", "Supabase", "Firebase", "REST APIs", "Authentication"],
             },
             {
                 category: "Tools & Deployment",

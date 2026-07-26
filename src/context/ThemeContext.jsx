@@ -4,21 +4,18 @@ const ThemeContext = createContext();
 const THEMES = ['light'];
 
 export const ThemeProvider = ({ children }) => {
-    const [theme, setThemeState] = useState('light');
+    const [theme] = useState('light');
 
     useEffect(() => {
         const root = window.document.documentElement;
-
-        root.classList.remove('dark', 'theme-light');
+        root.classList.remove('dark', 'theme-dark');
         root.classList.add('theme-light');
-        localStorage.setItem('theme', 'light');
-    }, [theme]);
+        localStorage.removeItem('theme');
+    }, []);
 
-    const setTheme = () => setThemeState('light');
-    const cycleTheme = () => setThemeState('light');
-
-    // Preserve compatibility for components already using toggleTheme.
-    const toggleTheme = cycleTheme;
+    const toggleTheme = () => {};
+    const setTheme = () => {};
+    const cycleTheme = () => {};
 
     return (
         <ThemeContext.Provider value={{ theme, setTheme, toggleTheme, cycleTheme, themes: THEMES }}>
@@ -27,4 +24,10 @@ export const ThemeProvider = ({ children }) => {
     );
 };
 
-export const useTheme = () => useContext(ThemeContext);
+export const useTheme = () => {
+    const context = useContext(ThemeContext);
+    if (!context) {
+        return { theme: 'light', toggleTheme: () => {}, setTheme: () => {} };
+    }
+    return context;
+};
