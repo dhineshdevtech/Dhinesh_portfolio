@@ -5,7 +5,7 @@ const GROQ_CHAT_URL = "https://api.groq.com/openai/v1/chat/completions";
 const DEFAULT_MODEL = "llama-3.3-70b-versatile";
 const ROOT_DIR = process.cwd();
 const MAX_FILE_BYTES = 700_000;
-const MAX_CHUNKS = 9;
+const MAX_CHUNKS = 4;
 const REFUSAL_TEXT =
     "I am AIRA, Dhinesh's AI portfolio assistant. I am specialized to talk only about Dhinesh, his projects, skills, achievements, background, and contact information.";
 
