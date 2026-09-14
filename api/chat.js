@@ -2,7 +2,32 @@ import fs from "node:fs";
 import path from "node:path";
 
 const GROQ_CHAT_URL = "https://api.groq.com/openai/v1/chat/completions";
-const DEFAULT_MODEL = "llama-3.3-70b-versatile";
+const GROQ_MODELS_URL = "https://api.groq.com/openai/v1/models";
+const DEFAULT_MODEL = "groq/compound-mini";
+
+const DECOMMISSIONED_MODELS = new Set([
+    "llama-3.1-8b-instant",
+    "llama-3.3-70b-versatile",
+    "llama3-8b-8192",
+    "llama3-70b-8192",
+    "gemma2-9b-it",
+    "deepseek-r1-distill-llama-70b",
+]);
+
+const PRIORITY_MODELS = [
+    "groq/compound-mini",
+    "groq/compound",
+    "openai/gpt-oss-120b",
+    "openai/gpt-oss-20b",
+    "qwen/qwen3.6-27b",
+    "mixtral-8x7b-32768",
+];
+
+let discoveredWorkingModel = null;
+let cachedAvailableModels = null;
+let lastModelsFetchTime = 0;
+let cachedKnowledgeBase = null;
+
 const ROOT_DIR = process.cwd();
 const MAX_FILE_BYTES = 700_000;
 const MAX_CHUNKS = 4;
@@ -296,8 +321,12 @@ const chunkText = (file) => {
     }));
 };
 
-const buildKnowledgeBase = () =>
-    SEARCH_ROOTS.flatMap((root) => readPortfolioFiles(root)).flatMap(chunkText);
+const getKnowledgeBase = () => {
+    if (!cachedKnowledgeBase) {
+        cachedKnowledgeBase = SEARCH_ROOTS.flatMap((root) => readPortfolioFiles(root)).flatMap(chunkText);
+    }
+    return cachedKnowledgeBase;
+};
 
 const scoreChunk = (chunk, queryTokens, queryText) => {
     if (!queryTokens.length) {
@@ -328,7 +357,7 @@ const scoreChunk = (chunk, queryTokens, queryText) => {
 };
 
 const retrieveContext = (message) => {
-    const knowledgeBase = buildKnowledgeBase();
+    const knowledgeBase = getKnowledgeBase();
     const queryText = message.toLowerCase();
     const queryTokens = tokenize(message);
 
@@ -470,6 +499,91 @@ const buildPrompt = ({ message, contextChunks, history }) => {
     ];
 };
 
+const getCandidateModels = async (apiKey) => {
+    const now = Date.now();
+    const list = [];
+
+    const envModel = process.env.GROQ_MODEL;
+    if (envModel && !DECOMMISSIONED_MODELS.has(envModel)) {
+        list.push(envModel);
+    }
+
+    if (discoveredWorkingModel && !list.includes(discoveredWorkingModel)) {
+        list.push(discoveredWorkingModel);
+    }
+
+    // Return cached dynamic models if fetched within the last 10 minutes
+    if (cachedAvailableModels && now - lastModelsFetchTime < 10 * 60 * 1000) {
+        for (const model of cachedAvailableModels) {
+            if (!list.includes(model)) {
+                list.push(model);
+            }
+        }
+        return list.length ? list : [DEFAULT_MODEL];
+    }
+
+    try {
+        const response = await fetch(GROQ_MODELS_URL, {
+            headers: {
+                Authorization: `Bearer ${apiKey}`,
+            },
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            if (Array.isArray(data?.data)) {
+                const activeChatModels = data.data
+                    .map((m) => m.id)
+                    .filter((id) => {
+                        if (DECOMMISSIONED_MODELS.has(id)) return false;
+                        const lower = id.toLowerCase();
+                        return (
+                            !lower.includes("whisper") &&
+                            !lower.includes("guard") &&
+                            !lower.includes("embed") &&
+                            !lower.includes("tts") &&
+                            !lower.includes("orpheus") &&
+                            !lower.includes("speech") &&
+                            !lower.includes("audio") &&
+                            !lower.includes("voice")
+                        );
+                    });
+
+                const dynamicPriority = [];
+                for (const priority of PRIORITY_MODELS) {
+                    if (activeChatModels.includes(priority)) {
+                        dynamicPriority.push(priority);
+                    }
+                }
+                for (const modelId of activeChatModels) {
+                    if (!dynamicPriority.includes(modelId)) {
+                        dynamicPriority.push(modelId);
+                    }
+                }
+
+                cachedAvailableModels = dynamicPriority;
+                lastModelsFetchTime = now;
+
+                for (const model of dynamicPriority) {
+                    if (!list.includes(model)) {
+                        list.push(model);
+                    }
+                }
+            }
+        }
+    } catch (error) {
+        console.warn("Could not query dynamic Groq models list:", error.message);
+    }
+
+    for (const priority of PRIORITY_MODELS) {
+        if (!list.includes(priority)) {
+            list.push(priority);
+        }
+    }
+
+    return list.length ? list : [DEFAULT_MODEL];
+};
+
 export default async function handler(req, res) {
     if (req.method === "OPTIONS") {
         res.status(204).end();
@@ -481,10 +595,18 @@ export default async function handler(req, res) {
         return;
     }
 
+    let body = req.body;
+    if (typeof body === "string") {
+        try {
+            body = JSON.parse(body);
+        } catch {
+            body = {};
+        }
+    }
+
     const apiKey = process.env.GROQ_API_KEY;
-    const model = process.env.GROQ_MODEL || DEFAULT_MODEL;
-    const message = cleanText(req.body?.message || "");
-    const history = Array.isArray(req.body?.history) ? req.body.history : [];
+    const message = cleanText(body?.message || "");
+    const history = Array.isArray(body?.history) ? body.history : [];
 
     if (!message) {
         res.status(400).json({ answer: "Please ask a question about Dhinesh.", sourceBadges: [] });
@@ -508,23 +630,66 @@ export default async function handler(req, res) {
     const sourceBadges = [...new Set(contextChunks.map((chunk) => chunk.badge))].slice(0, 4);
 
     try {
-        const groqResponse = await fetch(GROQ_CHAT_URL, {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${apiKey}`,
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                model,
-                messages: buildPrompt({ message, contextChunks, history }),
-                temperature: 0.15,
-                max_tokens: 650,
-            }),
-        });
+        const candidateModels = await getCandidateModels(apiKey);
+        const promptMessages = buildPrompt({ message, contextChunks, history });
 
-        if (!groqResponse.ok) {
-            const errorText = await groqResponse.text();
-            throw new Error(`Groq request failed: ${groqResponse.status} ${errorText}`);
+        let groqResponse = null;
+        let lastErrorText = "";
+
+        for (const currentModel of candidateModels) {
+            try {
+                const response = await fetch(GROQ_CHAT_URL, {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${apiKey}`,
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        model: currentModel,
+                        messages: promptMessages,
+                        temperature: 0.15,
+                        max_tokens: 650,
+                    }),
+                });
+
+                if (response.ok) {
+                    groqResponse = response;
+                    discoveredWorkingModel = currentModel;
+                    break;
+                }
+
+                const errorText = await response.text();
+                lastErrorText = `Model '${currentModel}' failed (${response.status}): ${errorText}`;
+                console.warn(lastErrorText);
+
+                const isModelOrQuotaError =
+                    response.status === 400 ||
+                    response.status === 404 ||
+                    response.status === 429 ||
+                    errorText.includes("model_not_found") ||
+                    errorText.includes("model_decommissioned") ||
+                    errorText.includes("does not exist") ||
+                    errorText.includes("no longer supported") ||
+                    errorText.includes("terms required") ||
+                    errorText.includes("terms acceptance") ||
+                    errorText.includes("rate_limit");
+
+                if (isModelOrQuotaError) {
+                    continue; // Try next fallback model
+                }
+
+                // If non-recoverable (like bad credentials 401), stop immediately
+                throw new Error(lastErrorText);
+            } catch (modelError) {
+                console.warn(`Error trying model ${currentModel}:`, modelError.message);
+                if (candidateModels.indexOf(currentModel) === candidateModels.length - 1) {
+                    throw modelError;
+                }
+            }
+        }
+
+        if (!groqResponse) {
+            throw new Error(`All candidate Groq models failed. Last error: ${lastErrorText}`);
         }
 
         const data = await groqResponse.json();
@@ -537,7 +702,7 @@ export default async function handler(req, res) {
 
         res.status(200).json(parsed);
     } catch (error) {
-        console.error(error);
+        console.error("AIRA chat error:", error);
         res.status(502).json({
             answer: "I could not reach AIRA right now. Please try again shortly.",
             sourceBadges: ["Website"],
