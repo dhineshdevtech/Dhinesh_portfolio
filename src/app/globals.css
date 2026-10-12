@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  /* Signature Ice White & Cyber Azure Developer Theme */
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --muted: #64748b;
+  /* Signature Ice Azure & Cyber Blue Developer Theme */
+  --background: #f0f6fe;
+  --foreground: #09172c;
+  --muted: #536780;
   --surface: #ffffff;
-  --surface-border: #e2e8f0;
+  --surface-border: #e0ecfb;
   
   /* Photo-Matched Cyan & Electric Azure Accents */
   --accent-cyan: #00f2fe;
