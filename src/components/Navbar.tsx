@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 interface NavItem {
@@ -10,6 +9,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
+  { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
@@ -20,26 +20,29 @@ const navItems: NavItem[] = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 15);
 
-      // Determine active section based on scroll position
-      const scrollPosition = window.scrollY + 120;
+      const scrollPosition = window.scrollY + 140;
       const sections = navItems.map((item) => item.href.substring(1));
-      
-      for (const sectionId of sections) {
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const sectionId = sections[i];
         const element = document.getElementById(sectionId);
         if (element) {
           const top = element.offsetTop;
-          const height = element.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
+          if (scrollPosition >= top) {
             setActiveSection(sectionId);
             break;
           }
         }
+      }
+
+      if (window.scrollY < 80) {
+        setActiveSection("home");
       }
     };
 
@@ -50,65 +53,50 @@ export default function Navbar() {
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsOpen(false);
-    
-    if (href === "#") {
+
+    if (href === "#home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
+      setActiveSection("home");
       return;
     }
 
     const targetId = href.replace("#", "");
     const element = document.getElementById(targetId);
     if (element) {
-      const navOffset = 85;
+      const navOffset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - navOffset;
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth",
       });
+      setActiveSection(targetId);
     }
   };
 
   return (
-    <header className="fixed top-3 sm:top-5 inset-x-0 mx-auto z-50 w-[94%] max-w-5xl transition-all duration-300">
-      <nav
-        className={`relative flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 rounded-2xl border transition-all duration-300 ${
-          scrolled
-            ? "bg-white/85 dark:bg-[#050b14]/85 backdrop-blur-xl border-slate-200/90 dark:border-slate-800/90 shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
-            : "bg-white/70 dark:bg-[#050b14]/70 backdrop-blur-md border-slate-200/70 dark:border-slate-800/70 shadow-sm"
-        }`}
-        aria-label="Main Navigation"
-      >
-        {/* Left: Brand / Name (Click to scroll to top) */}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? "bg-white/90 dark:bg-[#050b14]/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 shadow-xs"
+          : "bg-transparent border-b border-transparent"
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
+        {/* Left Side: Bold Clean Name */}
         <Link
-          href="#"
-          onClick={(e) => scrollToSection(e, "#")}
-          className="group flex items-center gap-3 focus:outline-hidden"
-          aria-label="Dhinesh - Back to top"
+          href="#home"
+          onClick={(e) => scrollToSection(e, "#home")}
+          className="group flex items-center gap-2.5 focus:outline-hidden"
+          aria-label="Dhinesh - Back to home"
         >
-          {/* Custom Branded Icon */}
-          <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-tr from-[#0047ab] via-[#0070f3] to-[#00f2fe] p-0.5 shadow-sm group-hover:shadow-[0_0_16px_rgba(0,242,254,0.4)] transition-all duration-300 group-hover:scale-105">
-            <div className="flex items-center justify-center w-full h-full rounded-[10px] bg-white/10 backdrop-blur-xs">
-              <span className="font-extrabold text-white text-base tracking-tight font-sans">
-                D
-              </span>
-            </div>
-          </div>
-
-          {/* Name & Availability Pill */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2.5">
-            <span className="font-bold text-base tracking-tight text-slate-900 dark:text-slate-100 group-hover:text-[#0070f3] dark:group-hover:text-[#00f2fe] transition-colors">
-              Dhinesh
-            </span>
-            <span className="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Available
-            </span>
-          </div>
+          <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100 group-hover:text-[#0070f3] dark:group-hover:text-[#00f2fe] transition-colors">
+            Dhinesh
+          </span>
         </Link>
 
-        {/* Center: Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-1 bg-slate-100/60 dark:bg-slate-900/60 p-1 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
+        {/* Right Side: Desktop Nav Links with Active Underline Bar */}
+        <nav className="hidden md:flex items-center gap-7 lg:gap-9" aria-label="Main Navigation">
           {navItems.map((item) => {
             const isActive = activeSection === item.href.substring(1);
             return (
@@ -116,85 +104,77 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 onClick={(e) => scrollToSection(e, item.href)}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold tracking-wide transition-all duration-200 ${
+                className={`relative py-1 text-sm lg:text-[15px] font-medium transition-colors duration-200 ${
                   isActive
-                    ? "bg-white dark:bg-slate-800 text-[#0070f3] dark:text-[#00f2fe] shadow-xs"
-                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-800/60"
+                    ? "text-[#0070f3] dark:text-[#00f2fe]"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
                 }`}
               >
-                {item.name}
+                <span>{item.name}</span>
+                {/* Clean Underline Indicator Bar */}
+                {isActive && (
+                  <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-gradient-to-r from-[#0070f3] to-[#00f2fe] rounded-full animate-fadeIn" />
+                )}
               </a>
             );
           })}
-        </div>
+        </nav>
 
-        {/* Right: CTA Button (Desktop) & Mobile Hamburger */}
-        <div className="flex items-center gap-2.5">
-          {/* Contact / Hire CTA Button */}
-          <a
-            href="#contact"
-            onClick={(e) => scrollToSection(e, "#contact")}
-            className="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-[#0070f3] to-[#00c2ff] hover:from-[#005cd6] hover:to-[#00a8e0] shadow-[0_2px_10px_rgba(0,112,243,0.3)] hover:shadow-[0_4px_16px_rgba(0,112,243,0.4)] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-          >
-            Get In Touch
-          </a>
+        {/* Mobile Hamburger Toggle Button */}
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white focus:outline-hidden"
+          aria-label="Toggle navigation menu"
+          aria-expanded={isOpen}
+        >
+          <div className="w-5 h-4 flex flex-col justify-between">
+            <span
+              className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-left ${
+                isOpen ? "rotate-45 translate-x-px -translate-y-px" : ""
+              }`}
+            />
+            <span
+              className={`w-full h-0.5 bg-current rounded-full transition-all duration-200 ${
+                isOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-left ${
+                isOpen ? "-rotate-45 translate-x-px translate-y-px" : ""
+              }`}
+            />
+          </div>
+        </button>
+      </div>
 
-          {/* Mobile Hamburger Toggle */}
-          <button
-            type="button"
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden flex items-center justify-center w-9 h-9 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white focus:outline-hidden"
-            aria-label="Toggle navigation menu"
-            aria-expanded={isOpen}
-          >
-            <div className="w-4 h-3.5 flex flex-col justify-between">
-              <span
-                className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-left ${
-                  isOpen ? "rotate-45 translate-x-px -translate-y-px" : ""
-                }`}
-              />
-              <span
-                className={`w-full h-0.5 bg-current rounded-full transition-all duration-200 ${
-                  isOpen ? "opacity-0" : ""
-                }`}
-              />
-              <span
-                className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-left ${
-                  isOpen ? "-rotate-45 translate-x-px translate-y-px" : ""
-                }`}
-              />
-            </div>
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Glass Dropdown Menu */}
+      {/* Mobile Menu Dropdown */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-80 opacity-100 mt-2" : "max-h-0 opacity-0 mt-0 pointer-events-none"
+          isOpen ? "max-h-96 border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-[#050b14]/95 backdrop-blur-xl" : "max-h-0"
         }`}
       >
-        <div className="p-3 rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/95 dark:bg-[#050b14]/95 backdrop-blur-2xl shadow-xl space-y-1">
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              onClick={(e) => scrollToSection(e, item.href)}
-              className="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-[#0070f3] dark:hover:text-[#00f2fe] hover:bg-slate-100/70 dark:hover:bg-slate-900/70 transition-all"
-            >
-              <span>{item.name}</span>
-              <span className="text-slate-400 text-xs">→</span>
-            </a>
-          ))}
-          <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80">
-            <a
-              href="#contact"
-              onClick={(e) => scrollToSection(e, "#contact")}
-              className="flex items-center justify-center w-full py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-[#0070f3] to-[#00c2ff] shadow-sm"
-            >
-              Get In Touch
-            </a>
-          </div>
+        <div className="px-6 py-4 space-y-3">
+          {navItems.map((item) => {
+            const isActive = activeSection === item.href.substring(1);
+            return (
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={(e) => scrollToSection(e, item.href)}
+                className={`flex items-center justify-between py-2 text-base font-medium transition-colors ${
+                  isActive
+                    ? "text-[#0070f3] dark:text-[#00f2fe] font-semibold"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                }`}
+              >
+                <span>{item.name}</span>
+                {isActive && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0070f3] dark:bg-[#00f2fe]" />
+                )}
+              </a>
+            );
+          })}
         </div>
       </div>
     </header>
