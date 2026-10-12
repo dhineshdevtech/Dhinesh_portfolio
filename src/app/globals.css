@@ -1,36 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  /* Midnight Engineer - Light Theme Foundation */
+  /* Ice White & Cyan-Azure Developer Theme */
   --background: #f8fafc;
   --foreground: #0f172a;
   --muted: #64748b;
   --surface: #ffffff;
   --surface-border: #e2e8f0;
   
-  /* Primary & Accent Blues */
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
+  /* Photo-Matched Cyan & Electric Azure Accents */
+  --accent-cyan: #00f2fe;
+  --accent-azure: #0070f3;
+  --accent-sapphire: #0047ab;
+  --primary: #0066ff;
+  --primary-hover: #0052cc;
   --primary-foreground: #ffffff;
-  --accent-sky: #38bdf8;
-  --accent-glow: rgba(37, 99, 235, 0.12);
+  --accent-glow: rgba(0, 242, 254, 0.2);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Midnight Engineer - Dark Mode */
-    --background: #0b0f17;
+    /* Midnight Obsidian - Dark Mode (matching avatar background) */
+    --background: #050b14;
     --foreground: #f8fafc;
     --muted: #94a3b8;
-    --surface: #111827;
+    --surface: #0b1528;
     --surface-border: #1e293b;
 
-    /* Primary & Accent Blues (Dark) */
-    --primary: #3b82f6;
-    --primary-hover: #60a5fa;
-    --primary-foreground: #ffffff;
-    --accent-sky: #38bdf8;
-    --accent-glow: rgba(59, 130, 246, 0.2);
+    /* Photo-Matched Accents (Dark Mode glow) */
+    --accent-cyan: #00f2fe;
+    --accent-azure: #0080ff;
+    --accent-sapphire: #0051ff;
+    --primary: #00f2fe;
+    --primary-hover: #38bdf8;
+    --primary-foreground: #050b14;
+    --accent-glow: rgba(0, 242, 254, 0.35);
   }
 }
 
@@ -43,7 +47,8 @@
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-foreground: var(--primary-foreground);
-  --color-accent-sky: var(--accent-sky);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-azure: var(--accent-azure);
   --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
 }

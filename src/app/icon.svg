@@ -1,24 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
   <defs>
-    <!-- Vibrant Electric Cobalt Gradient -->
-    <linearGradient id="cobalt-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#3b82f6" />
-      <stop offset="40%" stop-color="#2563eb" />
-      <stop offset="100%" stop-color="#1d4ed8" />
+    <!-- Photo-Matched Cyan to Electric Azure Gradient -->
+    <linearGradient id="cyber-blue-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe" />
+      <stop offset="45%" stop-color="#0070f3" />
+      <stop offset="100%" stop-color="#0047ab" />
     </linearGradient>
 
-    <!-- Subtle border highlight -->
-    <linearGradient id="highlight-border" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#93c5fd" stop-opacity="0.6" />
-      <stop offset="100%" stop-color="#1e40af" stop-opacity="0.3" />
+    <!-- Glowing outer edge highlight -->
+    <linearGradient id="neon-rim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#00f2fe" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#0051ff" stop-opacity="0.4" />
     </linearGradient>
+
+    <!-- Subtle drop shadow for the Ice White D -->
+    <filter id="monogram-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1" stdDeviation="0.8" flood-color="#002266" flood-opacity="0.45" />
+    </filter>
   </defs>
 
-  <!-- Background rounded squircle -->
-  <rect width="32" height="32" rx="8" fill="url(#cobalt-bg)" />
-  <rect width="31" height="31" x="0.5" y="0.5" rx="7.5" fill="none" stroke="url(#highlight-border)" stroke-width="1" />
+  <!-- Background squircle in Photo-Matched Cyan/Azure gradient -->
+  <rect width="32" height="32" rx="8" fill="url(#cyber-blue-bg)" />
+  <rect width="31" height="31" x="0.5" y="0.5" rx="7.5" fill="none" stroke="url(#neon-rim)" stroke-width="1" />
 
-  <!-- Ice White Monogram D -->
+  <!-- Crisp Ice White Monogram D -->
   <text
     x="16"
     y="22.5"
@@ -28,5 +34,6 @@
     font-weight="800"
     fill="#ffffff"
     letter-spacing="-0.5"
+    filter="url(#monogram-shadow)"
   >D</text>
 </svg>
