@@ -151,11 +151,12 @@ export default function Navbar() {
             className="group flex items-center gap-3 focus:outline-hidden"
             aria-label="Dhinesh - Back to home"
           >
-            {/* Branded D Squircle */}
-            <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-tr from-[#0047ab] via-[#0070f3] to-[#00f2fe] p-0.5 shadow-sm group-hover:scale-105 group-hover:shadow-[0_0_16px_rgba(0,242,254,0.45)] transition-all duration-200">
-              <span className="font-extrabold text-white text-sm tracking-tight font-sans">
+            {/* Deloitte-Inspired D. Brand Icon */}
+            <div className="relative flex items-center justify-center px-2.5 h-9 rounded-xl bg-slate-900 border border-slate-800 shadow-sm group-hover:scale-105 group-hover:shadow-[0_0_18px_rgba(0,242,254,0.45)] group-hover:border-[#0070f3]/50 transition-all duration-300">
+              <span className="font-black text-white text-base tracking-tight font-sans">
                 D
               </span>
+              <span className="w-2 h-2 ml-1 rounded-full bg-[#00f2fe] shadow-[0_0_8px_#00f2fe] animate-pulse" />
             </div>
 
             <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 group-hover:text-[#0070f3] transition-colors">
@@ -239,8 +240,11 @@ export default function Navbar() {
           <div>
             <div className="flex items-center justify-between pb-6 border-b border-[#eef5fd]">
               <div className="flex items-center gap-2.5">
-                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-tr from-[#0047ab] via-[#0070f3] to-[#00f2fe] p-0.5 shadow-2xs">
-                  <span className="font-extrabold text-white text-xs">D</span>
+                <div className="relative flex items-center justify-center px-2 h-7 rounded-lg bg-slate-900 border border-slate-800 shadow-2xs">
+                  <span className="font-black text-white text-xs tracking-tight font-sans">
+                    D
+                  </span>
+                  <span className="w-1.5 h-1.5 ml-0.5 rounded-full bg-[#00f2fe] shadow-[0_0_6px_#00f2fe]" />
                 </div>
                 <span className="font-extrabold text-lg text-slate-900 tracking-tight">Dhinesh</span>
               </div>
