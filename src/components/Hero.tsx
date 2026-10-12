@@ -121,17 +121,24 @@ export default function Hero() {
               <span>Available for Projects</span>
             </div>
 
-            {/* Central Profile Avatar with Glowing Cyan-Azure Ring */}
-            <div className="relative w-48 h-48 sm:w-60 sm:h-60 rounded-full p-1 bg-gradient-to-tr from-[#0047ab] via-[#0070f3] to-[#00f2fe] shadow-[0_8px_36px_rgba(0,112,243,0.38)] hover:scale-105 transition-transform duration-300">
-              <div className="relative w-full h-full rounded-full overflow-hidden bg-slate-950">
-                <Image
-                  src="/profile.jpg"
-                  alt="Dhinesh"
-                  fill
-                  sizes="(max-width: 640px) 192px, 240px"
-                  className="object-cover"
-                  priority
-                />
+            {/* Dual Concentric Glowing Circle Borders */}
+            <div className="relative group/avatar cursor-pointer">
+              {/* Outer Glowing Ring */}
+              <div className="relative p-2 sm:p-2.5 rounded-full border-2 border-[#00c2ff]/70 shadow-[0_0_28px_rgba(0,194,255,0.35)] transition-all duration-300 group-hover/avatar:scale-105 group-hover/avatar:border-[#00f2fe] group-hover/avatar:shadow-[0_0_36px_rgba(0,242,254,0.55)]">
+                {/* Inner Gradient Ring */}
+                <div className="relative p-1 rounded-full bg-gradient-to-tr from-[#0047ab] via-[#0070f3] to-[#00f2fe] shadow-[0_0_16px_rgba(0,242,254,0.4)]">
+                  {/* Avatar Photo */}
+                  <div className="relative w-44 h-44 sm:w-56 sm:h-56 rounded-full overflow-hidden bg-white">
+                    <Image
+                      src="/profile.jpg"
+                      alt="Dhinesh"
+                      fill
+                      sizes="(max-width: 640px) 176px, 224px"
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
