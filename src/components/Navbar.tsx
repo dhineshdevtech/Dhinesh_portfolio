@@ -6,15 +6,64 @@ import Link from "next/link";
 interface NavItem {
   name: string;
   href: string;
+  icon: (className?: string) => React.ReactNode;
 }
 
 const navItems: NavItem[] = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Certificates", href: "#certificates" },
-  { name: "Contact", href: "#contact" },
+  {
+    name: "Home",
+    href: "#home",
+    icon: (cls = "w-5 h-5") => (
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+    ),
+  },
+  {
+    name: "About",
+    href: "#about",
+    icon: (cls = "w-5 h-5") => (
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      </svg>
+    ),
+  },
+  {
+    name: "Skills",
+    href: "#skills",
+    icon: (cls = "w-5 h-5") => (
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+      </svg>
+    ),
+  },
+  {
+    name: "Projects",
+    href: "#projects",
+    icon: (cls = "w-5 h-5") => (
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+      </svg>
+    ),
+  },
+  {
+    name: "Certificates",
+    href: "#certificates",
+    icon: (cls = "w-5 h-5") => (
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+      </svg>
+    ),
+  },
+  {
+    name: "Contact",
+    href: "#contact",
+    icon: (cls = "w-5 h-5") => (
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    ),
+  },
 ];
 
 export default function Navbar() {
@@ -22,19 +71,18 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  // Prevent background scrolling when mobile menu is open
+  // Prevent background scroll when mobile drawer is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "";
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
-  // Track active section and scroll state
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 15);
@@ -89,7 +137,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Desktop & Collapsed Mobile Header */}
+      {/* Desktop / Primary Header */}
       <header
         className={`fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-[#e0ecfb] ${
           scrolled ? "shadow-sm" : "shadow-2xs"
@@ -131,6 +179,7 @@ export default function Navbar() {
                   }`}
                 >
                   <span>{item.name}</span>
+                  {/* Active Indicator Bar */}
                   {isActive && (
                     <span className="absolute left-0 -bottom-1.5 w-full h-[2.5px] bg-gradient-to-r from-[#0070f3] to-[#00c2ff] rounded-full" />
                   )}
@@ -148,7 +197,7 @@ export default function Navbar() {
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold border border-slate-300 bg-white text-slate-800 hover:border-[#0070f3] hover:text-[#0070f3] shadow-2xs hover:shadow-xs transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
             >
               <span>Resume</span>
-              <span className="text-xs text-slate-400">↗</span>
+              <span className="text-xs text-slate-400 group-hover:text-[#0070f3]">↗</span>
             </a>
           </div>
 
@@ -159,92 +208,101 @@ export default function Navbar() {
             className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 hover:text-slate-900 focus:outline-hidden"
             aria-label="Open navigation menu"
           >
-            <div className="w-5 h-4 flex flex-col justify-between">
-              <span className="w-full h-0.5 bg-current rounded-full" />
-              <span className="w-full h-0.5 bg-current rounded-full" />
-              <span className="w-full h-0.5 bg-current rounded-full" />
-            </div>
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
           </button>
         </div>
       </header>
 
-      {/* Full-Height Immersive Mobile Menu Overlay */}
+      {/* Full-Height Mobile Slide-In Side Drawer */}
       <div
-        className={`fixed inset-0 z-50 h-[100dvh] w-full md:hidden bg-white/98 backdrop-blur-2xl flex flex-col justify-between px-6 py-6 transition-all duration-300 ease-out ${
-          isOpen ? "opacity-100 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none -translate-y-4"
+        className={`fixed inset-0 z-50 md:hidden transition-all duration-300 ${
+          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
-        {/* Top Header Row inside Fullscreen Menu */}
-        <div className="flex items-center justify-between pb-6 border-b border-slate-100">
-          <Link
-            href="#home"
-            onClick={(e) => scrollToSection(e, "#home")}
-            className="flex items-center gap-3 focus:outline-hidden"
-          >
-            <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-tr from-[#0047ab] via-[#0070f3] to-[#00f2fe] p-0.5 shadow-sm">
-              <span className="font-extrabold text-white text-sm font-sans">D</span>
-            </div>
-            <span className="text-xl font-extrabold text-slate-900">Dhinesh</span>
-          </Link>
+        {/* Dimmed Frosted Backdrop */}
+        <div
+          onClick={() => setIsOpen(false)}
+          className="absolute inset-0 bg-slate-900/40 backdrop-blur-xs transition-opacity duration-300"
+          aria-hidden="true"
+        />
 
-          {/* Close Button */}
-          <button
-            type="button"
-            onClick={() => setIsOpen(false)}
-            className="flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 hover:text-slate-900 focus:outline-hidden"
-            aria-label="Close navigation menu"
-          >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Center: Fullscreen Navigation Links */}
-        <nav className="flex flex-col justify-center space-y-4 py-8" aria-label="Mobile Navigation">
-          {navItems.map((item, index) => {
-            const isActive = activeSection === item.href.substring(1);
-            return (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={(e) => scrollToSection(e, item.href)}
-                className={`group flex items-center justify-between py-2 px-3 rounded-xl transition-all duration-200 ${
-                  isActive
-                    ? "bg-[#f0f6fe] text-[#0070f3] font-bold"
-                    : "text-slate-700 hover:text-[#0070f3] hover:bg-slate-50 font-semibold"
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-mono text-slate-400">0{index + 1}</span>
-                  <span className="text-2xl tracking-tight">{item.name}</span>
+        {/* Drawer Container (Slide from Right, Full Height 100dvh) */}
+        <aside
+          className={`absolute top-0 right-0 w-[84%] max-w-[340px] h-[100dvh] bg-white border-l border-[#e0ecfb] shadow-2xl flex flex-col justify-between p-6 transition-transform duration-300 ease-out ${
+            isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+          aria-label="Mobile Navigation"
+        >
+          {/* Top of Drawer: Brand & Close Button */}
+          <div>
+            <div className="flex items-center justify-between pb-6 border-b border-[#eef5fd]">
+              <div className="flex items-center gap-2.5">
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-tr from-[#0047ab] via-[#0070f3] to-[#00f2fe] p-0.5 shadow-2xs">
+                  <span className="font-extrabold text-white text-xs">D</span>
                 </div>
-                <span className={`text-lg transition-transform duration-200 ${isActive ? "text-[#0070f3] translate-x-1" : "text-slate-300 group-hover:text-[#0070f3] group-hover:translate-x-1"}`}>
-                  →
-                </span>
-              </a>
-            );
-          })}
-        </nav>
+                <span className="font-extrabold text-lg text-slate-900 tracking-tight">Dhinesh</span>
+              </div>
 
-        {/* Bottom Area: Resume CTA + Live Status */}
-        <div className="pt-6 border-t border-slate-100 space-y-4">
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#0070f3] to-[#00c2ff] shadow-[0_4px_14px_rgba(0,112,243,0.3)] active:scale-[0.98] transition-all"
-          >
-            <span>View Resume</span>
-            <span className="text-xs">↗</span>
-          </a>
+              {/* Close Button */}
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="flex items-center justify-center w-9 h-9 rounded-xl border border-slate-200 bg-slate-50 text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors focus:outline-hidden"
+                aria-label="Close navigation menu"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
 
-          {/* Availability Status */}
-          <div className="flex items-center justify-center gap-2 text-xs font-medium text-slate-500">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Available for new opportunities</span>
+            {/* Nav Items with Dedicated Icons & Card Active Pill (Inspiration Layout) */}
+            <nav className="mt-6 space-y-2">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.href.substring(1);
+                return (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    onClick={(e) => scrollToSection(e, item.href)}
+                    className={`flex items-center gap-3.5 px-4 py-3 rounded-xl text-[15px] font-semibold transition-all ${
+                      isActive
+                        ? "bg-[#0070f3]/10 text-[#0070f3] border-l-4 border-l-[#0070f3] border border-[#0070f3]/20 shadow-2xs"
+                        : "text-slate-700 hover:text-slate-900 hover:bg-slate-50"
+                    }`}
+                  >
+                    <span className={isActive ? "text-[#0070f3]" : "text-slate-400"}>
+                      {item.icon("w-5 h-5")}
+                    </span>
+                    <span>{item.name}</span>
+                  </a>
+                );
+              })}
+            </nav>
           </div>
-        </div>
+
+          {/* Bottom of Drawer: Resume Button & Contact Pill */}
+          <div className="pt-6 border-t border-[#eef5fd] space-y-3">
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#0070f3] to-[#00c2ff] shadow-sm hover:opacity-95 transition-all"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <span>Download Resume</span>
+            </a>
+
+            <div className="flex items-center justify-center gap-2 pt-1 text-xs text-slate-400">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Available for new projects</span>
+            </div>
+          </div>
+        </aside>
       </div>
     </>
   );
