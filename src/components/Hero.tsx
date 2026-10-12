@@ -32,7 +32,7 @@ export default function Hero() {
           <div className="inline-flex items-center gap-2.5">
             <span className="w-8 h-[2px] bg-gradient-to-r from-[#0070f3] to-[#00f2fe] rounded-full" />
             <span className="text-xs sm:text-[13px] font-bold tracking-widest uppercase text-[#0070f3]">
-              Full-Stack Developer • Software Engineer
+              Software Engineer • Web &amp; Mobile
             </span>
           </div>
 
@@ -44,16 +44,16 @@ export default function Hero() {
 
           {/* Role Subtitle */}
           <h2 className="text-xl sm:text-2xl font-bold text-slate-700">
-            Full-Stack Developer &amp;{" "}
+            Web &amp;{" "}
             <span className="bg-gradient-to-r from-[#0070f3] to-[#00c2ff] bg-clip-text text-transparent">
-              Next.js Engineer
+              Mobile Application Developer
             </span>
           </h2>
 
           {/* Impact Bio Paragraph */}
           <p className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed">
             Passionate software developer specializing in building and shipping scalable,
-            high-performance web applications with Next.js, TypeScript, and modern full-stack architectures.
+            high-performance web applications, cross-platform mobile experiences, and modern full-stack systems.
           </p>
 
           {/* Action CTA Buttons */}
@@ -155,11 +155,11 @@ export default function Hero() {
                 </p>
                 <p className="pl-3">
                   <span className="text-slate-400">role:</span>{" "}
-                  <span className="text-emerald-400">&apos;Full-Stack&apos;</span>,
+                  <span className="text-emerald-400">&apos;Web &amp; Mobile Dev&apos;</span>,
                 </p>
                 <p className="pl-3">
                   <span className="text-slate-400">stack:</span>{" "}
-                  <span className="text-amber-300">[&apos;Next.js&apos;, &apos;TS&apos;]</span>
+                  <span className="text-amber-300">[&apos;React&apos;, &apos;Mobile&apos;, &apos;TS&apos;]</span>
                 </p>
                 <p>{"};"}</p>
               </div>
