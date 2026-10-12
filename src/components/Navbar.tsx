@@ -21,37 +21,6 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [isDark, setIsDark] = useState(true);
-
-  // Initialize theme from document or localStorage
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    
-    if (savedTheme === "light") {
-      document.documentElement.classList.remove("dark");
-      document.documentElement.classList.add("light");
-      setIsDark(false);
-    } else if (savedTheme === "dark" || prefersDark) {
-      document.documentElement.classList.remove("light");
-      document.documentElement.classList.add("dark");
-      setIsDark(true);
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const nextDark = !isDark;
-    setIsDark(nextDark);
-    if (nextDark) {
-      document.documentElement.classList.remove("light");
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      document.documentElement.classList.add("light");
-      localStorage.setItem("theme", "light");
-    }
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -107,7 +76,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 bg-white/95 dark:bg-[#09111e]/95 backdrop-blur-md border-b border-slate-200/90 dark:border-slate-800/90 ${
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-slate-200/90 ${
         scrolled ? "shadow-sm" : "shadow-2xs"
       }`}
     >
@@ -120,18 +89,18 @@ export default function Navbar() {
           aria-label="Dhinesh - Back to home"
         >
           {/* Branded D Squircle */}
-          <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-tr from-[#0047ab] via-[#0070f3] to-[#00f2fe] p-0.5 shadow-sm group-hover:scale-105 group-hover:shadow-[0_0_16px_rgba(0,242,254,0.5)] transition-all duration-200">
+          <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-tr from-[#0047ab] via-[#0070f3] to-[#00f2fe] p-0.5 shadow-sm group-hover:scale-105 group-hover:shadow-[0_0_16px_rgba(0,242,254,0.45)] transition-all duration-200">
             <span className="font-extrabold text-white text-sm tracking-tight font-sans">
               D
             </span>
           </div>
 
-          <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 group-hover:text-[#0070f3] dark:group-hover:text-[#00f2fe] transition-colors">
+          <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 group-hover:text-[#0070f3] transition-colors">
             Dhinesh
           </span>
         </Link>
 
-        {/* Center/Right: Desktop Nav Links with more spacious gaps */}
+        {/* Center: Desktop Nav Links with spacious gaps and active indicator bar */}
         <nav className="hidden md:flex items-center gap-7 sm:gap-8 lg:gap-9" aria-label="Main Navigation">
           {navItems.map((item) => {
             const isActive = activeSection === item.href.substring(1);
@@ -142,105 +111,65 @@ export default function Navbar() {
                 onClick={(e) => scrollToSection(e, item.href)}
                 className={`relative py-1 text-[15px] sm:text-base font-medium transition-colors duration-200 ${
                   isActive
-                    ? "text-[#0070f3] dark:text-[#00f2fe]"
-                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
+                    ? "text-[#0070f3] font-semibold"
+                    : "text-slate-600 hover:text-slate-900"
                 }`}
               >
                 <span>{item.name}</span>
                 {/* Active Indicator Bar */}
                 {isActive && (
-                  <span className="absolute left-0 -bottom-1.5 w-full h-[2.5px] bg-gradient-to-r from-[#0070f3] to-[#00f2fe] rounded-full" />
+                  <span className="absolute left-0 -bottom-1.5 w-full h-[2.5px] bg-gradient-to-r from-[#0070f3] to-[#00c2ff] rounded-full" />
                 )}
               </a>
             );
           })}
         </nav>
 
-        {/* Far Right: Resume CTA Button + Theme Toggle Button */}
-        <div className="hidden sm:flex items-center gap-4">
-          {/* Resume Button */}
+        {/* Far Right: Clean Resume CTA Button */}
+        <div className="hidden sm:flex items-center">
           <a
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold border border-slate-300/80 dark:border-slate-700 bg-white/60 dark:bg-slate-900/60 text-slate-700 dark:text-slate-200 hover:border-[#0070f3] dark:hover:border-[#00f2fe] hover:text-[#0070f3] dark:hover:text-[#00f2fe] shadow-2xs transition-all hover:scale-[1.02]"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold border border-slate-300 bg-white text-slate-800 hover:border-[#0070f3] hover:text-[#0070f3] shadow-2xs hover:shadow-xs transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
           >
             <span>Resume</span>
-            <span className="text-xs">↗</span>
+            <span className="text-xs text-slate-400 group-hover:text-[#0070f3]">↗</span>
           </a>
-
-          {/* Theme Toggle Button */}
-          <button
-            type="button"
-            onClick={toggleTheme}
-            className="flex items-center justify-center w-9 h-9 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-900/70 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all focus:outline-hidden"
-            aria-label="Toggle light and dark mode"
-          >
-            {isDark ? (
-              /* Sun Icon */
-              <svg className="w-4 h-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
-            ) : (
-              /* Moon Icon */
-              <svg className="w-4 h-4 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-              </svg>
-            )}
-          </button>
         </div>
 
-        {/* Mobile Actions: Theme Toggle & Hamburger */}
-        <div className="flex md:hidden items-center gap-2">
-          <button
-            type="button"
-            onClick={toggleTheme}
-            className="flex items-center justify-center w-8 h-8 rounded-lg border border-slate-200/80 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-900/70 text-slate-600 dark:text-slate-400 focus:outline-hidden"
-            aria-label="Toggle theme"
-          >
-            {isDark ? (
-              <svg className="w-3.5 h-3.5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
-            ) : (
-              <svg className="w-3.5 h-3.5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-              </svg>
-            )}
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center justify-center w-8 h-8 rounded-lg text-slate-700 dark:text-slate-300 focus:outline-hidden"
-            aria-label="Toggle menu"
-            aria-expanded={isOpen}
-          >
-            <div className="w-4 h-3.5 flex flex-col justify-between">
-              <span
-                className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-left ${
-                  isOpen ? "rotate-45 translate-x-px -translate-y-px" : ""
-                }`}
-              />
-              <span
-                className={`w-full h-0.5 bg-current rounded-full transition-all duration-200 ${
-                  isOpen ? "opacity-0" : ""
-                }`}
-              />
-              <span
-                className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-left ${
-                  isOpen ? "-rotate-45 translate-x-px translate-y-px" : ""
-                }`}
-              />
-            </div>
-          </button>
-        </div>
+        {/* Mobile Hamburger Toggle Button */}
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 hover:text-slate-900 focus:outline-hidden"
+          aria-label="Toggle navigation menu"
+          aria-expanded={isOpen}
+        >
+          <div className="w-5 h-4 flex flex-col justify-between">
+            <span
+              className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-left ${
+                isOpen ? "rotate-45 translate-x-px -translate-y-px" : ""
+              }`}
+            />
+            <span
+              className={`w-full h-0.5 bg-current rounded-full transition-all duration-200 ${
+                isOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-left ${
+                isOpen ? "-rotate-45 translate-x-px translate-y-px" : ""
+              }`}
+            />
+          </div>
+        </button>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Menu Dropdown */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-96 border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-[#050b14]/95 backdrop-blur-xl" : "max-h-0"
+          isOpen ? "max-h-96 border-b border-slate-200 bg-white/98 backdrop-blur-xl" : "max-h-0"
         }`}
       >
         <div className="px-6 py-4 space-y-2.5">
@@ -253,23 +182,23 @@ export default function Navbar() {
                 onClick={(e) => scrollToSection(e, item.href)}
                 className={`flex items-center justify-between py-2 text-sm font-medium transition-colors ${
                   isActive
-                    ? "text-[#0070f3] dark:text-[#00f2fe] font-semibold"
-                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                    ? "text-[#0070f3] font-semibold"
+                    : "text-slate-600 hover:text-slate-900"
                 }`}
               >
                 <span>{item.name}</span>
                 {isActive && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0070f3] dark:bg-[#00f2fe]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0070f3]" />
                 )}
               </a>
             );
           })}
-          <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
+          <div className="pt-2 border-t border-slate-100">
             <a
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-full py-2 rounded-lg text-xs font-semibold border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200"
+              className="flex items-center justify-center w-full py-2.5 rounded-xl text-xs font-semibold border border-slate-300 bg-slate-50 text-slate-800"
             >
               View Resume ↗
             </a>
