@@ -228,10 +228,10 @@ export default function Navbar() {
           aria-hidden="true"
         />
 
-        {/* Drawer Container (Slide from Right, Full Height 100dvh) */}
+        {/* Drawer Container (Slide from Left, Full Height 100dvh) */}
         <aside
-          className={`absolute top-0 right-0 w-[84%] max-w-[340px] h-[100dvh] bg-white border-l border-[#e0ecfb] shadow-2xl flex flex-col justify-between p-6 transition-transform duration-300 ease-out ${
-            isOpen ? "translate-x-0" : "translate-x-full"
+          className={`absolute top-0 left-0 w-[84%] max-w-[340px] h-[100dvh] bg-white border-r border-[#e0ecfb] shadow-2xl flex flex-col justify-between p-6 transition-transform duration-300 ease-out ${
+            isOpen ? "translate-x-0" : "-translate-x-full"
           }`}
           aria-label="Mobile Navigation"
         >
