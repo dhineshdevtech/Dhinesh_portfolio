@@ -63,7 +63,7 @@ export default function Navbar() {
     const targetId = href.replace("#", "");
     const element = document.getElementById(targetId);
     if (element) {
-      const navOffset = 80;
+      const navOffset = 64;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - navOffset;
       window.scrollTo({
@@ -82,21 +82,21 @@ export default function Navbar() {
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 h-16 flex items-center justify-between">
         {/* Left Side: Bold Clean Name */}
         <Link
           href="#home"
           onClick={(e) => scrollToSection(e, "#home")}
-          className="group flex items-center gap-2.5 focus:outline-hidden"
+          className="group flex items-center gap-2 focus:outline-hidden"
           aria-label="Dhinesh - Back to home"
         >
-          <span className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100 group-hover:text-[#0070f3] dark:group-hover:text-[#00f2fe] transition-colors">
+          <span className="text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 group-hover:text-[#0070f3] dark:group-hover:text-[#00f2fe] transition-colors">
             Dhinesh
           </span>
         </Link>
 
         {/* Right Side: Desktop Nav Links with Active Underline Bar */}
-        <nav className="hidden md:flex items-center gap-7 lg:gap-9" aria-label="Main Navigation">
+        <nav className="hidden md:flex items-center gap-5 lg:gap-7" aria-label="Main Navigation">
           {navItems.map((item) => {
             const isActive = activeSection === item.href.substring(1);
             return (
