@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://dhineshdev.vercel.app/sitemap.xml
