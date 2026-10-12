@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
   <defs>
-    <!-- Deep Obsidian Slate Background Gradient -->
-    <linearGradient id="slate-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f172a" />
-      <stop offset="50%" stop-color="#0a1220" />
-      <stop offset="100%" stop-color="#050b14" />
+    <!-- Ice Mist Blue Frosted Background Gradient -->
+    <linearGradient id="ice-mist-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f2f7fe" />
+      <stop offset="50%" stop-color="#edf4fd" />
+      <stop offset="100%" stop-color="#e2eefb" />
     </linearGradient>
 
     <!-- Glowing Cyan Dot Gradient & Filter -->
@@ -23,16 +23,16 @@
     </filter>
 
     <linearGradient id="rim-border" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.5" />
-      <stop offset="100%" stop-color="#1e293b" stop-opacity="0.3" />
+      <stop offset="0%" stop-color="#cde0f8" />
+      <stop offset="100%" stop-color="#b6d4f6" />
     </linearGradient>
   </defs>
 
-  <!-- Background rounded squircle -->
-  <rect width="32" height="32" rx="8" fill="url(#slate-bg)" />
+  <!-- Background rounded squircle (Ice Mist Blue) -->
+  <rect width="32" height="32" rx="8" fill="url(#ice-mist-bg)" />
   <rect width="31" height="31" x="0.5" y="0.5" rx="7.5" fill="none" stroke="url(#rim-border)" stroke-width="1" />
 
-  <!-- Bold Ice White D -->
+  <!-- Bold Deep Slate D -->
   <text
     x="12.5"
     y="22.5"
@@ -40,11 +40,11 @@
     font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
     font-size="19"
     font-weight="900"
-    fill="#ffffff"
+    fill="#09172c"
     letter-spacing="-0.5"
   >D</text>
 
   <!-- Signature Glowing Cyan Dot (Deloitte Style) -->
   <circle cx="23.5" cy="20.5" r="2.8" fill="url(#cyan-dot-grad)" filter="url(#dot-glow)" />
-  <circle cx="23.5" cy="20.5" r="2" fill="#ffffff" opacity="0.6" />
+  <circle cx="23.5" cy="20.5" r="2" fill="#ffffff" opacity="0.7" />
 </svg>

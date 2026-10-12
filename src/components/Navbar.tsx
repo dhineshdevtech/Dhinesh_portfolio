@@ -151,9 +151,9 @@ export default function Navbar() {
             className="group flex items-center gap-3 focus:outline-hidden"
             aria-label="Dhinesh - Back to home"
           >
-            {/* Deloitte-Inspired D. Brand Icon */}
-            <div className="relative flex items-center justify-center px-2.5 h-9 rounded-xl bg-slate-900 border border-slate-800 shadow-sm group-hover:scale-105 group-hover:shadow-[0_0_18px_rgba(0,242,254,0.45)] group-hover:border-[#0070f3]/50 transition-all duration-300">
-              <span className="font-black text-white text-base tracking-tight font-sans">
+            {/* Option 2: Ice Mist Blue Frosted D. Icon */}
+            <div className="relative flex items-center justify-center px-2.5 h-9 rounded-xl bg-[#edf4fd] border border-[#cde0f8] shadow-2xs group-hover:scale-105 group-hover:shadow-[0_0_16px_rgba(0,242,254,0.35)] group-hover:border-[#0070f3]/40 transition-all duration-300">
+              <span className="font-black text-slate-900 text-base tracking-tight font-sans">
                 D
               </span>
               <span className="w-2 h-2 ml-1 rounded-full bg-[#00f2fe] shadow-[0_0_8px_#00f2fe] animate-pulse" />
@@ -240,8 +240,8 @@ export default function Navbar() {
           <div>
             <div className="flex items-center justify-between pb-6 border-b border-[#eef5fd]">
               <div className="flex items-center gap-2.5">
-                <div className="relative flex items-center justify-center px-2 h-7 rounded-lg bg-slate-900 border border-slate-800 shadow-2xs">
-                  <span className="font-black text-white text-xs tracking-tight font-sans">
+                <div className="relative flex items-center justify-center px-2 h-7 rounded-lg bg-[#edf4fd] border border-[#cde0f8] shadow-2xs">
+                  <span className="font-black text-slate-900 text-xs tracking-tight font-sans">
                     D
                   </span>
                   <span className="w-1.5 h-1.5 ml-0.5 rounded-full bg-[#00f2fe] shadow-[0_0_6px_#00f2fe]" />
