@@ -94,7 +94,7 @@ export default function Navbar() {
     const targetId = href.replace("#", "");
     const element = document.getElementById(targetId);
     if (element) {
-      const navOffset = 64;
+      const navOffset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - navOffset;
       window.scrollTo({
@@ -113,28 +113,28 @@ export default function Navbar() {
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
         {/* Left Side: Branded Logo + Bold Name */}
         <Link
           href="#home"
           onClick={(e) => scrollToSection(e, "#home")}
-          className="group flex items-center gap-2.5 focus:outline-hidden"
+          className="group flex items-center gap-3 focus:outline-hidden"
           aria-label="Dhinesh - Back to home"
         >
           {/* Branded D Squircle */}
-          <div className="relative flex items-center justify-center w-7 h-7 rounded-lg bg-gradient-to-tr from-[#0047ab] via-[#0070f3] to-[#00f2fe] p-0.5 shadow-sm group-hover:scale-105 group-hover:shadow-[0_0_12px_rgba(0,242,254,0.5)] transition-all duration-200">
-            <span className="font-extrabold text-white text-xs tracking-tight font-sans">
+          <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-tr from-[#0047ab] via-[#0070f3] to-[#00f2fe] p-0.5 shadow-sm group-hover:scale-105 group-hover:shadow-[0_0_16px_rgba(0,242,254,0.5)] transition-all duration-200">
+            <span className="font-extrabold text-white text-sm tracking-tight font-sans">
               D
             </span>
           </div>
 
-          <span className="text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 group-hover:text-[#0070f3] dark:group-hover:text-[#00f2fe] transition-colors">
+          <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 group-hover:text-[#0070f3] dark:group-hover:text-[#00f2fe] transition-colors">
             Dhinesh
           </span>
         </Link>
 
-        {/* Center/Right: Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-6 lg:gap-7" aria-label="Main Navigation">
+        {/* Center/Right: Desktop Nav Links with more spacious gaps */}
+        <nav className="hidden md:flex items-center gap-7 sm:gap-8 lg:gap-9" aria-label="Main Navigation">
           {navItems.map((item) => {
             const isActive = activeSection === item.href.substring(1);
             return (
@@ -142,7 +142,7 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 onClick={(e) => scrollToSection(e, item.href)}
-                className={`relative py-1 text-sm font-medium transition-colors duration-200 ${
+                className={`relative py-1 text-[15px] sm:text-base font-medium transition-colors duration-200 ${
                   isActive
                     ? "text-[#0070f3] dark:text-[#00f2fe]"
                     : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
@@ -151,7 +151,7 @@ export default function Navbar() {
                 <span>{item.name}</span>
                 {/* Active Indicator Bar */}
                 {isActive && (
-                  <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-gradient-to-r from-[#0070f3] to-[#00f2fe] rounded-full" />
+                  <span className="absolute left-0 -bottom-1.5 w-full h-[2.5px] bg-gradient-to-r from-[#0070f3] to-[#00f2fe] rounded-full" />
                 )}
               </a>
             );
@@ -159,23 +159,23 @@ export default function Navbar() {
         </nav>
 
         {/* Far Right: Resume CTA Button + Theme Toggle Button */}
-        <div className="hidden sm:flex items-center gap-3">
+        <div className="hidden sm:flex items-center gap-4">
           {/* Resume Button */}
           <a
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold border border-slate-300/80 dark:border-slate-700 bg-white/60 dark:bg-slate-900/60 text-slate-700 dark:text-slate-200 hover:border-[#0070f3] dark:hover:border-[#00f2fe] hover:text-[#0070f3] dark:hover:text-[#00f2fe] shadow-2xs transition-all hover:scale-[1.02]"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold border border-slate-300/80 dark:border-slate-700 bg-white/60 dark:bg-slate-900/60 text-slate-700 dark:text-slate-200 hover:border-[#0070f3] dark:hover:border-[#00f2fe] hover:text-[#0070f3] dark:hover:text-[#00f2fe] shadow-2xs transition-all hover:scale-[1.02]"
           >
             <span>Resume</span>
-            <span className="text-[10px]">↗</span>
+            <span className="text-xs">↗</span>
           </a>
 
           {/* Theme Toggle Button */}
           <button
             type="button"
             onClick={toggleTheme}
-            className="flex items-center justify-center w-8 h-8 rounded-lg border border-slate-200/80 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-900/70 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all focus:outline-hidden"
+            className="flex items-center justify-center w-9 h-9 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-900/70 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all focus:outline-hidden"
             aria-label="Toggle light and dark mode"
           >
             {isDark ? (

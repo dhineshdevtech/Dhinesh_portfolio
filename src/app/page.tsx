@@ -10,7 +10,7 @@ export default function Home() {
       {/* Hero Section Container (Under construction / next step) */}
       <section
         id="home"
-        className="relative flex flex-col items-center pt-24 sm:pt-28 pb-20 px-6 text-center overflow-hidden"
+        className="relative flex flex-col items-center pt-28 sm:pt-32 pb-20 px-6 text-center overflow-hidden"
       >
         {/* Subtle background ambient cyber-blue glow */}
         <div className="absolute inset-0 -z-10 flex items-center justify-center pointer-events-none">
