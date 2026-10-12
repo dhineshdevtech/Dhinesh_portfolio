@@ -1,30 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
   <defs>
-    <!-- Midnight Engineer Slate Gradient -->
-    <linearGradient id="midnight-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#020617" />
-      <stop offset="50%" stop-color="#0f172a" />
-      <stop offset="100%" stop-color="#1e293b" />
+    <!-- Vibrant Electric Cobalt Gradient -->
+    <linearGradient id="cobalt-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="40%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#1d4ed8" />
     </linearGradient>
 
-    <!-- Electric Cobalt to Sky Blue Accent Gradient -->
-    <linearGradient id="cobalt-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38bdf8" />
-      <stop offset="100%" stop-color="#2563eb" />
-    </linearGradient>
-
-    <!-- Subtle border glow -->
-    <linearGradient id="border-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.4" />
-      <stop offset="100%" stop-color="#2563eb" stop-opacity="0.2" />
+    <!-- Subtle border highlight -->
+    <linearGradient id="highlight-border" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#93c5fd" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#1e40af" stop-opacity="0.3" />
     </linearGradient>
   </defs>
 
   <!-- Background rounded squircle -->
-  <rect width="32" height="32" rx="8" fill="url(#midnight-bg)" />
-  <rect width="31" height="31" x="0.5" y="0.5" rx="7.5" fill="none" stroke="url(#border-grad)" stroke-width="1" />
+  <rect width="32" height="32" rx="8" fill="url(#cobalt-bg)" />
+  <rect width="31" height="31" x="0.5" y="0.5" rx="7.5" fill="none" stroke="url(#highlight-border)" stroke-width="1" />
 
-  <!-- Monogram D -->
+  <!-- Ice White Monogram D -->
   <text
     x="16"
     y="22.5"
@@ -32,7 +26,7 @@
     font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
     font-size="20"
     font-weight="800"
-    fill="url(#cobalt-grad)"
+    fill="#ffffff"
     letter-spacing="-0.5"
   >D</text>
 </svg>
