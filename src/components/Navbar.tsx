@@ -1,18 +1,59 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 interface NavItem {
   name: string;
   href: string;
   icon: (className?: string) => React.ReactNode;
+  hasDropdown?: boolean;
 }
+
+export interface ProjectCategory {
+  id: "mobile" | "websites" | "business";
+  name: string;
+  icon: (className?: string) => React.ReactNode;
+}
+
+export const projectCategories: ProjectCategory[] = [
+  {
+    id: "mobile",
+    name: "Mobile Apps",
+    icon: (cls = "w-4 h-4") => (
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <rect x="5" y="2" width="14" height="20" rx="3" strokeWidth={1.8} />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 18h.01" />
+      </svg>
+    ),
+  },
+  {
+    id: "websites",
+    name: "Web Platforms",
+    icon: (cls = "w-4 h-4") => (
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <circle cx="12" cy="12" r="9" strokeWidth={1.8} />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3.6 9h16.8M3.6 15h16.8M12 3a15.3 15.3 0 014 9 15.3 15.3 0 01-4 9 15.3 15.3 0 01-4-9 15.3 15.3 0 014-9z" />
+      </svg>
+    ),
+  },
+  {
+    id: "business",
+    name: "Business Software",
+    icon: (cls = "w-4 h-4") => (
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <rect x="3" y="7" width="18" height="13" rx="2" strokeWidth={1.8} />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m-5 4h18" />
+      </svg>
+    ),
+  },
+];
 
 const navItems: NavItem[] = [
   {
     name: "Home",
-    href: "#home",
+    href: "/",
     icon: (cls = "w-5 h-5") => (
       <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -21,7 +62,7 @@ const navItems: NavItem[] = [
   },
   {
     name: "About",
-    href: "#about",
+    href: "/about",
     icon: (cls = "w-5 h-5") => (
       <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -29,17 +70,9 @@ const navItems: NavItem[] = [
     ),
   },
   {
-    name: "Skills",
-    href: "#skills",
-    icon: (cls = "w-5 h-5") => (
-      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-      </svg>
-    ),
-  },
-  {
     name: "Projects",
-    href: "#projects",
+    href: "/projects",
+    hasDropdown: true,
     icon: (cls = "w-5 h-5") => (
       <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
@@ -48,7 +81,7 @@ const navItems: NavItem[] = [
   },
   {
     name: "Certificates",
-    href: "#certificates",
+    href: "/certificates",
     icon: (cls = "w-5 h-5") => (
       <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
@@ -56,8 +89,17 @@ const navItems: NavItem[] = [
     ),
   },
   {
+    name: "Resume",
+    href: "/resume",
+    icon: (cls = "w-5 h-5") => (
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+    ),
+  },
+  {
     name: "Contact",
-    href: "#contact",
+    href: "/contact",
     icon: (cls = "w-5 h-5") => (
       <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -67,9 +109,15 @@ const navItems: NavItem[] = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [visible, setVisible] = useState(true);
+  const [projectsDropdownOpen, setProjectsDropdownOpen] = useState(false);
+  const [mobileProjectsExpanded, setMobileProjectsExpanded] = useState(false);
+  const dropdownTimeout = useRef<NodeJS.Timeout | null>(null);
+  const lastScrollY = useRef(0);
 
   // Prevent background scroll when mobile drawer is open
   useEffect(() => {
@@ -83,55 +131,118 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
+  // Smart Auto-Hide on scroll down, reveal on scroll up
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 15);
+      const currentScrollY = window.scrollY;
 
-      const scrollPosition = window.scrollY + 140;
-      const sections = navItems.map((item) => item.href.substring(1));
+      // Add shadow when scrolled slightly
+      setScrolled(currentScrollY > 15);
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const sectionId = sections[i];
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const top = element.offsetTop;
-          if (scrollPosition >= top) {
-            setActiveSection(sectionId);
-            break;
-          }
-        }
+      // Always show navbar near top of the page (within first 80px)
+      if (currentScrollY < 80) {
+        setVisible(true);
+        lastScrollY.current = currentScrollY;
+        return;
       }
 
-      if (window.scrollY < 80) {
-        setActiveSection("home");
+      // Filter out micro-scroll jitter (< 8px)
+      const delta = currentScrollY - lastScrollY.current;
+      if (Math.abs(delta) < 8) {
+        return;
       }
+
+      if (delta > 0 && currentScrollY > 120) {
+        // Scrolling down -> hide navbar & close dropdown
+        setVisible(false);
+        setProjectsDropdownOpen(false);
+      } else if (delta < 0) {
+        // Scrolling up -> show navbar
+        setVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setIsOpen(false);
+  const handleMouseEnter = () => {
+    if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
+    setProjectsDropdownOpen(true);
+  };
 
-    if (href === "#home") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      setActiveSection("home");
-      return;
+  const handleMouseLeave = () => {
+    dropdownTimeout.current = setTimeout(() => {
+      setProjectsDropdownOpen(false);
+    }, 180);
+  };
+
+  const isItemActive = (item: NavItem) => {
+    if (item.href === "/about") {
+      return pathname === "/about";
     }
+    if (item.href === "/projects") {
+      return pathname === "/projects";
+    }
+    if (item.href === "/certificates") {
+      return pathname === "/certificates";
+    }
+    if (item.href === "/resume") {
+      return pathname === "/resume";
+    }
+    if (item.href === "/contact") {
+      return pathname === "/contact";
+    }
+    if (item.href === "/") {
+      return pathname === "/";
+    }
+    return false;
+  };
 
-    const targetId = href.replace("#", "");
-    const element = document.getElementById(targetId);
-    if (element) {
-      const navOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-      setActiveSection(targetId);
+  const scrollToSection = (e: React.MouseEvent, href: string) => {
+    setIsOpen(false);
+    setProjectsDropdownOpen(false);
+
+    if (href.startsWith("/#")) {
+      const targetId = href.replace("/#", "");
+
+      if (pathname !== "/") {
+        // Navigate to home page with hash
+        return;
+      }
+
+      // Already on home page - perform smooth scroll
+      e.preventDefault();
+
+      if (targetId === "certificates") {
+        router.push("/certificates");
+        return;
+      }
+
+      const element = document.getElementById(targetId);
+      if (element) {
+        const navOffset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    } else if (href === "/" && pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const handleCategorySelect = (category: string) => {
+    setIsOpen(false);
+    setProjectsDropdownOpen(false);
+    router.push(`/projects?category=${category}`);
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
@@ -139,19 +250,18 @@ export default function Navbar() {
     <>
       {/* Desktop / Primary Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-[#e0ecfb] ${
-          scrolled ? "shadow-sm" : "shadow-2xs"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-40 w-full transition-transform duration-300 ease-in-out bg-white/95 backdrop-blur-md border-b border-[#e0ecfb] ${
+          visible ? "translate-y-0" : "-translate-y-full shadow-none"
+        } ${scrolled ? "shadow-sm" : "shadow-2xs"}`}
       >
         <div className="max-w-6xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
           {/* Left Side: Branded Logo + Bold Name */}
           <Link
-            href="#home"
-            onClick={(e) => scrollToSection(e, "#home")}
+            href="/"
+            onClick={(e) => scrollToSection(e, "/")}
             className="group flex items-center gap-3 focus:outline-hidden"
             aria-label="Dhinesh - Back to home"
           >
-            {/* Option 2: Ice Mist Blue Frosted D. Icon */}
             <div className="relative flex items-center justify-center px-2.5 h-9 rounded-xl bg-[#edf4fd] border border-[#cde0f8] shadow-2xs group-hover:scale-105 group-hover:shadow-[0_0_16px_rgba(0,242,254,0.35)] group-hover:border-[#0070f3]/40 transition-all duration-300">
               <span className="font-black text-slate-900 text-base tracking-tight font-sans">
                 D
@@ -165,11 +275,77 @@ export default function Navbar() {
           </Link>
 
           {/* Center: Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-7 sm:gap-8 lg:gap-9" aria-label="Main Navigation">
+          <nav className="hidden md:flex items-center gap-8 sm:gap-9 lg:gap-10" aria-label="Main Navigation">
             {navItems.map((item) => {
-              const isActive = activeSection === item.href.substring(1);
+              const isActive = isItemActive(item);
+
+              // Special Handling for Projects (Dropdown Menu)
+              if (item.hasDropdown) {
+                return (
+                  <div
+                    key={item.name}
+                    className="relative"
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={(e) => scrollToSection(e, item.href)}
+                      className={`relative py-2 flex items-center gap-1.5 text-[15px] sm:text-base font-medium transition-colors duration-200 group ${
+                        isActive || projectsDropdownOpen
+                          ? "text-[#0070f3] font-semibold"
+                          : "text-slate-600 hover:text-slate-900"
+                      }`}
+                    >
+                      <span>{item.name}</span>
+                      <svg
+                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                          projectsDropdownOpen ? "rotate-180 text-[#0070f3]" : "text-slate-400 group-hover:text-slate-700"
+                        }`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                      {isActive && (
+                        <span className="absolute left-0 -bottom-1 w-full h-[2.5px] bg-gradient-to-r from-[#0070f3] to-[#00c2ff] rounded-full" />
+                      )}
+                    </Link>
+
+                    {/* Clean Minimalist Single-Line Dropdown Menu */}
+                    {projectsDropdownOpen && (
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
+                        <div className="w-56 rounded-2xl bg-white/98 backdrop-blur-xl border border-slate-200/90 shadow-[0_16px_36px_-6px_rgba(15,23,42,0.12),0_4px_12px_rgba(15,23,42,0.04)] p-1.5 space-y-0.5 animate-in fade-in zoom-in-95 duration-150">
+                          {projectCategories.map((cat) => (
+                            <button
+                              key={cat.id}
+                              type="button"
+                              onClick={() => handleCategorySelect(cat.id)}
+                              className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-left hover:bg-[#f0f6fe] group/item transition-colors duration-150 cursor-pointer"
+                            >
+                              <div className="flex items-center gap-3 min-w-0">
+                                <div className="w-7 h-7 rounded-lg bg-slate-100/90 border border-slate-200/70 text-slate-600 flex items-center justify-center flex-shrink-0 group-hover/item:bg-[#0070f3]/10 group-hover/item:text-[#0070f3] group-hover/item:border-[#bfd8f6] transition-all">
+                                  {cat.icon("w-3.5 h-3.5")}
+                                </div>
+                                <span className="text-[13.5px] font-semibold text-slate-800 group-hover/item:text-[#0070f3] transition-colors tracking-tight truncate">
+                                  {cat.name}
+                                </span>
+                              </div>
+                              <span className="text-xs text-[#0070f3] opacity-0 group-hover/item:opacity-100 group-hover/item:translate-x-0.5 transition-all">
+                                →
+                              </span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               return (
-                <a
+                <Link
                   key={item.name}
                   href={item.href}
                   onClick={(e) => scrollToSection(e, item.href)}
@@ -180,27 +356,13 @@ export default function Navbar() {
                   }`}
                 >
                   <span>{item.name}</span>
-                  {/* Active Indicator Bar */}
                   {isActive && (
                     <span className="absolute left-0 -bottom-1.5 w-full h-[2.5px] bg-gradient-to-r from-[#0070f3] to-[#00c2ff] rounded-full" />
                   )}
-                </a>
+                </Link>
               );
             })}
           </nav>
-
-          {/* Far Right: Clean Resume CTA Button */}
-          <div className="hidden sm:flex items-center">
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold border border-slate-300 bg-white text-slate-800 hover:border-[#0070f3] hover:text-[#0070f3] shadow-2xs hover:shadow-xs transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <span>Resume</span>
-              <span className="text-xs text-slate-400 group-hover:text-[#0070f3]">↗</span>
-            </a>
-          </div>
 
           {/* Mobile Hamburger Toggle Button */}
           <button
@@ -262,12 +424,73 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Nav Items with Dedicated Icons & Card Active Pill (Inspiration Layout) */}
+            {/* Nav Items with Dedicated Icons */}
             <nav className="mt-6 space-y-2">
               {navItems.map((item) => {
-                const isActive = activeSection === item.href.substring(1);
+                const isActive = isItemActive(item);
+
+                if (item.hasDropdown) {
+                  return (
+                    <div key={item.name} className="space-y-1">
+                      <div className="flex items-center justify-between w-full rounded-xl">
+                        <Link
+                          href={item.href}
+                          onClick={(e) => scrollToSection(e, item.href)}
+                          className={`flex-1 flex items-center gap-3.5 px-4 py-3 rounded-xl text-[15px] font-semibold transition-all ${
+                            isActive
+                              ? "bg-[#0070f3]/10 text-[#0070f3] border-l-4 border-l-[#0070f3] border border-[#0070f3]/20 shadow-2xs"
+                              : "text-slate-700 hover:text-slate-900 hover:bg-slate-50"
+                          }`}
+                        >
+                          <span className={isActive ? "text-[#0070f3]" : "text-slate-400"}>
+                            {item.icon("w-5 h-5")}
+                          </span>
+                          <span>{item.name}</span>
+                        </Link>
+
+                        <button
+                          type="button"
+                          onClick={() => setMobileProjectsExpanded(!mobileProjectsExpanded)}
+                          className="px-3 py-3 text-slate-400 hover:text-slate-700"
+                          aria-label="Toggle projects sub-menu"
+                        >
+                          <svg
+                            className={`w-4 h-4 transition-transform ${
+                              mobileProjectsExpanded ? "rotate-180 text-[#0070f3]" : ""
+                            }`}
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+                      </div>
+
+                      {/* Mobile Expandable Sub-Categories */}
+                      {mobileProjectsExpanded && (
+                        <div className="pl-4 pr-1 py-1.5 space-y-1 border-l-2 border-[#bfd8f6] ml-6">
+                          {projectCategories.map((cat) => (
+                            <button
+                              key={cat.id}
+                              type="button"
+                              onClick={() => handleCategorySelect(cat.id)}
+                              className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold text-slate-700 hover:text-[#0070f3] hover:bg-[#f0f6fe] transition-colors text-left"
+                            >
+                              <div className="w-5 h-5 rounded-md bg-slate-100 text-slate-600 flex items-center justify-center flex-shrink-0">
+                                {cat.icon("w-3 h-3")}
+                              </div>
+                              <span className="truncate">{cat.name}</span>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
                 return (
-                  <a
+                  <Link
                     key={item.name}
                     href={item.href}
                     onClick={(e) => scrollToSection(e, item.href)}
@@ -281,7 +504,7 @@ export default function Navbar() {
                       {item.icon("w-5 h-5")}
                     </span>
                     <span>{item.name}</span>
-                  </a>
+                  </Link>
                 );
               })}
             </nav>

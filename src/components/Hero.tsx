@@ -27,7 +27,7 @@ export default function Hero() {
 
       <div className="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         {/* Left Column: Authority & Introduction (7 cols on large screens) */}
-        <div className="lg:col-span-7 space-y-6 text-left">
+        <div className="lg:col-span-7 space-y-6 text-left animate-slide-in-left">
           {/* Eyebrow badge with accent line */}
           <div className="inline-flex items-center gap-2.5">
             <span className="w-8 h-[2px] bg-gradient-to-r from-[#0070f3] to-[#00f2fe] rounded-full" />
@@ -74,18 +74,18 @@ export default function Hero() {
               onClick={() => scrollTo("contact")}
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold border border-[#cde0f8] bg-white text-slate-800 hover:bg-[#f6faff] hover:border-[#0070f3] hover:text-[#0070f3] shadow-xs hover:shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              <svg className="w-4 h-4 text-[#0070f3]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
               </svg>
               <span>Let&apos;s Work Together</span>
             </button>
           </div>
 
-          {/* Metric Stats Counters (Bottom Bar) */}
-          <div className="pt-8 border-t border-[#d8e6f8] grid grid-cols-3 gap-4 sm:gap-6 max-w-lg">
+          {/* Metric Stats Counters (Bottom Bar - 3 Columns) */}
+          <div className="pt-8 border-t border-[#d8e6f8] grid grid-cols-3 gap-3 sm:gap-6 max-w-lg">
             <div>
               <div className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-                15<span className="text-[#0070f3]">+</span>
+                10<span className="text-[#0070f3]">+</span>
               </div>
               <div className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
                 Projects Built
@@ -93,82 +93,80 @@ export default function Hero() {
             </div>
 
             <div>
-              <div className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-                5<span className="text-[#0070f3]">+</span>
+              <div className="flex items-center gap-1.5">
+                <span className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+                  4
+                </span>
+                <span className="text-xl sm:text-2xl drop-shadow-xs" role="img" aria-label="Trophy">
+                  🏆
+                </span>
               </div>
               <div className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
-                Hackathons &amp; Wins
+                Hackathon Wins
               </div>
             </div>
 
             <div>
               <div className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-                2<span className="text-[#0070f3]">+</span>
+                100<span className="text-[#0070f3]">%</span>
               </div>
               <div className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
-                Years Experience
+                Dedication &amp; Quality
               </div>
             </div>
           </div>
         </div>
 
         {/* Right Column: Visual Centerpiece (5 cols on large screens) */}
-        <div className="lg:col-span-5 flex justify-center items-center">
-          <div className="relative w-full max-w-[380px] sm:max-w-[420px] aspect-[4/5] sm:aspect-square rounded-3xl bg-white/70 backdrop-blur-xl border border-[#dce8f8] shadow-[0_20px_50px_rgba(0,112,243,0.12)] p-6 sm:p-8 flex items-center justify-center">
+        <div className="lg:col-span-5 flex justify-center items-center animate-slide-in-right">
+          <div className="relative w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[500px] aspect-[4/5] sm:aspect-square rounded-3xl bg-white/70 backdrop-blur-xl border border-[#dce8f8] shadow-[0_20px_50px_rgba(0,112,243,0.12)] p-4 sm:p-6 flex items-center justify-center">
             {/* Top-Right Floating Status Pill */}
             <div className="absolute top-4 sm:top-5 right-4 sm:right-5 z-20 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/90 backdrop-blur-md border border-[#d8e6f8] text-slate-800 shadow-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981] animate-pulse" />
               <span>Available for Projects</span>
             </div>
 
-            {/* Dual Concentric Glowing Circle Borders */}
-            <div className="relative group/avatar cursor-pointer">
-              {/* Outer Glowing Ring */}
-              <div className="relative p-2 sm:p-2.5 rounded-full border-2 border-[#00c2ff]/70 shadow-[0_0_28px_rgba(0,194,255,0.35)] transition-all duration-300 group-hover/avatar:scale-105 group-hover/avatar:border-[#00f2fe] group-hover/avatar:shadow-[0_0_36px_rgba(0,242,254,0.55)]">
-                {/* Inner Gradient Ring */}
-                <div className="relative p-1 rounded-full bg-gradient-to-tr from-[#0047ab] via-[#0070f3] to-[#00f2fe] shadow-[0_0_16px_rgba(0,242,254,0.4)]">
-                  {/* Avatar Photo */}
-                  <div className="relative w-44 h-44 sm:w-56 sm:h-56 rounded-full overflow-hidden bg-white">
-                    <Image
-                      src="/profile.jpg"
-                      alt="Dhinesh"
-                      fill
-                      sizes="(max-width: 640px) 176px, 224px"
-                      className="object-cover"
-                      priority
-                    />
-                  </div>
-                </div>
+            {/* Profile Avatar (Extra Large Size) */}
+            <div className="relative group/avatar cursor-pointer transition-all duration-300 hover:scale-105">
+              <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] lg:w-[380px] lg:h-[380px] rounded-full overflow-hidden">
+                <Image
+                  src="/profile.webp"
+                  alt="Dhinesh - Web and Mobile Application Developer"
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-cover"
+                  priority
+                />
               </div>
             </div>
 
-            {/* Bottom-Left Floating Code Snippet Terminal Card */}
-            <div className="absolute -bottom-5 sm:-bottom-6 -left-3 sm:-left-6 z-20 w-[240px] sm:w-[260px] rounded-2xl bg-slate-900/95 backdrop-blur-xl border border-slate-800 p-3.5 shadow-[0_12px_32px_rgba(0,0,0,0.25)] text-left animate-fadeIn">
+            {/* Bottom-Left Floating Code Snippet Terminal Card (Light Theme) */}
+            <div className="absolute -bottom-5 sm:-bottom-6 -left-3 sm:-left-6 z-20 w-[240px] sm:w-[260px] rounded-2xl bg-white/95 backdrop-blur-xl border border-[#d6e5f7] p-3.5 shadow-[0_14px_36px_rgba(0,112,243,0.12)] text-left animate-fadeIn">
               {/* Terminal Window Header with dots */}
-              <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-800/80">
+              <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#e5effa]">
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-rose-400" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
                 </div>
-                <span className="text-[11px] font-mono text-slate-400">dhinesh.ts</span>
+                <span className="text-[11px] font-mono font-medium text-slate-500">dhinesh.ts</span>
               </div>
 
-              {/* Terminal Code snippet with syntax colors */}
-              <div className="font-mono text-[11px] leading-relaxed text-slate-300">
+              {/* Terminal Code snippet with light syntax colors */}
+              <div className="font-mono text-[11px] leading-relaxed text-slate-700">
                 <p>
-                  <span className="text-purple-400">const</span>{" "}
-                  <span className="text-[#00f2fe]">dev</span> = {"{"}
+                  <span className="text-[#0070f3] font-semibold">const</span>{" "}
+                  <span className="text-[#09172c] font-bold">dev</span> = {"{"}
                 </p>
                 <p className="pl-3">
-                  <span className="text-slate-400">role:</span>{" "}
-                  <span className="text-emerald-400">&apos;Web &amp; Mobile Dev&apos;</span>,
+                  <span className="text-slate-500">role:</span>{" "}
+                  <span className="text-emerald-600 font-medium">&apos;Web &amp; Mobile Dev&apos;</span>,
                 </p>
                 <p className="pl-3">
-                  <span className="text-slate-400">stack:</span>{" "}
-                  <span className="text-amber-300">[&apos;React&apos;, &apos;Mobile&apos;, &apos;TS&apos;]</span>
+                  <span className="text-slate-500">stack:</span>{" "}
+                  <span className="text-amber-600 font-medium">[&apos;React&apos;, &apos;Mobile&apos;, &apos;TS&apos;]</span>
                 </p>
-                <p>{"};"}</p>
+                <p className="text-slate-700">{"};"}</p>
               </div>
             </div>
           </div>
