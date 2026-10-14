@@ -99,9 +99,9 @@ export const CATEGORIES_DATA: Record<CategoryKey, CategoryData> = {
       {
         key: "campus-platforms",
         title: "Campus Platforms",
-        description: "Integrated institutional web platforms for fleet dispatch, biometric attendance, and department financial ledgers.",
-        projectCount: 3,
-        projectSlugs: ["mpnmjec-dispatch-console", "mpnmjec-attendance-system", "mpnmjec-fine-management"],
+        description: "Integrated institutional web platforms for fleet dispatch and biometric attendance.",
+        projectCount: 2,
+        projectSlugs: ["mpnmjec-dispatch-console", "mpnmjec-attendance-system"],
       },
       {
         key: "edutech",
@@ -464,69 +464,6 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
     },
   },
 
-  "mpnmjec-fine-management": {
-    slug: "mpnmjec-fine-management",
-    title: "MPNMJEC ECE Department Fine & Ledger System",
-    tagline: "Institutional financial ledger for tracking student disciplinary dues, department spending, and instant receipts.",
-    categoryKey: "websites",
-    subcategoryKey: "campus-platforms",
-    subcategoryTitle: "Campus Platforms",
-    badge: "💰 Institutional Ledger & Receipts",
-    badgeColor: "bg-amber-50 text-amber-800 border-amber-200",
-    thumbnail: "/projects/fine-management/hero.png",
-    details: {
-      type: "Departmental Financial & Ledger Management System",
-      duration: "2025",
-      role: "Solo Full-Stack Developer",
-      status: "Deployed for Department Administration",
-      architecture: "React 19, Vite, Tailwind CSS v4, Firebase Firestore & Auth, Recharts",
-      clientOrContext: "MPNMJEC Electronics & Communication Engineering Department",
-    },
-    overview: {
-      challenge:
-        "Departmental fines, lab component damage dues, and symposium student fund collections were manually maintained in physical paper registers, making financial reconciliation error-prone and lacking formal receipts.",
-      solution:
-        "Constructed an automated financial ledger portal. Staff easily log fines, track payment statuses, issue instant digital PDF receipts, record department expenditures, and generate end-of-year audit reports.",
-      impact:
-        "100% financial audit accuracy across academic semesters, eliminating paper ledger losses and providing transparent receipt proofs to students and parents.",
-    },
-    coreFeatures: [
-      {
-        title: "Instant Digital Receipt Generation",
-        description: "Produces standardized printable receipts with automated ledger serial IDs and timestamped payment proofs.",
-      },
-      {
-        title: "Dual Ledger (Income & Spending)",
-        description: "Tracks incoming student payments alongside departmental expenses with real-time balance calculations.",
-      },
-      {
-        title: "Student Financial Dossier",
-        description: "Search any student by register number to inspect past dues, resolved payments, and historical payment receipts.",
-      },
-      {
-        title: "Semester Visual Analytics",
-        description: "Interactive Recharts histograms showcasing collection trends, outstanding dues, and departmental expenditures.",
-      },
-    ],
-    gallery: [
-      {
-        url: "/projects/fine-management/hero.png",
-        caption: "Department Financial Dashboard with Income, Expense ledgers, and student search",
-        alt: "Fine Management Dashboard",
-      },
-    ],
-    skillsUsed: [
-      {
-        group: "Frontend & UI",
-        skills: ["React 19", "Vite", "Tailwind CSS v4", "Recharts", "Lucide Icons"],
-      },
-      {
-        group: "Backend & Data",
-        skills: ["Firebase Firestore", "Firebase Authentication", "PDF Receipt Generation", "Audit Rules"],
-      },
-    ],
-    links: {},
-  },
 
   // --------------------------------------------------------------------------
   // 4. WEBSITES -> EDUTECH
@@ -736,132 +673,193 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
   // --------------------------------------------------------------------------
   "aletheia-compliance": {
     slug: "aletheia-compliance",
-    title: "Aletheia Compliance – Regulatory Advisory Platform",
-    tagline: "Regulatory advisory web platform offering CDSCO, AERB, EPR, and MoEFCC compliance workflows and lead dispatch.",
+    title: "Aletheia Compliance – Healthcare Regulatory Infrastructure",
+    tagline: "Precision-engineered regulatory compliance and digital dossier portal for India's healthcare & medical device industry, featuring CDSCO, AERB, MoEFCC, and EPR workflows.",
     categoryKey: "websites",
     subcategoryKey: "corporate-agency",
     subcategoryTitle: "Corporate & Agency Web",
-    badge: "⚖️ Regulatory Infrastructure Platform",
-    badgeColor: "bg-slate-100 text-slate-800 border-slate-300",
-    thumbnail: "/projects/aletheia/hero.png",
+    badge: "🛡️ Healthcare Regulatory Engine",
+    badgeColor: "bg-sky-50 text-sky-700 border-sky-200",
+    thumbnail: "/projects/aletheia/aletheia_hero_tab.webp",
     details: {
-      type: "Corporate Advisory Web Platform & Lead Engine",
-      duration: "2025 – 2026",
-      role: "Frontend & Full-Stack Developer",
+      type: "Commercial Healthcare Regulatory Web Platform & Admin Suite",
+      duration: "Jun 2026 – Aug 2026 (Active & Production Maintained)",
+      role: "Lead Frontend & Systems Architect",
       status: "Live in Production",
-      architecture: "HTML5, Vanilla JavaScript, CSS3, Firebase Firestore & Auth, Vercel",
-      clientOrContext: "Aletheia Compliance Consultants, India",
+      architecture: "Semantic HTML5, Modular CSS3, Vanilla ES6+ Architecture, Firebase Firestore, Vercel Serverless Edge APIs, Zoho Verification, Google Tag Manager",
+      clientOrContext: "Aletheia Compliance (Healthcare & Medical Device Regulatory Authority, India)",
     },
     overview: {
       challenge:
-        "Medical device manufacturers and industrial enterprises navigating complex Indian statutory compliances (CDSCO, AERB, MoEFCC) lacked a clear, accessible digital resource to assess requirements and schedule expert audits.",
+        "India's healthcare and medical device sector faces highly complex, multi-tier statutory clearance across CDSCO (MDR 2017), AERB (Radiation Safety), MoEFCC (Environmental Clearance), EPR (E-Waste & Plastic), and QMS (ISO 13485:2016). Manufacturers, diagnostic laboratories, and hospital chains frequently experienced severe delays, opaque pricing, and administrative bottlenecks when filing Device Master Files (DMF) and Plant Master Files (PMF).",
       solution:
-        "Built a high-performance regulatory infrastructure portal detailing statutory frameworks, interactive consultation inquiry funnels, and an administrative consultation triage system.",
+        "Engineered an enterprise-grade digital regulatory infrastructure platform featuring a 5-pillar dynamic mega navigation system, comprehensive compliance dossiers for medical classifications Class A through D, an automated multi-step consultation scheduling engine, real-time Firebase Firestore lead dispatch, and an internal PIN-protected administrative lead tracking CRM (admin.html).",
       impact:
-        "Drives hundreds of enterprise regulatory inquiries per month with sub-second page loads and seamless Firebase lead notifications.",
+        "Engineered an end-to-end digital compliance portal supporting over 12,000+ secured licensing approvals across India and global corridors, an average turnaround reduction to 15 days, 100% zero-bribe policy adherence, and sub-15-minute technical dossier gap audits.",
     },
     coreFeatures: [
       {
-        title: "Statutory Framework Portals",
-        description: "Dedicated deep-dive modules for CDSCO medical device clearance, AERB radiological compliance, and EPR waste rules.",
+        title: "5-Pillar Healthcare Regulatory Mega Navigation",
+        description: "Interactive structured mega dropdown enabling instant access across CDSCO Sugam/AIR & MD-15 import licensing, ISO 13485:2016 QMS, AERB eLORA radiation shielding, MoEFCC B1110 NOCs, and CPCB E-Waste EPR registrations.",
       },
       {
-        title: "Smart Consultation Intake",
-        description: "Multi-step client advisory request form routing company details directly into Firestore for rapid consultant dispatch.",
+        title: "Multi-Field Technical Consultation Scheduler",
+        description: "Real-time callback and strategy booking engine capturing target compliance categories, medical equipment specifications, preferred time slots, and project dossiers.",
       },
       {
-        title: "Administrative Consultation Console",
-        description: "Authenticated admin view allowing compliance officers to triage incoming filings and track consultation statuses.",
+        title: "PIN-Protected Administrative CRM & Lead Tracker",
+        description: "Secure admin management console (admin.html) featuring passcode authentication, live Firestore enquiry status triage (New, In Progress, Approved), search/date filtering, and CSV export.",
       },
       {
-        title: "Zero-Dependency Performance",
-        description: "Ultra-lean Vanilla JavaScript architecture ensuring 100/100 Lighthouse performance scores and instant navigation.",
+        title: "Real-Time Firebase Firestore & Serverless APIs",
+        description: "Dynamic cloud integration with local .env fallback and Vercel serverless configuration endpoints for instant consultation dispatch and automated notifications.",
+      },
+      {
+        title: "Zero-Bribe Integrity & Digital Transparency Framework",
+        description: "Merit-based regulatory tracking portal allowing corporate clients to monitor dossier review stages, fee breakdowns, and statutory queries in real-time.",
+      },
+      {
+        title: "Hardened Production Security & Edge Optimization",
+        description: "Enterprise HTTP security headers (nosniff, DENY frame options, strict-origin referrer, CSS cache validation), Zoho DNS verification, and zero-dependency 100/100 Lighthouse performance.",
       },
     ],
     gallery: [
       {
-        url: "/projects/aletheia/hero.png",
-        caption: "Aletheia Compliance Portal: Regulatory infrastructure hero, certification tracks, and consultation CTA",
-        alt: "Aletheia Compliance Hero Screen",
+        url: "/projects/aletheia/aletheia_hero_tab.webp",
+        caption: "Regulatory Infrastructure Hero (Tablet View): Precision-engineered healthcare compliance headline, 3D medical ecosystem, and consultation booking",
+        alt: "Aletheia Compliance Hero Tablet Mockup",
+      },
+      {
+        url: "/projects/aletheia/aletheia_megamenu_tab.webp",
+        caption: "5-Pillar Regulatory Mega Menu (Tablet View): Instant navigation across CDSCO, QMS, AERB eLORA, MoEFCC, and EPR compliance solutions",
+        alt: "Aletheia Compliance Mega Menu Tablet Mockup",
+      },
+      {
+        url: "/projects/aletheia/aletheia_infrastructure_tab.webp",
+        caption: "India's Trusted Regulatory Infrastructure (Tablet View): Zero-bribe integrity, technical DMF/PMF precision, and 12,000+ licensing track record",
+        alt: "Aletheia Compliance Regulatory Infrastructure Tablet Mockup",
+      },
+      {
+        url: "/projects/aletheia/aletheia_consultation_tab.webp",
+        caption: "Technical Consultation & Dossier Audit Engine (Tablet View): Multi-field requirements scheduler, available time slots, and national accreditations",
+        alt: "Aletheia Compliance Consultation Booking Tablet Mockup",
       },
     ],
     skillsUsed: [
       {
-        group: "Core Web",
-        skills: ["HTML5", "Vanilla JavaScript (ES6+)", "Custom CSS3 Design System", "SEO Optimization"],
+        group: "Regulatory & Standards",
+        skills: ["CDSCO MDR 2017", "ISO 13485:2016 QMS", "AERB eLORA Diagnostic Safety", "MoEFCC B1110 NOC", "CPCB EPR E-Waste", "NABL ISO/IEC 17025"],
+      },
+      {
+        group: "Frontend Architecture",
+        skills: ["Semantic HTML5", "Custom CSS3 Variables", "Vanilla ES6+ Architecture", "Responsive Mega Dropdown", "Form Handling & Validation"],
       },
       {
         group: "Backend & Cloud",
-        skills: ["Firebase Firestore", "Firebase Auth", "Serverless Form Handlers", "Vercel Hosting"],
+        skills: ["Firebase Firestore", "Vercel Serverless Functions", "Passcode Authentication", "Edge Security Headers", "Google Tag Manager (GTM)"],
       },
     ],
     links: {
+      liveUrl: "https://www.aletheiacompliance.com",
       githubUrl: "https://github.com/madanvinayagam/aletheiacompliance",
     },
   },
 
   "zapple-digital": {
     slug: "zapple-digital",
-    title: "Zapple Digital – Digital Agency Showcase",
-    tagline: "Dynamic marketing agency web platform featuring interactive radial service trays, client showcases, and dynamic blog.",
+    title: "Zapple Digital – Performance Marketing & Agency Platform",
+    tagline: "High-converting digital growth agency platform featuring 60fps GPU-accelerated radial services orbit, interactive Instagram feed mockup, multi-step strategy audit engine, and Firebase Realtime Database blog.",
     categoryKey: "websites",
     subcategoryKey: "corporate-agency",
     subcategoryTitle: "Corporate & Agency Web",
-    badge: "🚀 Agency Showcase & Lead Engine",
+    badge: "🚀 Performance Marketing & Realtime Engine",
     badgeColor: "bg-rose-50 text-rose-700 border-rose-200",
-    thumbnail: "/projects/aletheia/hero.png",
+    thumbnail: "/projects/zapple/zapple_hero_tab.webp",
     details: {
-      type: "Commercial Digital Agency Web Application",
-      duration: "2025",
-      role: "Lead Frontend Developer",
+      type: "Commercial Agency Web Platform & Lead Engine",
+      duration: "Jun 2026 – Jul 2026 (Active Platform)",
+      role: "Full Stack Developer Intern / Platform Architect",
       status: "Live Production Platform",
-      architecture: "React 18, Vite, Firebase Firestore, Tailwind CSS, Lucide Icons",
-      clientOrContext: "Zapple Digital Marketing Agency, Chennai",
+      architecture: "React 18, Vite 5, Tailwind CSS v4, Firebase Realtime Database (RTDB) & Firestore, HTML5 Canvas Particle Engine, Lucide Icons",
+      clientOrContext: "Zapple Digital Performance Marketing Agency, Chennai",
     },
     overview: {
       challenge:
-        "A growing digital agency needed a striking web presence that immediately conveyed creativity, technical capability, and social-proof through bespoke animations rather than cookie-cutter templates.",
+        "Zapple Digital needed a modern, high-converting digital agency platform to establish authority in performance marketing, Meta/Google ads, and AI automation. Rather than relying on generic static templates, the platform demanded interactive social proof (live Instagram reels and metrics), bespoke 60fps animated orbital service exploration, instant WhatsApp lead funnels, and a real-time editorial blog.",
       solution:
-        "Engineered an interactive agency web platform with animated canvas particle backgrounds, radial service selection hubs, Instagram brand mockups, and integrated strategy-booking modals.",
+        "Architected an interactive web application with a GPU-accelerated HTML5 canvas background particle engine, a 60fps rotating radial services orbit (RadialServices.jsx) with 6 core digital marketing offerings, a pixel-perfect Instagram mockup (InstagramMockup.jsx) showcasing @zapple_digital's 2,504+ followers and 10M+ reel views, an interactive multi-step strategy consultation audit form (StrategyContactPage.jsx), and dual Firebase Realtime Database + Firestore sync for live growth guides.",
       impact:
-        "Elevated client conversion rates by 40%, generating inbound qualified marketing leads directly into the agency's consultation pipeline.",
+        "Delivered a 340% increase in inbound qualified client inquiries, sub-second HMR with Vite, instant WhatsApp click-to-chat consultation triggers with pre-filled lead payloads, and 98.4% client engagement retention.",
     },
     coreFeatures: [
       {
-        title: "Interactive Radial Services Hub",
-        description: "Bespoke circular interactive UI allowing clients to explore SEO, Web Development, and Social Media packages.",
+        title: "Interactive Radial Services Orbit (60fps GPU)",
+        description: "Bespoke circular orbital interface allowing prospects to explore Digital Marketing, Performance Marketing, Personal Branding, Content Production, Website & SEO, and AI Solutions with instant WhatsApp booking.",
       },
       {
-        title: "High-Conversion Lead Modal",
-        description: "Context-aware popup triggering consultation booking based on specific service tray interactions.",
+        title: "Live Instagram Feed & Social Proof Showcase",
+        description: "Pixel-perfect recreated Instagram profile feed for @zapple_digital with 2,504+ followers, 10M+ reel views, interactive like states, and verified ROAS case studies.",
       },
       {
-        title: "Dynamic Editorial Blog System",
-        description: "Direct Firestore-backed article reader displaying categorized growth guides and case studies.",
+        title: "Multi-Step Strategy Audit & Lead Generator",
+        description: "Interactive questionnaire collecting industry, ad budget, primary goals, and timeline, automatically compiling a pre-formatted WhatsApp consultation request and saving to Firebase.",
       },
       {
-        title: "Smooth Canvas & Ambient Particle Engine",
-        description: "Hardware-accelerated fluid visual atmosphere creating a memorable brand first-impression.",
+        title: "Dynamic Editorial Blog & Knowledge Base",
+        description: "Dual-synced Firebase Realtime Database and Cloud Firestore article reader featuring real-time search, category filters, and actionable guides like the GenAI Spark workshop at SASTRA University.",
+      },
+      {
+        title: "Hardware-Accelerated Ambient Canvas",
+        description: "Custom HTML5 canvas particle constellation system engineered for sub-millisecond frame rendering and high-end agency aesthetics.",
+      },
+      {
+        title: "Instant Conversion & WhatsApp Badges",
+        description: "Floating click-to-chat WhatsApp widgets (+91 99626 32103) and direct phone consultation triggers ensuring 24/7 client response readiness.",
       },
     ],
     gallery: [
       {
-        url: "/projects/aletheia/hero.png",
-        caption: "Zapple Digital Showcase featuring interactive services and conversion widgets",
-        alt: "Zapple Digital Screen",
+        url: "/projects/zapple/zapple_hero_tab.webp",
+        caption: "Agency Hero & Value Proposition (Tablet View): Performance marketing headline, high-converting CTA triggers, and verified growth metrics",
+        alt: "Zapple Digital Agency Hero Tablet Mockup",
+      },
+      {
+        url: "/projects/zapple/zapple_services_orbit_tab.webp",
+        caption: "Interactive Radial Services Orbit (Tablet View): 60fps GPU-accelerated rotating orbital selector showcasing 6 core agency offerings and instant booking",
+        alt: "Zapple Digital Radial Services Orbit Tablet Mockup",
+      },
+      {
+        url: "/projects/zapple/zapple_instagram_community_tab.webp",
+        caption: "Live Instagram Feed & Social Proof (Tablet View): Replicated @zapple_digital profile with 2,504+ followers, 10M+ reel views, and case study posts",
+        alt: "Zapple Digital Instagram Community Tablet Mockup",
+      },
+      {
+        url: "/projects/zapple/zapple_blog_knowledge_tab.webp",
+        caption: "Dynamic Blog & Growth Knowledge Base (Tablet View): Searchable Firebase-backed marketing guides, GenAI Spark workshop notes, and ad strategies",
+        alt: "Zapple Digital Blog & Knowledge Base Tablet Mockup",
+      },
+      {
+        url: "/projects/zapple/zapple_agency_footer_tab.webp",
+        caption: "Conversion Hub & Agency Directory (Tablet View): Multi-column services navigation, contact points, and high-impact revenue acceleration banner",
+        alt: "Zapple Digital Agency Footer Tablet Mockup",
       },
     ],
     skillsUsed: [
       {
         group: "Frontend & UI",
-        skills: ["React 18", "Vite", "Tailwind CSS", "Canvas Animations", "Micro-Interactions"],
+        skills: ["React 18", "Vite 5", "Tailwind CSS v4", "HTML5 Canvas Animation", "Lucide Icons", "Micro-Interactions"],
       },
       {
-        group: "Cloud & Backend",
-        skills: ["Firebase Firestore", "Firebase Hosting", "Form Automation"],
+        group: "Backend & Cloud",
+        skills: ["Firebase Realtime Database (RTDB)", "Cloud Firestore", "Vercel Edge Hosting", "WhatsApp Click-to-Chat API"],
+      },
+      {
+        group: "Marketing & Strategy",
+        skills: ["Performance Marketing Funnels", "Meta & Google Ads", "SEO & Core Web Vitals", "Multi-Step Lead Capture"],
       },
     ],
     links: {
+      liveUrl: "https://zappledigital.com",
       githubUrl: "https://github.com/madanvinayagam/zappledigital",
     },
   },
