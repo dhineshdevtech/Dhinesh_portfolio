@@ -61,12 +61,12 @@ const featuredProjects: FeaturedProject[] = [
     title: "Appu Canteen – Offline-First POS",
     description:
       "High-speed offline-friendly canteen billing system engineered for rapid counter checkout, live sales analytics, inventory management, and Bluetooth thermal printing.",
-    tags: ["React 19", "TypeScript", "Tailwind CSS", "PWA", "Bluetooth API"],
+    tags: ["React 19", "Dexie IndexedDB", "Web Bluetooth", "PWA", "Tailwind v4"],
     backdropBg: "from-amber-100/60 via-[#fffcf5] to-orange-50/60 border-amber-200/70",
     badgeBg: "bg-amber-50 text-amber-800 border border-amber-200",
     badgeLabel: "🧾 Bluetooth Thermal Printing",
-    liveUrl: "https://offline-canteen-billing-system.vercel.app/",
-    githubUrl: "https://github.com/dhineshdevtech/OFFLINE-CANTEEN-BILLING-SYSTEM",
+    liveUrl: "https://canteenpos-live.vercel.app",
+    githubUrl: "https://github.com/dhineshdevtech/canteenpos",
     type: "canteen",
     categories: ["business"],
   },
@@ -128,40 +128,27 @@ function ProjectVisualPreview({ type }: { type: FeaturedProject["type"] }) {
     );
   }
 
-  // Canteen
+  // Canteen (Tablet Mockup)
   return (
-    <div className="relative w-full h-full flex items-center justify-center p-4 select-none">
-      {/* Main Billing POS Screen */}
-      <div className="relative w-full max-w-[340px] sm:max-w-[400px] h-[180px] sm:h-[205px] rounded-xl overflow-hidden border-2 border-amber-300/80 shadow-[0_8px_30px_rgba(245,158,11,0.15)] bg-white">
-        {/* POS Window Header */}
-        <div className="h-5 bg-amber-50 px-2.5 flex items-center justify-between border-b border-amber-200">
-          <div className="flex gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-          </div>
-          <span className="text-[8px] font-mono font-bold text-amber-800">Appu Canteen POS • Counter</span>
-          <span className="w-2" />
-        </div>
-        <div className="relative w-full h-[calc(100%-20px)]">
-          <Image
-            src="/projects/canteen/01-billing-screen.webp"
-            alt="Appu Canteen POS Billing Screen"
-            fill
-            className="object-cover object-top"
-            sizes="400px"
-          />
-        </div>
+    <div className="relative w-full h-full flex items-center justify-center p-3 select-none">
+      <div className="relative w-full max-w-[360px] sm:max-w-[420px] aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_12px_36px_rgba(245,158,11,0.22)] group-hover:scale-[1.03] transition-transform duration-500">
+        <Image
+          src="/projects/canteen/canteen_pos_counter_tab.webp"
+          alt="Offline Canteen POS Counter Billing System on Tablet"
+          fill
+          className="object-cover object-center"
+          sizes="(max-width: 1024px) 100vw, 450px"
+        />
       </div>
 
       {/* Floating Sales Dashboard Snippet */}
-      <div className="absolute -bottom-1 right-6 sm:right-10 w-[120px] sm:w-[145px] h-[85px] sm:h-[95px] rounded-xl overflow-hidden border-2 border-emerald-300 shadow-xl bg-white z-10 hidden xs:block">
+      <div className="absolute -bottom-1 right-4 sm:right-8 w-[130px] sm:w-[155px] aspect-[16/10] rounded-xl overflow-hidden border-2 border-emerald-400 shadow-xl bg-white z-10 hidden xs:block group-hover:translate-y-[-2px] transition-transform duration-300">
         <Image
-          src="/projects/canteen/02-sales-dashboard.webp"
-          alt="Appu Canteen Sales Dashboard"
+          src="/projects/canteen/canteen_sales_dashboard_tab.webp"
+          alt="Appu Canteen Sales Dashboard on Tablet"
           fill
-          className="object-cover object-top"
-          sizes="150px"
+          className="object-cover object-center"
+          sizes="160px"
         />
       </div>
     </div>

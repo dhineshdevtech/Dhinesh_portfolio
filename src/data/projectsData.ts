@@ -872,77 +872,188 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
   "appu-canteen-pos": {
     slug: "appu-canteen-pos",
     title: "Appu Canteen – Offline-First POS",
-    tagline: "Commercial counter POS with zero-downtime offline IndexedDB sync and Web Bluetooth ESC/POS thermal printing.",
+    tagline: "Ultra-fast, 100% offline-first Progressive Web App (PWA) with Web Bluetooth 58mm ESC/POS thermal printing and English/Tamil bilingual support.",
     categoryKey: "business",
     subcategoryKey: "canteen-pos",
     subcategoryTitle: "Canteen POS",
-    badge: "🧾 Offline-First PWA + Bluetooth Printing",
+    badge: "🍛 100% Offline PWA + Web Bluetooth",
     badgeColor: "bg-amber-50 text-amber-800 border-amber-200",
-    thumbnail: "/projects/canteen/01-billing-screen.webp",
+    thumbnail: "/projects/canteen/canteen_pos_counter_tab.webp",
     details: {
-      type: "Commercial Retail POS & Hardware",
-      duration: "November 2025 – Present",
-      role: "Lead Full-Stack Developer",
-      status: "Deployed at Commercial Counters",
-      architecture: "React 19, TypeScript, IndexedDB (Dexie.js), Web Bluetooth API, ESC/POS Binary Protocols, PWA",
-      clientOrContext: "Campus Food Centers & Retail Stores / 6ixminds Labs",
+      type: "100% Offline Progressive Web App (PWA)",
+      duration: "2026 (Active & Production Maintained)",
+      role: "Solo Full-Stack / Frontend Systems Developer",
+      status: "Live in Production on Vercel",
+      architecture: "React 19, TypeScript, Vite 7, Tailwind CSS v4, Dexie.js (IndexedDB), Web Bluetooth API (ESC/POS), Zustand, i18next (Tamil/English), Workbox PWA",
+      clientOrContext: "Campus Dining Halls, Hospital Food Courts & Factory Canteens",
     },
     overview: {
       challenge:
-        "High-density food counters face revenue loss and customer dissatisfaction when internet drops or cloud POS systems freeze mid-transaction during peak rush hours.",
+        "College, hospital, and factory canteens experience immense rush-hour spikes during breakfast and lunch breaks (hundreds of hungry customers ordering within a 30-minute window). Network signals in basements, dining halls, and campus cafeterias frequently fail; cloud-dependent billing software freezes or loses orders. Traditional POS hardware (desktop towers, bulky thermal printers, local Wi-Fi networks) is expensive, stationary, and difficult to maintain. Kitchen staff and local counter cashiers often find English-only POS software confusing.",
       solution:
-        "Engineered an offline-first POS architecture that operates completely uninterrupted without internet. Persists transactions locally in IndexedDB and connects directly to Bluetooth 58mm/80mm thermal receipt printers.",
+        "Engineered an ultra-fast, 100% offline-first Progressive Web App powered entirely by Dexie.js (IndexedDB) and Workbox service workers. Integrates direct browser-to-hardware wireless printing to portable belt-clip 58mm thermal printers via the Web Bluetooth API (zero drivers required), one-tap English/Tamil bilingual UI toggle, touch-first item cards with authentic food imagery, and end-of-day sales auditing.",
       impact:
-        "100% operational uptime through internet dropouts, cutting queue wait times by 65% with sub-second order calculation and slip printing.",
+        "100% zero-latency offline operation with zero server dependencies, sub-5-second checkout per customer (65% faster counter turnover), driverless wireless Bluetooth thermal printing, and full JSON backup/restore for zero data loss.",
     },
     coreFeatures: [
       {
-        title: "Zero-Downtime Offline Mode",
-        description: "Transactions, catalog updates, and order bills persist locally and sync back when online.",
+        title: "Touch Counter Billing & Zustand Cart",
+        description: "Large touch item cards with real food imagery, quick category filter tabs (Breakfast, Main Course, Snacks, Beverages, Desserts), and sub-5-second checkout per customer.",
       },
       {
-        title: "Wireless Bluetooth Thermal Printing",
-        description: "Direct Web Bluetooth API integration to print kitchen slips and customer bills instantly without drivers.",
+        title: "Wireless Web Bluetooth 58mm Thermal Printing",
+        description: "Browser-direct wireless communication with portable 58mm BLE thermal printers converting orders into raw ESC/POS byte buffers with auto-reconnect.",
       },
       {
-        title: "End-of-Day Sales Ledger",
-        description: "Comprehensive financial summary breakdown with cash-in-drawer audit and payment reports.",
+        title: "100% Offline IndexedDB Engine (Dexie.js)",
+        description: "Full client-side NoSQL storage with reactive `useLiveQuery` hooks, zero server latency, and full Workbox PWA offline installability.",
       },
       {
-        title: "Quick-Key Item Search & Multilingual UI",
-        description: "Sub-10ms response time using in-memory indexed queries, with multi-language i18n support.",
+        title: "English & Tamil (தமிழ்) Bilingual UI",
+        description: "Instant one-tap language toggle across all menu categories, food titles, order cart items, and management buttons.",
+      },
+      {
+        title: "Sales Analytics & Thermal Audit Reports",
+        description: "Revenue breakdowns for Today, Yesterday, This Week, or Custom dates, with one-tap daily cash reconciliation slips printed directly via Bluetooth thermal printer.",
+      },
+      {
+        title: "Menu Management & PIN-Protected Controls",
+        description: "Admin PIN protection (1234), dual-language menu creator, local photo base64 storage, and one-click JSON backup & restore.",
       },
     ],
     gallery: [
       {
-        url: "/projects/canteen/01-billing-screen.webp",
-        caption: "High-speed Checkout Register with Category Shortcuts and Instant Order Cart",
-        alt: "Billing Screen",
+        url: "/projects/canteen/canteen_pos_counter_tab.webp",
+        caption: "Counter Billing Register (Tablet View): Fast category filters, authentic food imagery, and real-time Zustand cart drawer",
+        alt: "Canteen POS Counter Billing Tablet Mockup",
       },
       {
-        url: "/projects/canteen/02-sales-dashboard.webp",
-        caption: "Real-time Sales Analytics Dashboard displaying daily turnover, hourly peaks, and top items",
-        alt: "Sales Dashboard Screen",
+        url: "/projects/canteen/canteen_sales_dashboard_tab.webp",
+        caption: "Sales Analytics & Bluetooth Report Builder (Tablet View): Period revenue filters and printable daily cash audit slips",
+        alt: "Canteen POS Sales Analytics Dashboard Tablet Mockup",
       },
       {
-        url: "/projects/canteen/03-items-management.webp",
-        caption: "Inventory & Pricing Editor with stock toggle and quick-search catalog",
-        alt: "Items Management Screen",
+        url: "/projects/canteen/canteen_items_management_tab.webp",
+        caption: "Menu & Inventory Management (Tablet View): Dual-language item creation, category assignment, and photo catalog",
+        alt: "Canteen POS Items Management Tablet Mockup",
+      },
+      {
+        url: "/projects/canteen/canteen_bilingual_tamil_tab.webp",
+        caption: "Tamil (தமிழ்) Bilingual Localization (Tablet View): Native regional language toggle for seamless kitchen staff operations",
+        alt: "Canteen POS Tamil Bilingual Localization Tablet Mockup",
       },
     ],
     skillsUsed: [
       {
-        group: "Frontend & Architecture",
-        skills: ["React 19", "TypeScript", "Tailwind CSS", "IndexedDB (Dexie)", "Zustand", "PWA Service Worker"],
+        group: "Frontend & UI",
+        skills: ["React 19", "TypeScript", "Vite 7", "Tailwind CSS v4", "Zustand", "i18next (Tamil / English)"],
+      },
+      {
+        group: "Offline DB & PWA",
+        skills: ["Dexie.js (IndexedDB)", "dexie-react-hooks", "PWA Service Worker", "Workbox", "JSON Backup Engine"],
       },
       {
         group: "Hardware & Protocols",
-        skills: ["Web Bluetooth API", "ESC/POS Binary Protocols", "Thermal Slip Byte Formats"],
+        skills: ["Web Bluetooth API", "ESC/POS Binary Protocols", "58mm BLE Thermal Printing", "GATT Service Handshake"],
       },
     ],
     links: {
-      liveUrl: "https://offline-canteen-billing-system.vercel.app/",
-      githubUrl: "https://github.com/dhineshdevtech/OFFLINE-CANTEEN-BILLING-SYSTEM",
+      liveUrl: "https://canteenpos-live.vercel.app",
+      githubUrl: "https://github.com/dhineshdevtech/canteenpos",
+    },
+  },
+  // Backward-compatibility alias for canteen-pos
+  "canteen-pos": {
+    slug: "appu-canteen-pos",
+    title: "Appu Canteen – Offline-First POS",
+    tagline: "Ultra-fast, 100% offline-first Progressive Web App (PWA) with Web Bluetooth 58mm ESC/POS thermal printing and English/Tamil bilingual support.",
+    categoryKey: "business",
+    subcategoryKey: "canteen-pos",
+    subcategoryTitle: "Canteen POS",
+    badge: "🍛 100% Offline PWA + Web Bluetooth",
+    badgeColor: "bg-amber-50 text-amber-800 border-amber-200",
+    thumbnail: "/projects/canteen/canteen_pos_counter_tab.webp",
+    details: {
+      type: "100% Offline Progressive Web App (PWA)",
+      duration: "2026 (Active & Production Maintained)",
+      role: "Solo Full-Stack / Frontend Systems Developer",
+      status: "Live in Production on Vercel",
+      architecture: "React 19, TypeScript, Vite 7, Tailwind CSS v4, Dexie.js (IndexedDB), Web Bluetooth API (ESC/POS), Zustand, i18next (Tamil/English), Workbox PWA",
+      clientOrContext: "Campus Dining Halls, Hospital Food Courts & Factory Canteens",
+    },
+    overview: {
+      challenge:
+        "College, hospital, and factory canteens experience immense rush-hour spikes during breakfast and lunch breaks (hundreds of hungry customers ordering within a 30-minute window). Network signals in basements, dining halls, and campus cafeterias frequently fail; cloud-dependent billing software freezes or loses orders. Traditional POS hardware (desktop towers, bulky thermal printers, local Wi-Fi networks) is expensive, stationary, and difficult to maintain. Kitchen staff and local counter cashiers often find English-only POS software confusing.",
+      solution:
+        "Engineered an ultra-fast, 100% offline-first Progressive Web App powered entirely by Dexie.js (IndexedDB) and Workbox service workers. Integrates direct browser-to-hardware wireless printing to portable belt-clip 58mm thermal printers via the Web Bluetooth API (zero drivers required), one-tap English/Tamil bilingual UI toggle, touch-first item cards with authentic food imagery, and end-of-day sales auditing.",
+      impact:
+        "100% zero-latency offline operation with zero server dependencies, sub-5-second checkout per customer (65% faster counter turnover), driverless wireless Bluetooth thermal printing, and full JSON backup/restore for zero data loss.",
+    },
+    coreFeatures: [
+      {
+        title: "Touch Counter Billing & Zustand Cart",
+        description: "Large touch item cards with real food imagery, quick category filter tabs (Breakfast, Main Course, Snacks, Beverages, Desserts), and sub-5-second checkout per customer.",
+      },
+      {
+        title: "Wireless Web Bluetooth 58mm Thermal Printing",
+        description: "Browser-direct wireless communication with portable 58mm BLE thermal printers converting orders into raw ESC/POS byte buffers with auto-reconnect.",
+      },
+      {
+        title: "100% Offline IndexedDB Engine (Dexie.js)",
+        description: "Full client-side NoSQL storage with reactive `useLiveQuery` hooks, zero server latency, and full Workbox PWA offline installability.",
+      },
+      {
+        title: "English & Tamil (தமிழ்) Bilingual UI",
+        description: "Instant one-tap language toggle across all menu categories, food titles, order cart items, and management buttons.",
+      },
+      {
+        title: "Sales Analytics & Thermal Audit Reports",
+        description: "Revenue breakdowns for Today, Yesterday, This Week, or Custom dates, with one-tap daily cash reconciliation slips printed directly via Bluetooth thermal printer.",
+      },
+      {
+        title: "Menu Management & PIN-Protected Controls",
+        description: "Admin PIN protection (1234), dual-language menu creator, local photo base64 storage, and one-click JSON backup & restore.",
+      },
+    ],
+    gallery: [
+      {
+        url: "/projects/canteen/canteen_pos_counter_tab.webp",
+        caption: "Counter Billing Register (Tablet View): Fast category filters, authentic food imagery, and real-time Zustand cart drawer",
+        alt: "Canteen POS Counter Billing Tablet Mockup",
+      },
+      {
+        url: "/projects/canteen/canteen_sales_dashboard_tab.webp",
+        caption: "Sales Analytics & Bluetooth Report Builder (Tablet View): Period revenue filters and printable daily cash audit slips",
+        alt: "Canteen POS Sales Analytics Dashboard Tablet Mockup",
+      },
+      {
+        url: "/projects/canteen/canteen_items_management_tab.webp",
+        caption: "Menu & Inventory Management (Tablet View): Dual-language item creation, category assignment, and photo catalog",
+        alt: "Canteen POS Items Management Tablet Mockup",
+      },
+      {
+        url: "/projects/canteen/canteen_bilingual_tamil_tab.webp",
+        caption: "Tamil (தமிழ்) Bilingual Localization (Tablet View): Native regional language toggle for seamless kitchen staff operations",
+        alt: "Canteen POS Tamil Bilingual Localization Tablet Mockup",
+      },
+    ],
+    skillsUsed: [
+      {
+        group: "Frontend & UI",
+        skills: ["React 19", "TypeScript", "Vite 7", "Tailwind CSS v4", "Zustand", "i18next (Tamil / English)"],
+      },
+      {
+        group: "Offline DB & PWA",
+        skills: ["Dexie.js (IndexedDB)", "dexie-react-hooks", "PWA Service Worker", "Workbox", "JSON Backup Engine"],
+      },
+      {
+        group: "Hardware & Protocols",
+        skills: ["Web Bluetooth API", "ESC/POS Binary Protocols", "58mm BLE Thermal Printing", "GATT Service Handshake"],
+      },
+    ],
+    links: {
+      liveUrl: "https://canteenpos-live.vercel.app",
+      githubUrl: "https://github.com/dhineshdevtech/canteenpos",
     },
   },
 
