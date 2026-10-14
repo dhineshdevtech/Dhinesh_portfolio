@@ -82,8 +82,8 @@ export default function Hero() {
             </button>
           </div>
 
-          {/* Metric Stats Counters (Bottom Bar - 3 Columns) */}
-          <div className="pt-8 border-t border-[#d8e6f8] grid grid-cols-3 gap-3 sm:gap-6 max-w-lg">
+          {/* Metric Stats Counters (Bottom Bar - 2 Columns) */}
+          <div className="pt-8 border-t border-[#d8e6f8] flex items-center gap-6 sm:gap-8 max-w-md">
             <div>
               <div className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
                 {TOTAL_PROJECTS_COUNT}<span className="text-[#0070f3]">+</span>
@@ -93,26 +93,14 @@ export default function Hero() {
               </div>
             </div>
 
+            <div className="h-10 w-px bg-[#d8e6f8]" aria-hidden="true" />
+
             <div>
-              <div className="flex items-center gap-1 sm:gap-1.5 h-9 sm:h-10">
-                <span className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-                  Full-Stack
-                </span>
-                <span className="text-lg sm:text-xl drop-shadow-xs" role="img" aria-label="End-to-End Build">
-                  🔄
-                </span>
+              <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight whitespace-nowrap">
+                Full-Stack
               </div>
               <div className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
                 End-to-End Build
-              </div>
-            </div>
-
-            <div>
-              <div className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-                100<span className="text-[#0070f3]">%</span>
-              </div>
-              <div className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
-                Dedication &amp; Quality
               </div>
             </div>
           </div>
