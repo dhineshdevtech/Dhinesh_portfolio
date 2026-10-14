@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { TOTAL_PROJECTS_COUNT } from "@/data/projectsData";
 
 export default function Hero() {
   const scrollTo = (id: string) => {
@@ -85,7 +86,7 @@ export default function Hero() {
           <div className="pt-8 border-t border-[#d8e6f8] grid grid-cols-3 gap-3 sm:gap-6 max-w-lg">
             <div>
               <div className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-                10<span className="text-[#0070f3]">+</span>
+                {TOTAL_PROJECTS_COUNT}<span className="text-[#0070f3]">+</span>
               </div>
               <div className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
                 Projects Built

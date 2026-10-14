@@ -6,6 +6,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FadeUp from "@/components/FadeUp";
+import { TOTAL_PROJECTS_COUNT } from "@/data/projectsData";
 
 interface CourseCertificate {
   id: string;
@@ -186,7 +187,7 @@ export default function CertificatesPage() {
                   href="/projects"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border-2 border-[#bfd8f6] text-slate-800 font-semibold text-xs sm:text-sm hover:border-[#0070f3] hover:text-[#0070f3] transition-all shadow-xs"
                 >
-                  <span>Explore 13 Projects</span>
+                  <span>Explore {TOTAL_PROJECTS_COUNT} Projects</span>
                 </Link>
               </div>
             </div>

@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { CategoryKey } from "@/data/projectsData";
+import { CategoryKey, TOTAL_PROJECTS_COUNT } from "@/data/projectsData";
 
 interface FeaturedProject {
   id: string;
@@ -209,7 +209,7 @@ export default function FeaturedWork() {
           </h2>
 
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            <span className="text-[#0070f3] font-bold">12+</span> production-ready web and mobile
+            <span className="text-[#0070f3] font-bold">{TOTAL_PROJECTS_COUNT}+</span> production-ready web and mobile
             applications built as a software engineer — from a live Google Play Store bus tracking
             system to AI assessment engines and offline-first POS counters. Here&apos;s some of the strongest work.
           </p>
@@ -312,7 +312,7 @@ export default function FeaturedWork() {
             href="/projects"
             className="inline-flex items-center justify-center px-8 py-4 rounded-xl text-sm sm:text-base font-bold text-white bg-gradient-to-r from-[#0070f3] to-[#00c2ff] hover:from-[#005cd6] hover:to-[#00a8e0] shadow-[0_8px_30px_rgba(0,112,243,0.35)] hover:shadow-[0_12px_40px_rgba(0,194,255,0.5)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
           >
-            <span>See All My Projects (13+)</span>
+            <span>See All My Projects ({TOTAL_PROJECTS_COUNT})</span>
             <span className="ml-2 text-lg">→</span>
           </Link>
         </div>

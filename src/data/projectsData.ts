@@ -99,9 +99,9 @@ export const CATEGORIES_DATA: Record<CategoryKey, CategoryData> = {
       {
         key: "campus-platforms",
         title: "Campus Platforms",
-        description: "Integrated institutional web platforms for fleet dispatch and biometric attendance.",
-        projectCount: 2,
-        projectSlugs: ["mpnmjec-dispatch-console", "mpnmjec-attendance-system"],
+        description: "Integrated institutional web platforms for fleet transit and real-time operations.",
+        projectCount: 1,
+        projectSlugs: ["mpnmjec-dispatch-console"],
       },
       {
         key: "edutech",
@@ -143,6 +143,11 @@ export const CATEGORIES_DATA: Record<CategoryKey, CategoryData> = {
     ],
   },
 };
+
+export const TOTAL_PROJECTS_COUNT = Object.values(CATEGORIES_DATA).reduce(
+  (acc, cat) => acc + cat.subcategories.reduce((subAcc, sub) => subAcc + sub.projectCount, 0),
+  0
+);
 
 export const PROJECTS_DATA: Record<string, ProjectDetail> = {
   // --------------------------------------------------------------------------
@@ -389,80 +394,6 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
     },
   },
 
-  "mpnmjec-attendance-system": {
-    slug: "mpnmjec-attendance-system",
-    title: "MPNMJEC Smart Attendance & Face Biometrics Suite",
-    tagline: "Academic attendance platform featuring on-device MediaPipe facial recognition, role dashboards, and biometric kiosk.",
-    categoryKey: "websites",
-    subcategoryKey: "campus-platforms",
-    subcategoryTitle: "Campus Platforms",
-    badge: "👁️ MediaPipe Face Vision + FastAPI",
-    badgeColor: "bg-teal-50 text-teal-800 border-teal-200",
-    thumbnail: "/projects/attendance/kiosk-login.png",
-    details: {
-      type: "Full-Stack AI Institutional Attendance System",
-      duration: "2025 – 2026",
-      role: "Lead Full-Stack & Computer Vision Engineer",
-      status: "Production Ready / Dockerized",
-      architecture: "Python FastAPI, MediaPipe Tasks Vision, PostgreSQL (asyncpg), SQLAlchemy 2.0, React, Docker",
-      clientOrContext: "MPNMJEC Academic Administration & Department Faculty",
-    },
-    overview: {
-      challenge:
-        "Traditional pen-and-paper roll call in large collegiate lecture halls wastes 15+ minutes per period, invites proxy attendance, and delays semester attendance reporting for advisors and department heads.",
-      solution:
-        "Engineered an institutional smart attendance platform featuring 6 role-based web dashboards (Admin, Principal, HOD, Advisor, Faculty, Student) paired with an edge biometric kiosk utilizing MediaPipe facial landmark recognition.",
-      impact:
-        "Reduced class roll-call overhead to under 30 seconds per cohort with zero proxy attendance and instantaneous automated timetable attendance audits.",
-    },
-    coreFeatures: [
-      {
-        title: "On-Device Face Biometric Kiosk",
-        description: "Standalone biometric mode using `@mediapipe/tasks-vision` for instant face detection and student ID matching.",
-      },
-      {
-        title: "6 Role-Based Access Portals",
-        description: "Granular permissions for Principal (college-wide analytics), HOD (department metrics), Faculty (subject logs), and Students.",
-      },
-      {
-        title: "Async FastAPI & SQLAlchemy 2.0 Backend",
-        description: "High-throughput asynchronous Python API with Alembic migrations and PostgreSQL connection pooling.",
-      },
-      {
-        title: "Dockerized Hugging Face & Vercel Deployment",
-        description: "Containerized deployment architecture built for reproducible scaling across institutional server infrastructure.",
-      },
-    ],
-    gallery: [
-      {
-        url: "/projects/attendance/kiosk-login.png",
-        caption: "Standalone Biometric Face Attendance Kiosk Mode for classroom wall terminals",
-        alt: "Biometric Kiosk Screen",
-      },
-      {
-        url: "/projects/attendance/admin-login.png",
-        caption: "Role-Based Administrative Portal Login for HODs, Advisors, and Department Principals",
-        alt: "Admin Login Screen",
-      },
-    ],
-    skillsUsed: [
-      {
-        group: "Computer Vision & AI",
-        skills: ["MediaPipe Tasks Vision", "Facial Landmark Detection", "Edge Biometrics"],
-      },
-      {
-        group: "Backend & Database",
-        skills: ["Python 3.11", "FastAPI", "SQLAlchemy 2.0", "Alembic", "PostgreSQL (asyncpg)", "Docker"],
-      },
-      {
-        group: "Frontend",
-        skills: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Lucide Icons"],
-      },
-    ],
-    links: {
-      githubUrl: "https://github.com/dhineshdevtech/demo-mpnmjec-attendance-system",
-    },
-  },
 
 
   // --------------------------------------------------------------------------
