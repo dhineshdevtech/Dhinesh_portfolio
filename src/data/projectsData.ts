@@ -111,13 +111,6 @@ export const CATEGORIES_DATA: Record<CategoryKey, CategoryData> = {
         projectSlugs: ["quizforge-ai"],
       },
       {
-        key: "conversational-ai",
-        title: "Conversational AI & CRM",
-        description: "Autonomous WhatsApp Web lead qualification agents and real-time CRM dashboards.",
-        projectCount: 1,
-        projectSlugs: ["fusion-ai-crm"],
-      },
-      {
         key: "corporate-agency",
         title: "Corporate & Agency Web",
         description: "Regulatory compliance portals and digital agency showcase platforms.",
@@ -739,85 +732,7 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
   },
 
   // --------------------------------------------------------------------------
-  // 5. WEBSITES -> CONVERSATIONAL AI & CRM
-  // --------------------------------------------------------------------------
-  "fusion-ai-crm": {
-    slug: "fusion-ai-crm",
-    title: "Fusion AI CRM – Autonomous WhatsApp Agent",
-    tagline: "Autonomous WhatsApp sales agent qualifying leads 24/7 with Groq LLMs and synchronizing to a real-time CRM.",
-    categoryKey: "websites",
-    subcategoryKey: "conversational-ai",
-    subcategoryTitle: "Conversational AI & CRM",
-    badge: "🤖 Autonomous WhatsApp Agent + Groq",
-    badgeColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
-    thumbnail: "/projects/fusion-ai/dashboard.png",
-    details: {
-      type: "AI Lead Automation & CRM Platform",
-      duration: "2025 – 2026",
-      role: "Lead Full-Stack AI Engineer",
-      status: "Production System",
-      architecture: "Node.js, whatsapp-web.js, Groq AI SDK, Supabase Realtime, React 18, Tailwind CSS",
-      clientOrContext: "6ixminds Labs Inbound Sales Operations",
-    },
-    overview: {
-      challenge:
-        "High-value sales leads contacting agencies via WhatsApp outside working hours frequently go cold due to delayed human responses, leading to missed deals and lost revenue.",
-      solution:
-        "Engineered Fusion AI CRM, an autonomous WhatsApp Web agent powered by Groq Llama 3. The agent engages prospects, remembers conversation context, qualifies budget/timeline requirements, and syncs lead cards to a React CRM.",
-      impact:
-        "100% instantaneous lead response time 24/7, capturing qualified prospect dossiers and scheduling discovery meetings without human sales intervention.",
-    },
-    coreFeatures: [
-      {
-        title: "Autonomous WhatsApp Daemon",
-        description: "Runs headless WhatsApp Web sessions with QR pairing, auto-reconnect, and multi-chat concurrency.",
-      },
-      {
-        title: "Silent CRM Data Extraction",
-        description: "AI extracts prospect name, business, budget, timeline, and meeting intent silently alongside natural conversational replies.",
-      },
-      {
-        title: "Real-Time Supabase Sync",
-        description: "CRM dashboard reflects new leads and conversation updates instantaneously via Supabase websocket subscriptions.",
-      },
-      {
-        title: "Interactive Lead Kanban Dashboard",
-        description: "React CRM interface to review lead scores, full WhatsApp chat transcripts, and deal stages.",
-      },
-    ],
-    gallery: [
-      {
-        url: "/projects/fusion-ai/dashboard.png",
-        caption: "Fusion AI CRM Dashboard displaying lead pipeline, qualification metrics, and conversation activity",
-        alt: "Fusion AI CRM Dashboard",
-      },
-      {
-        url: "/projects/fusion-ai/leads.png",
-        caption: "Detailed Lead View showing parsed prospect parameters, timeline, budget, and chat transcripts",
-        alt: "Lead Details Screen",
-      },
-    ],
-    skillsUsed: [
-      {
-        group: "AI & WhatsApp",
-        skills: ["whatsapp-web.js", "Groq AI SDK (Llama 3)", "Prompt Engineering", "Intent Extraction"],
-      },
-      {
-        group: "Backend & Database",
-        skills: ["Node.js", "Express", "Supabase Realtime", "PostgreSQL", "Session Persistence"],
-      },
-      {
-        group: "Frontend",
-        skills: ["React 18", "Tailwind CSS", "Lucide Icons", "Kanban Architecture"],
-      },
-    ],
-    links: {
-      githubUrl: "https://github.com/dhineshdevtech/whatsapp_automation",
-    },
-  },
-
-  // --------------------------------------------------------------------------
-  // 6. WEBSITES -> CORPORATE & AGENCY WEB
+  // 5. WEBSITES -> CORPORATE & AGENCY WEB
   // --------------------------------------------------------------------------
   "aletheia-compliance": {
     slug: "aletheia-compliance",
@@ -1108,66 +1023,179 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
   "invoice-generator": {
     slug: "invoice-generator",
     title: "Quick Laundry POS & Receipt Generator",
-    tagline: "Lightweight cloud POS for laundry counters featuring automated cash round-off and 80mm thermal receipt printing.",
+    tagline: "High-efficiency Point of Sale & billing counter software with 80mm ESC/POS thermal receipt printing, Firebase Cloud Firestore ledger, and multi-format accounting exports.",
     categoryKey: "business",
     subcategoryKey: "commercial-laundry",
     subcategoryTitle: "Commercial Laundry POS",
-    badge: "🧾 Cloud POS + 80mm Thermal Receipts",
+    badge: "🧾 80mm ESC/POS + Firebase Firestore",
     badgeColor: "bg-indigo-50 text-indigo-700 border-indigo-200",
-    thumbnail: "/projects/bubbleworks/invoice-order.png",
+    thumbnail: "/projects/laundry-pos/laundry_order_counter_laptop.webp",
     details: {
-      type: "Commercial POS Web Application",
-      duration: "2025",
-      role: "Full-Stack Developer",
-      status: "Live Cloud Application",
-      architecture: "React, TypeScript, Vite, Tailwind CSS, Radix UI / Shadcn, Supabase PostgreSQL",
-      clientOrContext: "Retail Dry Cleaners & Quick Laundry Outlets",
+      type: "Commercial Laundry & Dry Wash POS",
+      duration: "June 2026 – October 2026",
+      role: "Solo Full-Stack Developer",
+      status: "Live in Production",
+      architecture: "React 18, TypeScript, Vite 5, Tailwind CSS, shadcn/ui, Radix UI, Firebase Auth, Cloud Firestore, 80mm ESC/POS Thermal Print, SheetJS (xlsx), jsPDF",
+      clientOrContext: "Commercial Laundry & Dry Wash Enterprises",
     },
     overview: {
       challenge:
-        "Compact counter setups in quick-service laundry shops require a rapid web POS to create orders, calculate totals with cash round-offs, and print standard 80mm thermal receipts without complex hardware.",
+        "Commercial laundry and dry wash facilities handled hundreds of garment intake transactions daily using handwritten carbon-copy paper slips. Handwritten slips caused frequent mathematical errors during multi-item calculations (price × quantity) and round-off disputes at checkout. Delivery dates and promised return schedules were regularly lost or miscommunicated. Preparing monthly transaction summaries and billing statements for recurring commercial hotel and resort clients (e.g. JK Residency, URC Lodge) required hours of manual bookkeeping.",
       solution:
-        "Built a responsive cloud POS using React and Supabase. Staff quickly select wash items, apply discounts, adjust round-off pennies, and trigger instant formatted 80mm thermal receipt prints.",
+        "Engineered Laundry & Dry Wash POS, an enterprise cloud point-of-sale and transaction accounting platform with real-time Firebase Cloud Firestore persistence, Firebase Authentication with role-guarded routes, dedicated 80mm ESC/POS thermal receipt printing, predictive client/item auto-complete, and automated multi-format accounting exports (Excel .xlsx and PDF).",
       impact:
-        "Reduced customer order intake time to under 10 seconds per ticket with cloud order backups and instant exportable CSV audit records.",
+        "Reduced customer intake and checkout turnover from ~2 minutes to under 20 seconds (75% faster), automated subtotal round-off to nearest ₹1, eliminated bookkeeping lag with 1-click SheetJS Excel & jsPDF exports, and secured transactions with Firebase multi-provider authentication.",
     },
     coreFeatures: [
       {
-        title: "80mm Thermal Receipt Formatting",
-        description: "Formatted print CSS stylesheet outputting clean, professional 80mm slips with itemized breakdowns and store headers.",
+        title: "Dedicated 80mm ESC/POS Thermal Receipt Engine",
+        description: "Zero-driver-dependency 80mm thermal receipt printing calibrated to standard POS counter hardware roll widths with automatic print prompt triggers.",
       },
       {
-        title: "Automated Round-Off Ledger",
-        description: "Smart billing calculations that account for currency round-offs and payment method reconciliations.",
+        title: "Firebase Cloud Firestore Transaction Ledger",
+        description: "Real-time NoSQL document storage with batched transactions, structured collections, and optimistic UI updates.",
       },
       {
-        title: "Supabase Cloud Order Backup",
-        description: "Immediate cloud persistence with offline error protection and instant order ID generation.",
+        title: "Multi-Format Accounting & Audit Exports",
+        description: "One-click client-side export to structured Excel spreadsheets via SheetJS (.xlsx) and tabular financial audit reports via jsPDF.",
       },
       {
-        title: "Export & Transaction Audit",
-        description: "One-click export of end-of-day transactions and order summaries to Excel/CSV spreadsheets.",
+        title: "Predictive Counter Intake & Auto-Suggest",
+        description: "Fast garment presets (shirts, sarees, bedcovers) and auto-complete for recurring commercial hotel accounts (JK Residency, URC Lodge) with intake and delivery scheduling.",
+      },
+      {
+        title: "Firebase Auth & Role-Guarded POS Routes",
+        description: "Email/password and 1-click Google OAuth authentication with protected route guards preserving active intake screens across sessions.",
       },
     ],
     gallery: [
       {
-        url: "/projects/bubbleworks/invoice-order.png",
-        caption: "Quick Order Intake View with live item pricing, modifiers, and instant receipt preview",
-        alt: "Invoice Generator Order Screen",
+        url: "/projects/laundry-pos/laundry_order_counter_laptop.webp",
+        caption: "Counter Order Generation (Laptop View): Predictive item presets, customer details, and intake/delivery scheduling",
+        alt: "Laundry POS Order Intake Laptop Mockup",
+      },
+      {
+        url: "/projects/laundry-pos/laundry_billing_checkout_laptop.webp",
+        caption: "Billing Calculations & Checkout (Laptop View): Real-time INR subtotal, round-off adjustment, and 80mm ESC/POS thermal print trigger",
+        alt: "Laundry POS Billing and Checkout Laptop Mockup",
+      },
+      {
+        url: "/projects/laundry-pos/laundry_dashboard_ledger_laptop.webp",
+        caption: "Transaction Ledger & Accounting Exports (Laptop View): Real-time Firestore orders with 1-click Excel (.xlsx) and PDF reports",
+        alt: "Laundry POS Transaction Ledger Laptop Mockup",
+      },
+      {
+        url: "/projects/laundry-pos/laundry_auth_portal_laptop.webp",
+        caption: "Staff Authentication Portal (Laptop View): Firebase Email/Password & 1-Click Google OAuth login with route guards",
+        alt: "Laundry POS Authentication Portal Laptop Mockup",
       },
     ],
     skillsUsed: [
       {
         group: "Frontend & UI",
-        skills: ["React", "TypeScript", "Vite", "Tailwind CSS", "Radix UI", "Print CSS"],
+        skills: ["React 18", "TypeScript", "Vite 5", "Tailwind CSS", "shadcn/ui", "Radix UI", "Lucide React"],
       },
       {
-        group: "Cloud Backend",
-        skills: ["Supabase PostgreSQL", "Row-Level Security", "REST Endpoints"],
+        group: "Printing & Document Engines",
+        skills: ["80mm ESC/POS Thermal Print CSS", "SheetJS (xlsx)", "jsPDF", "jspdf-autotable"],
+      },
+      {
+        group: "Cloud Backend & Security",
+        skills: ["Firebase Authentication (Email & Google)", "Cloud Firestore (NoSQL)", "Firestore Security Rules", "Vercel SPA Hosting"],
       },
     ],
     links: {
-      liveUrl: "https://invoice-generator-sage-five.vercel.app",
+      liveUrl: "https://laundrypos-live.vercel.app",
+      githubUrl: "https://github.com/dhineshdevtech/Invoice_generator",
+    },
+  },
+  // Backward-compatibility alias for laundry-pos slug
+  "laundry-pos": {
+    slug: "invoice-generator",
+    title: "Quick Laundry POS & Receipt Generator",
+    tagline: "High-efficiency Point of Sale & billing counter software with 80mm ESC/POS thermal receipt printing, Firebase Cloud Firestore ledger, and multi-format accounting exports.",
+    categoryKey: "business",
+    subcategoryKey: "commercial-laundry",
+    subcategoryTitle: "Commercial Laundry POS",
+    badge: "🧾 80mm ESC/POS + Firebase Firestore",
+    badgeColor: "bg-indigo-50 text-indigo-700 border-indigo-200",
+    thumbnail: "/projects/laundry-pos/laundry_order_counter_laptop.webp",
+    details: {
+      type: "Commercial Laundry & Dry Wash POS",
+      duration: "June 2026 – October 2026",
+      role: "Solo Full-Stack Developer",
+      status: "Live in Production",
+      architecture: "React 18, TypeScript, Vite 5, Tailwind CSS, shadcn/ui, Radix UI, Firebase Auth, Cloud Firestore, 80mm ESC/POS Thermal Print, SheetJS (xlsx), jsPDF",
+      clientOrContext: "Commercial Laundry & Dry Wash Enterprises",
+    },
+    overview: {
+      challenge:
+        "Commercial laundry and dry wash facilities handled hundreds of garment intake transactions daily using handwritten carbon-copy paper slips. Handwritten slips caused frequent mathematical errors during multi-item calculations (price × quantity) and round-off disputes at checkout. Delivery dates and promised return schedules were regularly lost or miscommunicated. Preparing monthly transaction summaries and billing statements for recurring commercial hotel and resort clients (e.g. JK Residency, URC Lodge) required hours of manual bookkeeping.",
+      solution:
+        "Engineered Laundry & Dry Wash POS, an enterprise cloud point-of-sale and transaction accounting platform with real-time Firebase Cloud Firestore persistence, Firebase Authentication with role-guarded routes, dedicated 80mm ESC/POS thermal receipt printing, predictive client/item auto-complete, and automated multi-format accounting exports (Excel .xlsx and PDF).",
+      impact:
+        "Reduced customer intake and checkout turnover from ~2 minutes to under 20 seconds (75% faster), automated subtotal round-off to nearest ₹1, eliminated bookkeeping lag with 1-click SheetJS Excel & jsPDF exports, and secured transactions with Firebase multi-provider authentication.",
+    },
+    coreFeatures: [
+      {
+        title: "Dedicated 80mm ESC/POS Thermal Receipt Engine",
+        description: "Zero-driver-dependency 80mm thermal receipt printing calibrated to standard POS counter hardware roll widths with automatic print prompt triggers.",
+      },
+      {
+        title: "Firebase Cloud Firestore Transaction Ledger",
+        description: "Real-time NoSQL document storage with batched transactions, structured collections, and optimistic UI updates.",
+      },
+      {
+        title: "Multi-Format Accounting & Audit Exports",
+        description: "One-click client-side export to structured Excel spreadsheets via SheetJS (.xlsx) and tabular financial audit reports via jsPDF.",
+      },
+      {
+        title: "Predictive Counter Intake & Auto-Suggest",
+        description: "Fast garment presets (shirts, sarees, bedcovers) and auto-complete for recurring commercial hotel accounts (JK Residency, URC Lodge) with intake and delivery scheduling.",
+      },
+      {
+        title: "Firebase Auth & Role-Guarded POS Routes",
+        description: "Email/password and 1-click Google OAuth authentication with protected route guards preserving active intake screens across sessions.",
+      },
+    ],
+    gallery: [
+      {
+        url: "/projects/laundry-pos/laundry_order_counter_laptop.webp",
+        caption: "Counter Order Generation (Laptop View): Predictive item presets, customer details, and intake/delivery scheduling",
+        alt: "Laundry POS Order Intake Laptop Mockup",
+      },
+      {
+        url: "/projects/laundry-pos/laundry_billing_checkout_laptop.webp",
+        caption: "Billing Calculations & Checkout (Laptop View): Real-time INR subtotal, round-off adjustment, and 80mm ESC/POS thermal print trigger",
+        alt: "Laundry POS Billing and Checkout Laptop Mockup",
+      },
+      {
+        url: "/projects/laundry-pos/laundry_dashboard_ledger_laptop.webp",
+        caption: "Transaction Ledger & Accounting Exports (Laptop View): Real-time Firestore orders with 1-click Excel (.xlsx) and PDF reports",
+        alt: "Laundry POS Transaction Ledger Laptop Mockup",
+      },
+      {
+        url: "/projects/laundry-pos/laundry_auth_portal_laptop.webp",
+        caption: "Staff Authentication Portal (Laptop View): Firebase Email/Password & 1-Click Google OAuth login with route guards",
+        alt: "Laundry POS Authentication Portal Laptop Mockup",
+      },
+    ],
+    skillsUsed: [
+      {
+        group: "Frontend & UI",
+        skills: ["React 18", "TypeScript", "Vite 5", "Tailwind CSS", "shadcn/ui", "Radix UI", "Lucide React"],
+      },
+      {
+        group: "Printing & Document Engines",
+        skills: ["80mm ESC/POS Thermal Print CSS", "SheetJS (xlsx)", "jsPDF", "jspdf-autotable"],
+      },
+      {
+        group: "Cloud Backend & Security",
+        skills: ["Firebase Authentication (Email & Google)", "Cloud Firestore (NoSQL)", "Firestore Security Rules", "Vercel SPA Hosting"],
+      },
+    ],
+    links: {
+      liveUrl: "https://laundrypos-live.vercel.app",
       githubUrl: "https://github.com/dhineshdevtech/Invoice_generator",
     },
   },
