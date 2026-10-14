@@ -17,7 +17,7 @@ interface FeaturedProject {
   badgeLabel?: string;
   liveUrl?: string;
   githubUrl?: string;
-  type: "mpnmjec" | "6ixquest" | "canteen";
+  type: "mpnmjec" | "6ixquest" | "bubbleworks" | "canteen";
   categories: CategoryKey[];
 }
 
@@ -55,19 +55,19 @@ const featuredProjects: FeaturedProject[] = [
     categories: ["websites"],
   },
   {
-    id: "canteen-pos",
-    slug: "appu-canteen-pos",
-    category: "CANTEEN POS • BLUETOOTH BLE",
-    title: "Appu Canteen – Offline-First POS",
+    id: "bubbleworks-pos",
+    slug: "bubbleworks-pos",
+    category: "COMMERCIAL POS • CLOUD LAUNDRY",
+    title: "Bubbleworks POS – Cloud Laundry Management",
     description:
-      "High-speed offline-friendly canteen billing system engineered for rapid counter checkout, live sales analytics, inventory management, and Bluetooth thermal printing.",
-    tags: ["React 19", "Dexie IndexedDB", "Web Bluetooth", "PWA", "Tailwind v4"],
-    backdropBg: "from-amber-100/60 via-[#fffcf5] to-orange-50/60 border-amber-200/70",
-    badgeBg: "bg-amber-50 text-amber-800 border border-amber-200",
-    badgeLabel: "🧾 Bluetooth Thermal Printing",
-    liveUrl: "https://canteenpos-live.vercel.app",
-    githubUrl: "https://github.com/dhineshdevtech/canteenpos",
-    type: "canteen",
+      "Enterprise point-of-sale and operations management platform featuring multi-branch franchise architecture, 80mm & 58mm ESC/POS thermal printing, and Firebase Cloud Firestore sync.",
+    tags: ["React 18", "Firebase Firestore", "Web Bluetooth", "Recharts", "Tailwind CSS"],
+    backdropBg: "from-teal-100/60 via-[#f0fdfa] to-emerald-50/60 border-teal-200/70",
+    badgeBg: "bg-teal-50 text-teal-800 border border-teal-200",
+    badgeLabel: "🧺 80mm/58mm Bluetooth Thermal Print",
+    liveUrl: "https://bubbleworkspos-live.vercel.app",
+    githubUrl: "https://github.com/dhineshdevtech/bubbleworkspos-live",
+    type: "bubbleworks",
     categories: ["business"],
   },
 ];
@@ -128,24 +128,24 @@ function ProjectVisualPreview({ type }: { type: FeaturedProject["type"] }) {
     );
   }
 
-  // Canteen (Tablet Mockup)
+  // Bubbleworks Laundry POS (Tablet Mockup)
   return (
     <div className="relative w-full h-full flex items-center justify-center p-3 select-none">
-      <div className="relative w-full max-w-[360px] sm:max-w-[420px] aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_12px_36px_rgba(245,158,11,0.22)] group-hover:scale-[1.03] transition-transform duration-500">
+      <div className="relative w-full max-w-[360px] sm:max-w-[420px] aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_12px_36px_rgba(13,148,136,0.22)] group-hover:scale-[1.03] transition-transform duration-500">
         <Image
-          src="/projects/canteen/canteen_pos_counter_tab.webp"
-          alt="Offline Canteen POS Counter Billing System on Tablet"
+          src="/projects/bubbleworks/bubbleworks_pos_counter_tab.webp"
+          alt="Bubbleworks POS Counter Billing System on Tablet"
           fill
           className="object-cover object-center"
           sizes="(max-width: 1024px) 100vw, 450px"
         />
       </div>
 
-      {/* Floating Sales Dashboard Snippet */}
-      <div className="absolute -bottom-1 right-4 sm:right-8 w-[130px] sm:w-[155px] aspect-[16/10] rounded-xl overflow-hidden border-2 border-emerald-400 shadow-xl bg-white z-10 hidden xs:block group-hover:translate-y-[-2px] transition-transform duration-300">
+      {/* Floating Thermal Receipt Print Center Snippet */}
+      <div className="absolute -bottom-1 right-4 sm:right-8 w-[130px] sm:w-[155px] aspect-[16/10] rounded-xl overflow-hidden border-2 border-teal-400 shadow-xl bg-white z-10 hidden xs:block group-hover:translate-y-[-2px] transition-transform duration-300">
         <Image
-          src="/projects/canteen/canteen_sales_dashboard_tab.webp"
-          alt="Appu Canteen Sales Dashboard on Tablet"
+          src="/projects/bubbleworks/bubbleworks_print_center_tab.webp"
+          alt="Bubbleworks Thermal Receipt Print Center on Tablet"
           fill
           className="object-cover object-center"
           sizes="160px"

@@ -93,16 +93,16 @@ export default function Hero() {
             </div>
 
             <div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-                  4
+              <div className="flex items-center gap-1 sm:gap-1.5 h-9 sm:h-10">
+                <span className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                  Full-Stack
                 </span>
-                <span className="text-xl sm:text-2xl drop-shadow-xs" role="img" aria-label="Trophy">
-                  🏆
+                <span className="text-lg sm:text-xl drop-shadow-xs" role="img" aria-label="End-to-End Build">
+                  🔄
                 </span>
               </div>
               <div className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
-                Hackathon Wins
+                End-to-End Build
               </div>
             </div>
 
