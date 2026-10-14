@@ -500,7 +500,7 @@ export default function ContactPage() {
               {/* Instagram */}
               <FadeUp delay={300} className="h-full col-span-2 sm:col-span-1">
                 <a
-                  href="https://www.instagram.com/dhinesh.tech"
+                  href="https://www.instagram.com/dhinesh.devtech"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="h-full group rounded-2xl border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 bg-[#f8fbfe] p-6 hover:border-pink-500 hover:shadow-[0_8px_25px_rgba(236,72,153,0.15)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3"
@@ -514,7 +514,7 @@ export default function ContactPage() {
                     <span className="text-sm font-bold text-slate-900 group-hover:text-pink-600 transition-colors block">
                       Instagram
                     </span>
-                    <span className="text-[11px] text-slate-400 font-medium">@dhinesh.tech</span>
+                    <span className="text-[11px] text-slate-400 font-medium">@dhinesh.devtech</span>
                   </div>
                 </a>
               </FadeUp>
