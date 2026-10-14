@@ -224,23 +224,30 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 Project Gallery
               </h2>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div
+                className={`grid gap-6 ${
+                  project.gallery.length === 1
+                    ? "grid-cols-1 max-w-4xl mx-auto"
+                    : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                }`}
+              >
                 {project.gallery.map((img, idx) => (
                   <div
                     key={idx}
-                    className="group rounded-2xl bg-[#f8fafc] border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 overflow-hidden shadow-[0_2px_8px_rgba(15,23,42,0.05)] hover:shadow-md hover:border-[#0070f3] transition-all duration-200"
+                    className="group rounded-2xl bg-[#f8fafc] border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 overflow-hidden shadow-[0_2px_8px_rgba(15,23,42,0.05)] hover:shadow-lg hover:border-[#0070f3] transition-all duration-300 flex flex-col justify-between"
                   >
-                    <div className="relative aspect-video sm:aspect-4/3 w-full bg-slate-100 flex items-center justify-center overflow-hidden">
+                    <div className="relative w-full aspect-video sm:aspect-[16/10] bg-[#f4f8fe] flex items-center justify-center overflow-hidden">
                       <Image
                         src={img.url}
                         alt={img.alt}
-                        width={720}
-                        height={480}
-                        className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
+                        width={1400}
+                        height={950}
+                        className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300"
+                        priority={idx === 0}
                       />
                     </div>
                     <div className="p-3.5 bg-white border-t-2 border-[#d2e4f8]">
-                      <p className="text-xs text-slate-600 font-medium">
+                      <p className="text-xs text-slate-600 font-medium leading-relaxed">
                         {img.caption}
                       </p>
                     </div>

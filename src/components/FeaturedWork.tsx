@@ -17,7 +17,7 @@ interface FeaturedProject {
   badgeLabel?: string;
   liveUrl?: string;
   githubUrl?: string;
-  type: "mpnmjec" | "6ixquest" | "canteen" | "aira";
+  type: "mpnmjec" | "6ixquest" | "canteen";
   categories: CategoryKey[];
 }
 
@@ -25,32 +25,32 @@ const featuredProjects: FeaturedProject[] = [
   {
     id: "mpnmjec-buses",
     slug: "mpnmjec-bus-tracker",
-    category: "CAMPUS TRANSIT • MOBILE",
+    category: "CAMPUS TRANSIT • MOBILE & WEB",
     title: "MPNMJEC Bus Tracking Platform",
     description:
-      "A complete college transport ecosystem connecting a live Flutter student app, driver companion, and React admin dashboard with WebSocket real-time fleet GPS tracking.",
-    tags: ["Flutter", "React", "Node.js", "WebSockets", "Google Maps API"],
+      "A zero-hardware college transport ecosystem connecting a live Flutter student app, driver telemetry console, and React command center with WebSocket real-time fleet GPS tracking.",
+    tags: ["Flutter", "Dart", "Node.js", "WebSockets", "Leaflet", "Supabase", "OSRM"],
     backdropBg: "from-sky-100/70 via-[#f0f6fe] to-blue-50/60 border-sky-200/70",
     badgeBg: "bg-emerald-50 text-emerald-800 border border-emerald-200",
     badgeLabel: "🏆 Live on Google Play Store",
     liveUrl: "https://play.google.com/store/apps/details?id=com.sixmindslabs.mpnmjecbustracker.student",
     githubUrl: "https://github.com/6ixmindslabs-hue/MPNMJBUSES",
     type: "mpnmjec",
-    categories: ["mobile"],
+    categories: ["mobile", "websites"],
   },
   {
-    id: "6ixquest-ai",
-    slug: "6ixquest-ai",
+    id: "quizforge-ai",
+    slug: "quizforge-ai",
     category: "EDUTECH • AI PLATFORM",
-    title: "6ixQuest – AI Quiz & Assessment Hub",
+    title: "QuizForge",
     description:
-      "AI-assisted assessment platform allowing educators to generate quizzes with Groq AI, distribute public assessment links, and inspect candidate performance analytics in real time.",
-    tags: ["React 18", "TypeScript", "Groq AI", "Supabase", "Vite"],
+      "AI-powered assessment & anti-cheating examination platform generating syllabus-aligned tests in 5–15s via Groq LPU AI, featuring strict client-side proctoring, Firebase, and live CSV analytics.",
+    tags: ["React 18", "TypeScript", "Groq LPU AI", "Cloud Firestore", "Firebase Auth"],
     backdropBg: "from-blue-100/60 via-[#f0f6fe] to-indigo-50/60 border-blue-200/70",
     badgeBg: "bg-blue-50 text-[#0070f3] border border-blue-200",
-    badgeLabel: "⚡ Groq AI + Supabase",
-    liveUrl: "https://6ix-quest.vercel.app",
-    githubUrl: "https://github.com/dhineshdevtech/6ixQuest",
+    badgeLabel: "⚡ Groq LPU AI + Firebase",
+    liveUrl: "https://quizforge-live.vercel.app",
+    githubUrl: "https://github.com/dhineshdevtech/quizforge",
     type: "6ixquest",
     categories: ["websites"],
   },
@@ -69,22 +69,6 @@ const featuredProjects: FeaturedProject[] = [
     githubUrl: "https://github.com/dhineshdevtech/OFFLINE-CANTEEN-BILLING-SYSTEM",
     type: "canteen",
     categories: ["business"],
-  },
-  {
-    id: "aira-assistant",
-    slug: "aira-copilot",
-    category: "OS AUTOMATION • ANDROID KOTLIN",
-    title: "Aira – Android AI Voice Assistant",
-    description:
-      "Android-native Kotlin AI assistant prototype capturing voice commands via 'Hey Aira' wake phrase, structured JSON intent parsing, and device accessibility automation.",
-    tags: ["Android Kotlin", "Node.js", "Accessibility APIs", "Room DB"],
-    backdropBg: "from-purple-100/60 via-[#faf7ff] to-slate-50/60 border-purple-200/70",
-    badgeBg: "bg-purple-50 text-purple-800 border border-purple-200",
-    badgeLabel: "🎙️ Native Voice Automation",
-    liveUrl: "https://github.com/dhineshdevtech/Aira",
-    githubUrl: "https://github.com/dhineshdevtech/Aira",
-    type: "aira",
-    categories: ["mobile"],
   },
 ];
 
@@ -116,13 +100,13 @@ function ProjectVisualPreview({ type }: { type: FeaturedProject["type"] }) {
               <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
             </div>
-            <span className="text-[8px] font-mono font-medium text-slate-500">6ix-quest.vercel.app</span>
+            <span className="text-[8px] font-mono font-medium text-slate-500">quizforge-live.vercel.app</span>
             <span className="w-2" />
           </div>
           <div className="relative w-full h-[calc(100%-20px)]">
             <Image
-              src="/projects/6ixquest/home.webp"
-              alt="6ixQuest AI Quiz Platform"
+              src="/projects/quizforge/dashboard.webp"
+              alt="QuizForge AI Assessment Platform"
               fill
               className="object-cover object-top"
               sizes="400px"
@@ -133,8 +117,8 @@ function ProjectVisualPreview({ type }: { type: FeaturedProject["type"] }) {
         {/* Floating Mobile Login Preview (Right Side) */}
         <div className="absolute -bottom-1 right-6 sm:right-10 w-[75px] sm:w-[90px] h-[135px] sm:h-[150px] rounded-xl overflow-hidden border-2 border-cyan-300 shadow-xl bg-white z-10 hidden xs:block">
           <Image
-            src="/projects/6ixquest/login.webp"
-            alt="6ixQuest Authentication Screen"
+            src="/projects/quizforge/login.webp"
+            alt="QuizForge Teacher Authentication Screen"
             fill
             className="object-cover object-top"
             sizes="90px"
@@ -144,68 +128,40 @@ function ProjectVisualPreview({ type }: { type: FeaturedProject["type"] }) {
     );
   }
 
-  if (type === "canteen") {
-    return (
-      <div className="relative w-full h-full flex items-center justify-center p-4 select-none">
-        {/* Main Billing POS Screen */}
-        <div className="relative w-full max-w-[340px] sm:max-w-[400px] h-[180px] sm:h-[205px] rounded-xl overflow-hidden border-2 border-amber-300/80 shadow-[0_8px_30px_rgba(245,158,11,0.15)] bg-white">
-          {/* POS Window Header */}
-          <div className="h-5 bg-amber-50 px-2.5 flex items-center justify-between border-b border-amber-200">
-            <div className="flex gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            </div>
-            <span className="text-[8px] font-mono font-bold text-amber-800">Appu Canteen POS • Counter</span>
-            <span className="w-2" />
+  // Canteen
+  return (
+    <div className="relative w-full h-full flex items-center justify-center p-4 select-none">
+      {/* Main Billing POS Screen */}
+      <div className="relative w-full max-w-[340px] sm:max-w-[400px] h-[180px] sm:h-[205px] rounded-xl overflow-hidden border-2 border-amber-300/80 shadow-[0_8px_30px_rgba(245,158,11,0.15)] bg-white">
+        {/* POS Window Header */}
+        <div className="h-5 bg-amber-50 px-2.5 flex items-center justify-between border-b border-amber-200">
+          <div className="flex gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
           </div>
-          <div className="relative w-full h-[calc(100%-20px)]">
-            <Image
-              src="/projects/canteen/01-billing-screen.webp"
-              alt="Appu Canteen POS Billing Screen"
-              fill
-              className="object-cover object-top"
-              sizes="400px"
-            />
-          </div>
+          <span className="text-[8px] font-mono font-bold text-amber-800">Appu Canteen POS • Counter</span>
+          <span className="w-2" />
         </div>
-
-        {/* Floating Sales Dashboard Snippet */}
-        <div className="absolute -bottom-1 right-6 sm:right-10 w-[120px] sm:w-[145px] h-[85px] sm:h-[95px] rounded-xl overflow-hidden border-2 border-emerald-300 shadow-xl bg-white z-10 hidden xs:block">
+        <div className="relative w-full h-[calc(100%-20px)]">
           <Image
-            src="/projects/canteen/02-sales-dashboard.webp"
-            alt="Appu Canteen Sales Dashboard"
+            src="/projects/canteen/01-billing-screen.webp"
+            alt="Appu Canteen POS Billing Screen"
             fill
             className="object-cover object-top"
-            sizes="150px"
+            sizes="400px"
           />
         </div>
       </div>
-    );
-  }
 
-  // Aira
-  return (
-    <div className="relative w-full h-full flex items-center justify-center gap-3 px-4 py-4 select-none">
-      {/* Android Device 1: Dashboard */}
-      <div className="relative w-[110px] sm:w-[135px] h-[185px] sm:h-[205px] rounded-2xl overflow-hidden border-2 border-purple-200/90 shadow-[0_8px_25px_rgba(168,85,247,0.15)] bg-white p-1 flex items-center justify-center">
+      {/* Floating Sales Dashboard Snippet */}
+      <div className="absolute -bottom-1 right-6 sm:right-10 w-[120px] sm:w-[145px] h-[85px] sm:h-[95px] rounded-xl overflow-hidden border-2 border-emerald-300 shadow-xl bg-white z-10 hidden xs:block">
         <Image
-          src="/projects/aira/dashboard-preview-light.svg"
-          alt="Aira Voice Assistant Dashboard"
+          src="/projects/canteen/02-sales-dashboard.webp"
+          alt="Appu Canteen Sales Dashboard"
           fill
-          className="object-contain p-0.5"
-          sizes="140px"
-        />
-      </div>
-
-      {/* Android Device 2: Confirmation Dialog */}
-      <div className="relative w-[110px] sm:w-[135px] h-[185px] sm:h-[205px] rounded-2xl overflow-hidden border-2 border-sky-200/90 shadow-[0_8px_25px_rgba(0,194,255,0.18)] bg-white p-1 flex items-center justify-center -translate-y-1">
-        <Image
-          src="/projects/aira/confirmation-preview-light.svg"
-          alt="Aira Voice Action Confirmation Flow"
-          fill
-          className="object-contain p-0.5"
-          sizes="140px"
+          className="object-cover object-top"
+          sizes="150px"
         />
       </div>
     </div>

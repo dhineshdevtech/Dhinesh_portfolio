@@ -321,23 +321,30 @@ function ProjectsContent() {
                     Project Gallery
                   </h2>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div
+                    className={`grid gap-6 ${
+                      activeProject.gallery.length === 1
+                        ? "grid-cols-1 max-w-4xl mx-auto"
+                        : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                    }`}
+                  >
                     {activeProject.gallery.map((img, idx) => (
                       <div
                         key={idx}
-                        className="group rounded-2xl bg-[#f8fafc] border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 overflow-hidden shadow-[0_2px_8px_rgba(15,23,42,0.05)] hover:shadow-md hover:border-[#0070f3] transition-all duration-200"
+                        className="group rounded-2xl bg-[#f8fafc] border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 overflow-hidden shadow-[0_2px_8px_rgba(15,23,42,0.05)] hover:shadow-lg hover:border-[#0070f3] transition-all duration-300 flex flex-col justify-between"
                       >
-                        <div className="relative aspect-video sm:aspect-4/3 w-full bg-slate-100 flex items-center justify-center overflow-hidden">
+                        <div className="relative w-full aspect-video sm:aspect-[16/10] bg-[#f4f8fe] flex items-center justify-center overflow-hidden">
                           <Image
                             src={img.url}
                             alt={img.alt}
-                            width={720}
-                            height={480}
-                            className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
+                            width={1400}
+                            height={950}
+                            className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300"
+                            priority={idx === 0}
                           />
                         </div>
                         <div className="p-3.5 bg-white border-t-2 border-[#d2e4f8]">
-                          <p className="text-xs text-slate-600 font-medium">
+                          <p className="text-xs text-slate-600 font-medium leading-relaxed">
                             {img.caption}
                           </p>
                         </div>
@@ -492,18 +499,16 @@ function ProjectsContent() {
                         className="w-full text-left rounded-2xl bg-white border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 hover:border-[#0070f3] shadow-[0_2px_8px_rgba(15,23,42,0.05),0_14px_36px_rgba(0,112,243,0.09)] hover:shadow-[0_4px_14px_rgba(15,23,42,0.08),0_24px_50px_rgba(0,112,243,0.18)] transition-all duration-300 hover:-translate-y-1.5 overflow-hidden group cursor-pointer flex flex-col"
                       >
                         {/* Thumbnail Viewport */}
-                        <div className="relative aspect-video w-full bg-gradient-to-br from-[#f8fafc] via-[#f0f6fe] to-[#e6f0fd] p-5 flex items-center justify-center overflow-hidden border-b-2 border-[#d2e4f8]">
-                          <div className="relative w-full max-w-[280px] rounded-xl overflow-hidden shadow-md border border-white/80 group-hover:scale-[1.03] transition-transform duration-300">
-                            <Image
-                              src={proj.thumbnail}
-                              alt={proj.title}
-                              width={560}
-                              height={340}
-                              className="w-full h-auto object-cover"
-                            />
-                          </div>
+                        <div className="relative aspect-video sm:aspect-[16/10] w-full bg-[#f4f8fe] flex items-center justify-center overflow-hidden border-b-2 border-[#d2e4f8]">
+                          <Image
+                            src={proj.thumbnail}
+                            alt={proj.title}
+                            width={700}
+                            height={450}
+                            className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-300"
+                          />
 
-                          <div className="absolute top-3 left-3">
+                          <div className="absolute top-3 left-3 z-10">
                             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/90 text-slate-700 border border-slate-200 backdrop-blur-sm">
                               {activeSubcategory.title}
                             </span>

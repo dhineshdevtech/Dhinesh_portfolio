@@ -76,8 +76,8 @@ export const CATEGORIES_DATA: Record<CategoryKey, CategoryData> = {
   mobile: {
     key: "mobile",
     title: "Mobile Apps",
-    description: "Cross-platform mobile apps and native device automation built for high performance and everyday use.",
-    pitch: "Looking to build a high-performance Flutter or native Android mobile application?",
+    description: "Cross-platform Flutter mobile applications built for high performance and everyday use.",
+    pitch: "Looking to build a high-performance Flutter or mobile application?",
     pitchCta: "See my mobile app services",
     subcategories: [
       {
@@ -86,13 +86,6 @@ export const CATEGORIES_DATA: Record<CategoryKey, CategoryData> = {
         description: "Live vehicle GPS telemetry, student arrival tracking, and driver trip companions.",
         projectCount: 2,
         projectSlugs: ["mpnmjec-bus-tracker", "mpnmjec-driver-app"],
-      },
-      {
-        key: "native-automation",
-        title: "Native OS Automation",
-        description: "Voice-driven mobile automation, accessibility service hooks, and structured LLM intent execution.",
-        projectCount: 1,
-        projectSlugs: ["aira-copilot"],
       },
     ],
   },
@@ -115,7 +108,7 @@ export const CATEGORIES_DATA: Record<CategoryKey, CategoryData> = {
         title: "EduTech",
         description: "AI-assisted exam synthesis, instant quiz generation, and live candidate assessment rooms.",
         projectCount: 1,
-        projectSlugs: ["6ixquest-ai"],
+        projectSlugs: ["quizforge-ai"],
       },
       {
         key: "conversational-ai",
@@ -164,77 +157,77 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
   // --------------------------------------------------------------------------
   "mpnmjec-bus-tracker": {
     slug: "mpnmjec-bus-tracker",
-    title: "MPNMJEC Student Bus Tracker",
-    tagline: "Live transit tracking platform connecting 1,000+ students with real-time GPS bus arrivals over WebSockets.",
+    title: "MPNMJEC Bus Tracker",
+    tagline: "Live transit tracking mobile app with real-time GPS bus arrivals, sub-second map interpolation, and smart arrival alarms.",
     categoryKey: "mobile",
     subcategoryKey: "campus-transit",
     subcategoryTitle: "Campus Transit",
     badge: "🏆 Live on Google Play Store",
     badgeColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
-    thumbnail: "/projects/mpnmjec/mpnmjec_combined_showcase.webp",
+    thumbnail: "/projects/mpnmjec/student_mobile_tracking_mockup.webp",
     details: {
-      type: "Live Production Flutter App",
-      duration: "August 2025 – Present",
-      role: "Lead Mobile & Backend Developer",
-      status: "Live in Production",
-      architecture: "Flutter Mobile (Dart), Google Maps SDK, Node.js WebSocket Engine, Supabase",
-      clientOrContext: "MPNMJEC Engineering College / 6ixminds Labs",
+      type: "Production Flutter Mobile App",
+      duration: "March 2026 – June 2026",
+      role: "Lead Full-Stack & Mobile Developer",
+      status: "Live on Google Play Store & Campus Deployed",
+      architecture: "Flutter (Dart 3.x), flutter_map (v6), LatLong2, Node.js WebSocket Engine, Supabase PostgreSQL, OSRM",
+      clientOrContext: "M.P. Nachimuthu M. Jaganathan Engineering College (MPNMJEC)",
     },
     overview: {
       challenge:
-        "College students routinely faced severe uncertainty regarding daily bus arrival times, unexpected transit delays, and multi-district route changes, resulting in hours of wasted stop wait times.",
+        "College students and staff faced unpredictable daily commutes—frequently missing buses, waiting in extreme weather at rural stops, and having zero visibility into whether a bus was delayed, stuck in traffic, or had already departed.",
       solution:
-        "Engineered an official student mobile tracking application published on Google Play. Features live bus discovery, animated vehicle map markers, arrival countdown timers, and emergency route push alerts.",
+        "Engineered an official student mobile tracking application on Flutter published on Google Play. Features instant 1-tap 'Live Buses Now' discovery, smooth OpenStreetMap vehicle marker heading rotation, OSRM road-accurate ETAs, and proximity arrival alarms.",
       impact:
-        "Active across 1,000+ daily student commuters, slashing roadside bus stop wait times by over 80% while restoring transit predictability across the college fleet.",
+        "Delivers 2-second real-time GPS telemetry sync across campus routes, reducing roadside wait times by over 80% with zero dedicated vehicle GPS hardware costs.",
     },
     coreFeatures: [
       {
-        title: "Live Bus Discovery",
-        description: "Instantly view all currently running buses without needing to select complicated origin and destination forms.",
+        title: "Instant 'Live Buses Now' Discovery",
+        description: "Dedicated home feed allowing students to jump straight into tracking currently moving buses with 1 tap, bypassing multi-step stop search forms.",
       },
       {
-        title: "Real-Time Google Maps Marker Interpolation",
-        description: "Smooth coordinate smoothing and polyline rendering updating at sub-second latency.",
+        title: "Stop-to-Stop Route Search & Timeline",
+        description: "Interactive pickup and drop-off stop picker displaying active routes, upcoming stops, and road-snapped OSRM driving ETAs.",
       },
       {
-        title: "Stop Timetable & ETA",
-        description: "Dynamic estimated arrival timestamps tailored to the student's designated boarding stop.",
+        title: "Smooth Real-Time OpenStreetMap Tracking",
+        description: "Real-time bus marker heading rotation, live speed indicator, route geometry polylines, and stop markers powered by flutter_map and LatLong2.",
       },
       {
-        title: "Emergency Broadcast Alerts",
-        description: "Instant push notifications for sudden breakdown notices, driver substitutions, or weather delays.",
+        title: "Smart Proximity Arrival Alarm",
+        description: "Configurable background acoustic and vibration alarm triggering 5, 10, or 15 minutes before the bus reaches the student's designated stop.",
       },
     ],
     gallery: [
       {
-        url: "/projects/mpnmjec/mpnmjec_combined_showcase.webp",
-        caption: "Cross-Platform Transport Ecosystem: Student Mobile App, Driver Companion, and Admin Map",
-        alt: "MPNMJEC Combined Showcase",
+        url: "/projects/mpnmjec/student_mobile_discovery_mockup.webp",
+        caption: "Instant Bus Discovery (Mobile View): 1-tap live tracking feed for currently active college transit routes",
+        alt: "MPNMJEC Bus Tracker Instant Discovery Screen",
       },
       {
-        url: "/projects/mpnmjec/student_home_clean.webp",
-        caption: "Student Flutter Mobile Interface displaying bus schedule, active routes, and estimated arrival time",
-        alt: "Student App Interface",
+        url: "/projects/mpnmjec/student_mobile_search_mockup.webp",
+        caption: "Stop-Based Search (Mobile View): Interactive pickup & destination stop selector with recent trip history",
+        alt: "MPNMJEC Bus Tracker Stop Search Screen",
       },
       {
-        url: "/projects/mpnmjec/live_map_clean.webp",
-        caption: "Real-time Google Maps live vehicle tracking with speed indicator and dynamic driver marker",
-        alt: "Live Map Tracking Screen",
+        url: "/projects/mpnmjec/student_mobile_tracking_mockup.webp",
+        caption: "Real-Time Telemetry Map (Mobile View): Live GPS route polyline, vehicle marker rotation, and next-stop ETA sheet",
+        alt: "MPNMJEC Bus Tracker Live Telemetry Map Screen",
       },
     ],
     skillsUsed: [
       {
-        group: "Mobile & Frontend",
-        skills: ["Flutter (Dart)", "Provider State Management", "Google Maps SDK", "Material 3"],
+        group: "Mobile & Mapping",
+        skills: ["Flutter (Dart 3.x)", "flutter_map (v6)", "latlong2", "audioplayers", "lucide_icons", "shared_preferences"],
       },
       {
         group: "Backend & Realtime",
-        skills: ["Node.js", "Express", "WebSocket (ws)", "Supabase", "Render Cloud Hosting"],
+        skills: ["Node.js", "Express REST API", "WebSockets (ws)", "Supabase (PostgreSQL)", "OSRM Routing"],
       },
       {
-        group: "Deployment",
-        skills: ["Google Play Console", "App Signing Keystores", "Crashlytics", "Network Retry Logic"],
+        group: "Deployment & Systems",
+        skills: ["Google Play Store", "Render Cloud Hosting", "JWT Authentication", "Zero-Hardware Fleet Telemetry"],
       },
     ],
     links: {
@@ -245,219 +238,160 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
 
   "mpnmjec-driver-app": {
     slug: "mpnmjec-driver-app",
-    title: "MPNMJEC Driver Companion App",
-    tagline: "Dedicated driver mobile tool for persistent background GPS pinging, route locking, and automated telemetry.",
+    title: "MPNMJEC Driver Console",
+    tagline: "High-frequency smartphone GPS telemetry app with Android Foreground Service, 2s updates, and offline dead-zone buffering.",
     categoryKey: "mobile",
     subcategoryKey: "campus-transit",
     subcategoryTitle: "Campus Transit",
-    badge: "🛰️ Background GPS Telemetry",
-    badgeColor: "bg-sky-50 text-sky-700 border-sky-200",
-    thumbnail: "/projects/mpnmjec/driver_trip_clean.webp",
+    badge: "🚀 Live on Google Play Store",
+    badgeColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    thumbnail: "/projects/mpnmjec/driver_mobile_mockup.webp",
     details: {
-      type: "Commercial Driver Mobile App",
-      duration: "2025 – Present",
-      role: "Lead Mobile Developer",
-      status: "Live in Fleet Production",
-      architecture: "Flutter (Dart), Background Geolocation API, WebSocket Stream, Battery Saver Engine",
-      clientOrContext: "MPNMJEC Transport Department Drivers",
+      type: "Driver Telemetry & IoT Mobile App",
+      duration: "March 2026 – June 2026",
+      role: "Lead Full-Stack & Mobile Developer",
+      status: "Live on Google Play Store & Fleet Deployed",
+      architecture: "Flutter (Dart 3.x), flutter_foreground_task, Geolocator, WebSockets, Supabase, SQLite Buffer",
+      clientOrContext: "MPNMJEC Transport Department Fleet Drivers",
     },
     overview: {
       challenge:
-        "Bus drivers operate in high-distraction environments with varying cellular connectivity. The system required a one-touch interface that broadcasts telemetry continuously without battery drain or manual intervention.",
+        "Commercial fleet tracking requires expensive proprietary GPS/OBD hardware units ($100s/bus plus monthly SIM subscriptions) and bus drivers operate in high-distraction environments across cellular dead zones.",
       solution:
-        "Built a lightweight, robust Flutter driver companion app. Drivers select their assigned bus, tap 'Start Trip', and the app manages persistent background GPS coordinate broadcasting with offline queue retry logic.",
+        "Engineered a zero-hardware-cost driver telemetry app that converts drivers' existing smartphones into IoT beacons. Uses an Android Foreground Service to stream GPS pings every 2 seconds via WebSockets with an automatic 500-point offline SQLite buffer.",
       impact:
-        "Achieved 99.8% GPS telemetry uptime across 15+ daily campus routes with zero distraction to operating drivers.",
+        "Delivers continuous 2-second telemetry streaming with zero data loss across rural network dead zones, saving the institution thousands in hardware costs while maintaining 99.8% fleet uptime.",
     },
     coreFeatures: [
       {
-        title: "One-Tap Trip Initiation",
-        description: "Simplified interface with giant high-contrast touch controls designed specifically for drivers in transit.",
+        title: "1-Tap Trip Lifecycle & Auto Direction",
+        description: "One-touch start, pause, resume, and completion workflow with smart auto-detection of outbound (morning) and return (evening) route schedules.",
       },
       {
-        title: "Persistent Background Location Service",
-        description: "Continues high-precision GPS coordinate broadcasting even when the phone is locked or screen is off.",
+        title: "Persistent Android Foreground Service",
+        description: "Prevents OS task-killer termination using persistent notifications and wakelocks, streaming GPS uninterrupted when phone is locked or screen off.",
       },
       {
-        title: "Offline Network Queue Recovery",
-        description: "Locally buffers coordinates during intermittent cellular dead-zones and flushes packets upon reconnect.",
+        title: "Offline Dead-Zone Queue (500 Points)",
+        description: "Automatically buffers up to 500 GPS telemetry coordinates locally during cellular signal dropouts and flushes them to the server upon reconnection.",
       },
       {
-        title: "Emergency Incident Trigger",
-        description: "Single-tap SOS button to instantly alert dispatchers of mechanical breakdowns or road hazards.",
+        title: "Geofence Stop & Delay Detection",
+        description: "80-meter precision radius geofencing for automated stop arrival/departure triggers and dynamic alerts if the trip deviates by > 5 minutes.",
       },
     ],
     gallery: [
       {
-        url: "/projects/mpnmjec/driver_trip_clean.webp",
-        caption: "Driver Companion App designed for single-tap trip start, route lock, and emergency trigger",
-        alt: "Driver Companion Interface",
+        url: "/projects/mpnmjec/driver_mobile_mockup.webp",
+        caption: "Driver Console Interface (Mobile View): 1-tap trip initiation, active GPS streaming, and route leg selector",
+        alt: "Driver Console Mobile Interface",
       },
       {
         url: "/projects/mpnmjec/mpnmjec_combined_showcase.webp",
-        caption: "Ecosystem overview showing the driver telemetry stream connecting directly to student maps",
+        caption: "End-to-End Transit Architecture: Driver telemetry streaming to cloud WebSocket engine and student apps",
         alt: "Driver Showcase in Ecosystem",
+      },
+      {
+        url: "/projects/mpnmjec/live_map_clean.webp",
+        caption: "Real-time fleet tracking view showing driver coordinates broadcasted across campus routes",
+        alt: "Live Fleet View",
       },
     ],
     skillsUsed: [
       {
-        group: "Mobile & OS",
-        skills: ["Flutter (Dart)", "Background Geolocation", "Wakelock APIs", "Battery Optimization"],
+        group: "Mobile & Background OS",
+        skills: ["Flutter (Dart 3.x)", "flutter_foreground_task", "geolocator", "permission_handler", "flutter_secure_storage"],
       },
       {
-        group: "Telemetry Protocols",
-        skills: ["WebSocket Pings", "JSON Stream Serialization", "Network State Monitoring"],
+        group: "Real-Time Networking",
+        skills: ["WebSockets (ws)", "JWT Driver Authentication", "Offline SQLite Buffer", "Exponential Backoff Reconnect"],
+      },
+      {
+        group: "Deployment & Platform",
+        skills: ["Google Play Store", "Android Foreground Services", "Battery Optimization", "Wakelock APIs"],
       },
     ],
     links: {
+      playStore: "https://play.google.com/store/apps/details?id=com.sixmindslabs.mpnmjec.driver",
       githubUrl: "https://github.com/6ixmindslabs-hue/MPNMJBUSES",
     },
   },
 
   // --------------------------------------------------------------------------
-  // 2. MOBILE -> NATIVE OS AUTOMATION
-  // --------------------------------------------------------------------------
-  "aira-copilot": {
-    slug: "aira-copilot",
-    title: "Aira – Android AI Voice & Automation Assistant",
-    tagline: "Android-native Kotlin AI assistant prototype executing device actions via voice and accessibility APIs.",
-    categoryKey: "mobile",
-    subcategoryKey: "native-automation",
-    subcategoryTitle: "Native OS Automation",
-    badge: "🧠 Kotlin + Android Accessibility APIs",
-    badgeColor: "bg-indigo-50 text-indigo-700 border-indigo-200",
-    thumbnail: "/projects/aira/dashboard-preview.svg",
-    details: {
-      type: "Android Native Prototype & Intent Engine",
-      duration: "2025 – 2026",
-      role: "Lead Android & AI Engineer",
-      status: "Active Working Prototype",
-      architecture: "Android Kotlin, Jetpack Compose, Room DB, Android AccessibilityService, Node.js Intent Backend",
-      clientOrContext: "Open-Source Mobile Automation Project",
-    },
-    overview: {
-      challenge:
-        "Modern mobile voice assistants are restricted to walled-garden ecosystems and cannot reliably automate multi-step repetitive tasks across third-party Android apps without custom developer SDKs.",
-      solution:
-        "Architected Aira, a native Android assistant that captures voice commands, passes transcripts to a Node.js intent backend for strict JSON action parsing, and executes real UI interactions via Android Accessibility APIs.",
-      impact:
-        "Successfully automated hands-free tasks including message drafting, settings toggles, clipboard actions, and Tasker automation bridging with zero vendor lock-in.",
-    },
-    coreFeatures: [
-      {
-        title: "Android Accessibility Execution Engine",
-        description: "Uses a dedicated AccessibilityService to inspect UI node hierarchies, click buttons, and scroll views.",
-      },
-      {
-        title: "Strict JSON Intent Backend",
-        description: "Node.js Express + Zod microservice converting arbitrary voice phrases into validated deterministic action payloads.",
-      },
-      {
-        title: "Local Room Database History",
-        description: "Full on-device command audit log with replay capabilities using Room and Coroutines.",
-      },
-      {
-        title: "Tasker Automation Bridge",
-        description: "Inter-process broadcast receiver enabling seamless integration with existing Android automation plugins.",
-      },
-    ],
-    gallery: [
-      {
-        url: "/projects/aira/dashboard-preview.svg",
-        caption: "Aira Android Dashboard: Voice listener status, recent intent history, and execution logs",
-        alt: "Aira Dashboard Preview",
-      },
-      {
-        url: "/projects/aira/confirmation-preview.svg",
-        caption: "Action Confirmation & Security Verification dialog prior to executing device accessibility tasks",
-        alt: "Aira Confirmation Dialog",
-      },
-    ],
-    skillsUsed: [
-      {
-        group: "Android Native",
-        skills: ["Kotlin", "Android Accessibility APIs", "Room DB (SQLite)", "Coroutines", "Tasker Intent Bridge"],
-      },
-      {
-        group: "Backend Intent Engine",
-        skills: ["Node.js", "Express", "Zod Validation", "OpenAI / Gemini API", "Structured JSON Schemas"],
-      },
-    ],
-    links: {
-      githubUrl: "https://github.com/dhineshdevtech/Aira",
-    },
-  },
-
-  // --------------------------------------------------------------------------
-  // 3. WEBSITES -> CAMPUS PLATFORMS
+  // 2. WEBSITES -> CAMPUS PLATFORMS
   // --------------------------------------------------------------------------
   "mpnmjec-dispatch-console": {
     slug: "mpnmjec-dispatch-console",
-    title: "MPNMJEC Live Telemetry & GPS Dispatch Console",
-    tagline: "Central fleet dispatch dashboard featuring real-time vehicle map tracking, speed alerts, and route rosters.",
+    title: "MPNMJEC Transport OS & Command Center",
+    tagline: "Real-time fleet command portal with interactive Leaflet route builder, OSRM road geometry rebuild, and live telemetry dispatch.",
     categoryKey: "websites",
     subcategoryKey: "campus-platforms",
     subcategoryTitle: "Campus Platforms",
-    badge: "🛰️ Live Telemetry Dashboard",
+    badge: "🛰️ Live Fleet Command Center",
     badgeColor: "bg-sky-50 text-sky-700 border-sky-200",
-    thumbnail: "/projects/mpnmjec/admin_panel_clean.webp",
+    thumbnail: "/projects/mpnmjec/admin_schedule_laptop_mockup.webp",
     details: {
-      type: "Real-Time Telemetry Dispatch Portal",
-      duration: "2025 – 2026",
+      type: "Full-Stack Web Dispatch & Routing Portal",
+      duration: "March 2026 – June 2026",
       role: "Lead Full-Stack Developer",
-      status: "Live in Production",
-      architecture: "React 18, Leaflet / Google Maps API, Node.js WebSocket Engine, Supabase",
-      clientOrContext: "Campus Security & Fleet Transport Desk",
+      status: "Live in Production / Campus Deployed",
+      architecture: "React 19, Vite, Tailwind CSS, Leaflet / react-leaflet, Node.js WebSocket Engine, Supabase PostgreSQL, OSRM",
+      clientOrContext: "MPNMJEC Campus Transport Management & Dispatch Desk",
     },
     overview: {
       challenge:
-        "During peak hours, severe weather, or unexpected delays, transport supervisors had zero centralized visual insight into where college buses were located or whether drivers were speeding.",
+        "Transport supervisors lacked real-time visibility into vehicle positions, schedule delays, or driver punctuality, and had no streamlined mechanism to update multi-stop route geometries without tedious manual surveying.",
       solution:
-        "Constructed a high-throughput telemetry dispatch dashboard that connects directly to the Node.js WebSocket broadcast engine, displaying live vehicle coordinates, route polylines, and speed alarms.",
+        "Constructed an institutional transit command center featuring an interactive Leaflet route builder, automated OSRM road-snapped polyline generation, live multi-vehicle WebSocket map monitoring, and Supabase fleet CRUD management.",
       impact:
-        "Sub-100ms fleet tracking across the multi-district transport network, empowering dispatchers to proactively manage route detours and enforce campus transit safety.",
+        "Gives campus dispatchers sub-second live visibility across the entire fleet, automating schedule deviation detection (> 5 min) and eliminating manual coordination during peak student transit hours.",
     },
     coreFeatures: [
       {
-        title: "Multi-Vehicle Live Map View",
-        description: "Simultaneous real-time tracking of all active college buses on an interactive map canvas.",
+        title: "Interactive Leaflet Route Builder",
+        description: "Point-and-click map interface with OpenStreetMap / Humanitarian HOT tiles to drop bus stops, re-order waypoints, and preview road geometry.",
       },
       {
-        title: "Speed Threshold Compliance",
-        description: "Automated visual and acoustic indicators triggered whenever a bus exceeds designated safe campus speed limits.",
+        title: "Automated OSRM Geometry Rebuild",
+        description: "Converts discrete stop coordinates into road-accurate driving polylines and computes precise route distance and estimated travel times.",
       },
       {
-        title: "Route & Driver Shift Rostering",
-        description: "Assign drivers, relief operators, and stop sequences with immediate database sync.",
+        title: "Live Fleet Telemetry Monitoring",
+        description: "Real-time WebSocket map displaying active vehicles, 2-second coordinate pings, current speed compliance, and route completion percentages.",
       },
       {
-        title: "Emergency Broadcast Override",
-        description: "One-click dispatch console to push urgent breakdown announcements to all students on an affected route.",
+        title: "Master Fleet, Driver & Schedule CRUD",
+        description: "Centralized management of buses, drivers, stops, routes, and morning/evening outbound/return schedule pairings powered by Supabase PostgreSQL.",
       },
     ],
     gallery: [
       {
-        url: "/projects/mpnmjec/admin_panel_clean.webp",
-        caption: "Admin Dispatch View displaying active vehicles, current speeds, and route status indicators",
-        alt: "Admin Telemetry Dashboard",
+        url: "/projects/mpnmjec/admin_schedule_laptop_mockup.webp",
+        caption: "Fleet Schedule & Asset Rostering (Laptop View): Outbound & return time windows, driver allocations, and bus assignments",
+        alt: "MPNMJEC Fleet Schedule & Asset Rostering Laptop Mockup",
       },
       {
-        url: "/projects/mpnmjec/live_map_clean.webp",
-        caption: "High-resolution Live Map telematics view showing active GPS polyline and stop markers",
-        alt: "Live Map View",
+        url: "/projects/mpnmjec/admin_laptop_mockup.webp",
+        caption: "Interactive Leaflet Route Builder (Laptop View): Checkpoint coordinate editor, route corridor selection, and geofence mapping",
+        alt: "MPNMJEC Transport Admin Panel Route Builder Laptop Mockup",
       },
     ],
     skillsUsed: [
       {
-        group: "Frontend & Maps",
-        skills: ["React 18", "Leaflet / Google Maps API", "Tailwind CSS", "Recharts"],
+        group: "Web & Mapping",
+        skills: ["React 19", "Vite", "Leaflet", "react-leaflet", "Tailwind CSS", "Zustand", "Lucide React"],
       },
       {
-        group: "Realtime Telemetry",
-        skills: ["WebSocket (ws)", "Node.js", "Express", "Supabase", "Geofencing Algorithms"],
+        group: "Backend & Routing",
+        skills: ["Node.js", "Express REST API", "WebSockets (ws)", "OSRM (Open Source Routing Machine)", "Supabase (PostgreSQL)"],
+      },
+      {
+        group: "Cloud & Security",
+        skills: ["Render Cloud Hosting", "Row-Level Security (RLS)", "JWT Driver Auth", "REST & WebSocket Endpoints"],
       },
     ],
     links: {
+      liveUrl: "https://adminmpnmjbuses.vercel.app/",
       githubUrl: "https://github.com/6ixmindslabs-hue/MPNMJBUSES",
     },
   },
@@ -604,75 +538,203 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
   // --------------------------------------------------------------------------
   // 4. WEBSITES -> EDUTECH
   // --------------------------------------------------------------------------
-  "6ixquest-ai": {
-    slug: "6ixquest-ai",
-    title: "6ixQuest – AI Quiz & Assessment Hub",
-    tagline: "AI-assisted exam platform generating comprehensive assessments in 5 seconds with Groq Cloud Llama 3.",
+  "quizforge-ai": {
+    slug: "quizforge-ai",
+    title: "QuizForge – AI Assessment & Anti-Cheat Platform",
+    tagline: "AI-powered exam platform generating syllabus-aligned assessments in 5–15 seconds with in-browser anti-cheat proctoring.",
     categoryKey: "websites",
     subcategoryKey: "edutech",
     subcategoryTitle: "EduTech",
-    badge: "⚡ Groq AI + Supabase",
+    badge: "⚡ Groq LPU AI + Firebase",
     badgeColor: "bg-blue-50 text-[#0070f3] border-blue-200",
-    thumbnail: "/projects/6ixquest/home.webp",
+    thumbnail: "/projects/quizforge/quizforge_dashboard_laptop.webp",
     details: {
-      type: "SaaS EdTech Platform",
-      duration: "2025",
-      role: "Lead Full-Stack & AI Engineer",
-      status: "Live Platform",
-      architecture: "React 18, TypeScript, Groq Cloud (Llama 3 70B), Supabase PostgreSQL, Tailwind CSS",
-      clientOrContext: "Educators, Universities & Technical Recruiters",
+      type: "AI-Powered Assessment & Anti-Cheating Examination Platform",
+      duration: "May 2026 – Oct 2026 (~4 Months)",
+      role: "Solo Full-Stack Developer",
+      status: "Live in Production",
+      architecture: "React 18, TypeScript, Vite, Groq LPU AI (batch chunking), Firebase Auth, Cloud Firestore, Tailwind CSS",
+      clientOrContext: "Educators, Universities & Technical Training Coordinators",
     },
     overview: {
       challenge:
-        "Drafting balanced, rigorous exam questionnaires and candidate evaluation rubrics traditionally takes educators hours of manual authoring, formatting, and grading.",
+        "Teachers, educators, and bootcamp coordinators spend hours manually crafting quiz questions, researching multiple-choice options, and typing them into generic form builders (like Google Forms). Worse, standard forms have zero exam security—students easily switch tabs, copy-paste questions into search engines or ChatGPT, and submit multiple times using fake names.",
       solution:
-        "Architected 6ixQuest, an AI assessment platform using Groq Cloud's high-throughput Llama 3 inference. Generates custom multiple-choice exams in seconds, shares public test rooms, and grades candidates automatically.",
+        "Architected QuizForge, an end-to-end exam platform that turns any topic prompt or raw lecture notes into 5 to 50+ balanced, categorized quiz questions in 5–15 seconds using Groq AI with a custom batch-chunking engine. Enforces strict client-side exam proctoring—full-screen lock, tab-blur detection, disabled clipboard/context menus, and automated 3-strike submission.",
       impact:
-        "Reduced test preparation and grading time by 90%, generating production-ready assessments in under 5 seconds with instant candidate score breakdown analytics.",
+        "Reduces test authoring time by 90% (from hours to 5–15 seconds), delivers 0-friction testing with no student signups required, enforces 1-attempt identity verification, and prevents digital cheating with automated 3-strike exam termination.",
     },
     coreFeatures: [
       {
-        title: "Sub-5-Second AI Generation",
-        description: "Leverages Groq Cloud Llama-3 70B model for near-instant conceptual questionnaire synthesis.",
+        title: "Sub-15s AI Generation with Batch Chunking",
+        description: "Harnesses Groq LPU hardware acceleration to generate 1 to 50+ questions from topics or lecture notes. Slices large requests into parallel 25-item chunks with strict JSON schema validation to guarantee zero token truncation.",
       },
       {
-        title: "Public Candidate Test Rooms",
-        description: "Generates secure, shareable assessment links with timed countdowns and real-time auto-submit.",
+        title: "In-Browser Anti-Cheat Proctoring Canvas",
+        description: "Locks down the student exam experience with mandatory fullscreen mode, Page Visibility tab-switch tracking, blocked right-click menus, and disabled copy/paste events.",
       },
       {
-        title: "Automated Grading & Feedback",
-        description: "Candidates receive instantaneous score breakdowns with question-by-question rationales.",
+        title: "Automated 3-Strike Violation Termination",
+        description: "Monitors infractions in real time; warns the student on attempts to bypass rules, and automatically calculates the score and forces submission upon the 3rd detected strike.",
       },
       {
-        title: "Supabase RLS Security",
-        description: "Row-level security ensuring strict tenant privacy for instructor question banks and candidate records.",
+        title: "Zero-Friction 1-Attempt Verification",
+        description: "Students join instantly without creating accounts. Multi-field verification across student email and registration number enforces a strict single-attempt policy.",
+      },
+      {
+        title: "Creator Studio & Live Response Analytics",
+        description: "Visual question editor, 3 difficulty tiers (Easy, Medium, Hard), scheduling windows (valid_from to valid_until), and instant CSV export of all student responses.",
       },
     ],
     gallery: [
       {
-        url: "/projects/6ixquest/home.webp",
-        caption: "6ixQuest Platform Dashboard: Exam generator, active quiz rooms, and candidate roster",
-        alt: "6ixQuest Home Screen",
+        url: "/projects/quizforge/quizforge_dashboard_laptop.webp",
+        caption: "QuizForge Creator Dashboard (Laptop View): Quiz management roster, active test counters, and quick actions",
+        alt: "QuizForge Creator Dashboard Laptop Mockup",
       },
       {
-        url: "/projects/6ixquest/login.webp",
-        caption: "Secure Authentication portal integrated with Supabase OAuth and session security",
-        alt: "6ixQuest Authentication Screen",
+        url: "/projects/quizforge/quizforge_ai_modal_laptop.webp",
+        caption: "Groq AI Generation Studio (Laptop View): Topic / study notes synthesis, question count, and difficulty tiers",
+        alt: "QuizForge Groq AI Generation Studio Laptop Mockup",
+      },
+      {
+        url: "/projects/quizforge/quizforge_proctoring_laptop.webp",
+        caption: "Anti-Cheating Monitored Assessment (Laptop View): Fullscreen lock, tab-switch tracking, and 3-strike policy",
+        alt: "QuizForge Anti-Cheat Proctoring Laptop Mockup",
+      },
+      {
+        url: "/projects/quizforge/quizforge_exam_taking_laptop.webp",
+        caption: "Live Candidate Exam Canvas (Laptop View): Single-focus test taking environment with distraction-free layout",
+        alt: "QuizForge Live Candidate Exam Canvas Laptop Mockup",
+      },
+      {
+        url: "/projects/quizforge/quizforge_analytics_laptop.webp",
+        caption: "Real-Time Response Analytics & CSV Export (Laptop View): Candidate scores, timestamps, and one-click data export",
+        alt: "QuizForge Response Analytics and CSV Export Laptop Mockup",
+      },
+      {
+        url: "/projects/quizforge/quizforge_auth_laptop.webp",
+        caption: "Teacher Authentication Portal (Laptop View): Firebase Email/Password & Google OAuth sign-in flow",
+        alt: "QuizForge Teacher Authentication Portal Laptop Mockup",
       },
     ],
     skillsUsed: [
       {
-        group: "Frontend",
-        skills: ["React 18", "TypeScript", "Tailwind CSS", "Vite", "Lucide Icons"],
+        group: "Frontend & UI",
+        skills: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "React Router v7", "Lucide React"],
       },
       {
-        group: "AI & Backend",
-        skills: ["Groq Cloud Inference (Llama 3)", "Prompt Engineering", "Supabase PostgreSQL", "Row-Level Security (RLS)"],
+        group: "AI & LLM Orchestration",
+        skills: ["Groq SDK (LPU Acceleration)", "Prompt Engineering", "Batch-Chunking Engine", "JSON Schema Enforcement", "Model Auto-Fallback"],
+      },
+      {
+        group: "Backend & Cloud Services",
+        skills: ["Firebase Authentication (Email & Google)", "Cloud Firestore (NoSQL)", "Firestore Security Rules", "Vercel Deployment", "CSV Export Engine"],
       },
     ],
     links: {
-      liveUrl: "https://6ix-quest.vercel.app",
-      githubUrl: "https://github.com/dhineshdevtech/6ixQuest",
+      liveUrl: "https://quizforge-live.vercel.app",
+      githubUrl: "https://github.com/dhineshdevtech/quizforge",
+    },
+  },
+  // Backward-compatibility alias for legacy 6ixquest slug
+  "6ixquest-ai": {
+    slug: "quizforge-ai",
+    title: "QuizForge – AI Assessment & Anti-Cheat Platform",
+    tagline: "AI-powered exam platform generating syllabus-aligned assessments in 5–15 seconds with in-browser anti-cheat proctoring.",
+    categoryKey: "websites",
+    subcategoryKey: "edutech",
+    subcategoryTitle: "EduTech",
+    badge: "⚡ Groq LPU AI + Firebase",
+    badgeColor: "bg-blue-50 text-[#0070f3] border-blue-200",
+    thumbnail: "/projects/quizforge/quizforge_dashboard_laptop.webp",
+    details: {
+      type: "AI-Powered Assessment & Anti-Cheating Examination Platform",
+      duration: "May 2026 – Oct 2026 (~4 Months)",
+      role: "Solo Full-Stack Developer",
+      status: "Live in Production",
+      architecture: "React 18, TypeScript, Vite, Groq LPU AI (batch chunking), Firebase Auth, Cloud Firestore, Tailwind CSS",
+      clientOrContext: "Educators, Universities & Technical Training Coordinators",
+    },
+    overview: {
+      challenge:
+        "Teachers, educators, and bootcamp coordinators spend hours manually crafting quiz questions, researching multiple-choice options, and typing them into generic form builders (like Google Forms). Worse, standard forms have zero exam security—students easily switch tabs, copy-paste questions into search engines or ChatGPT, and submit multiple times using fake names.",
+      solution:
+        "Architected QuizForge, an end-to-end exam platform that turns any topic prompt or raw lecture notes into 5 to 50+ balanced, categorized quiz questions in 5–15 seconds using Groq AI with a custom batch-chunking engine. Enforces strict client-side exam proctoring—full-screen lock, tab-blur detection, disabled clipboard/context menus, and automated 3-strike submission.",
+      impact:
+        "Reduces test authoring time by 90% (from hours to 5–15 seconds), delivers 0-friction testing with no student signups required, enforces 1-attempt identity verification, and prevents digital cheating with automated 3-strike exam termination.",
+    },
+    coreFeatures: [
+      {
+        title: "Sub-15s AI Generation with Batch Chunking",
+        description: "Harnesses Groq LPU hardware acceleration to generate 1 to 50+ questions from topics or lecture notes. Slices large requests into parallel 25-item chunks with strict JSON schema validation to guarantee zero token truncation.",
+      },
+      {
+        title: "In-Browser Anti-Cheat Proctoring Canvas",
+        description: "Locks down the student exam experience with mandatory fullscreen mode, Page Visibility tab-switch tracking, blocked right-click menus, and disabled copy/paste events.",
+      },
+      {
+        title: "Automated 3-Strike Violation Termination",
+        description: "Monitors infractions in real time; warns the student on attempts to bypass rules, and automatically calculates the score and forces submission upon the 3rd detected strike.",
+      },
+      {
+        title: "Zero-Friction 1-Attempt Verification",
+        description: "Students join instantly without creating accounts. Multi-field verification across student email and registration number enforces a strict single-attempt policy.",
+      },
+      {
+        title: "Creator Studio & Live Response Analytics",
+        description: "Visual question editor, 3 difficulty tiers (Easy, Medium, Hard), scheduling windows (valid_from to valid_until), and instant CSV export of all student responses.",
+      },
+    ],
+    gallery: [
+      {
+        url: "/projects/quizforge/quizforge_dashboard_laptop.webp",
+        caption: "QuizForge Creator Dashboard (Laptop View): Quiz management roster, active test counters, and quick actions",
+        alt: "QuizForge Creator Dashboard Laptop Mockup",
+      },
+      {
+        url: "/projects/quizforge/quizforge_ai_modal_laptop.webp",
+        caption: "Groq AI Generation Studio (Laptop View): Topic / study notes synthesis, question count, and difficulty tiers",
+        alt: "QuizForge Groq AI Generation Studio Laptop Mockup",
+      },
+      {
+        url: "/projects/quizforge/quizforge_proctoring_laptop.webp",
+        caption: "Anti-Cheating Monitored Assessment (Laptop View): Fullscreen lock, tab-switch tracking, and 3-strike policy",
+        alt: "QuizForge Anti-Cheat Proctoring Laptop Mockup",
+      },
+      {
+        url: "/projects/quizforge/quizforge_exam_taking_laptop.webp",
+        caption: "Live Candidate Exam Canvas (Laptop View): Single-focus test taking environment with distraction-free layout",
+        alt: "QuizForge Live Candidate Exam Canvas Laptop Mockup",
+      },
+      {
+        url: "/projects/quizforge/quizforge_analytics_laptop.webp",
+        caption: "Real-Time Response Analytics & CSV Export (Laptop View): Candidate scores, timestamps, and one-click data export",
+        alt: "QuizForge Response Analytics and CSV Export Laptop Mockup",
+      },
+      {
+        url: "/projects/quizforge/quizforge_auth_laptop.webp",
+        caption: "Teacher Authentication Portal (Laptop View): Firebase Email/Password & Google OAuth sign-in flow",
+        alt: "QuizForge Teacher Authentication Portal Laptop Mockup",
+      },
+    ],
+    skillsUsed: [
+      {
+        group: "Frontend & UI",
+        skills: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "React Router v7", "Lucide React"],
+      },
+      {
+        group: "AI & LLM Orchestration",
+        skills: ["Groq SDK (LPU Acceleration)", "Prompt Engineering", "Batch-Chunking Engine", "JSON Schema Enforcement", "Model Auto-Fallback"],
+      },
+      {
+        group: "Backend & Cloud Services",
+        skills: ["Firebase Authentication (Email & Google)", "Cloud Firestore (NoSQL)", "Firestore Security Rules", "Vercel Deployment", "CSV Export Engine"],
+      },
+    ],
+    links: {
+      liveUrl: "https://quizforge-live.vercel.app",
+      githubUrl: "https://github.com/dhineshdevtech/quizforge",
     },
   },
 
