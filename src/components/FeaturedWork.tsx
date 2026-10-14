@@ -215,18 +215,6 @@ function ProjectVisualPreview({ type }: { type: FeaturedProject["type"] }) {
 export default function FeaturedWork() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [activeFilter, setActiveFilter] = useState<string>("all");
-
-  useEffect(() => {
-    // Check initial URL filter parameter safely without cascading render
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      const filter = params.get("filter");
-      if (filter && ["mobile", "websites", "business"].includes(filter)) {
-        setTimeout(() => setActiveFilter(filter), 0);
-      }
-    }
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -247,11 +235,6 @@ export default function FeaturedWork() {
 
     return () => observer.disconnect();
   }, []);
-
-  const filteredProjects = featuredProjects.filter((project) => {
-    if (activeFilter === "all") return true;
-    return project.categories.includes(activeFilter as CategoryKey);
-  });
 
   return (
     <section
@@ -287,70 +270,11 @@ export default function FeaturedWork() {
             applications built as a software engineer — from a live Google Play Store bus tracking
             system to AI assessment engines and offline-first POS counters. Here&apos;s some of the strongest work.
           </p>
-
-          {/* Interactive Project Category Tabs */}
-          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-3">
-            {[
-              {
-                id: "all",
-                label: "All Work",
-                icon: (
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h7" />
-                  </svg>
-                ),
-              },
-              {
-                id: "mobile",
-                label: "Mobile Apps",
-                icon: (
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <rect x="5" y="2" width="14" height="20" rx="3" strokeWidth={2} />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01" />
-                  </svg>
-                ),
-              },
-              {
-                id: "websites",
-                label: "Web Platforms",
-                icon: (
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <circle cx="12" cy="12" r="9" strokeWidth={2} />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.6 9h16.8M3.6 15h16.8M12 3a15.3 15.3 0 014 9 15.3 15.3 0 01-4 9 15.3 15.3 0 01-4-9 15.3 15.3 0 014-9z" />
-                  </svg>
-                ),
-              },
-              {
-                id: "business",
-                label: "Business Software",
-                icon: (
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <rect x="3" y="7" width="18" height="13" rx="2" strokeWidth={2} />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m-5 4h18" />
-                  </svg>
-                ),
-              },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => setActiveFilter(tab.id)}
-                className={`inline-flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
-                  activeFilter === tab.id
-                    ? "bg-[#0070f3] text-white shadow-[0_4px_16px_rgba(0,112,243,0.25)] scale-[1.02]"
-                    : "bg-[#f8fbfe] text-slate-700 hover:bg-[#edf4fd] hover:text-[#0070f3] border border-[#bfd8f6]"
-                }`}
-              >
-                <span className="flex-shrink-0">{tab.icon}</span>
-                <span>{tab.label}</span>
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* 2x2 Project Cards Grid (Staggered Down to Up Entrance Animation) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
-          {filteredProjects.map((project, index) => (
+          {featuredProjects.map((project, index) => (
             <div
               key={project.id}
               style={{ transitionDelay: `${index * 130 + 100}ms` }}
