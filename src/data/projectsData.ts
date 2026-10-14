@@ -1060,72 +1060,100 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
   // --------------------------------------------------------------------------
   "bubbleworks-pos": {
     slug: "bubbleworks-pos",
-    title: "Bubbleworks – Enterprise Laundry Billing Monorepo",
-    tagline: "Commercial laundry & dry-cleaning management monorepo with Next.js 15, Prisma ORM, Express 5, and PostgreSQL.",
+    title: "Bubbleworks POS – Cloud Laundry & Dry Cleaning Management",
+    tagline: "Enterprise cloud point-of-sale and laundry operations management platform featuring multi-branch franchise architecture, 80mm & 58mm ESC/POS thermal printing, and Firebase Cloud Firestore sync.",
     categoryKey: "business",
     subcategoryKey: "commercial-laundry",
     subcategoryTitle: "Commercial Laundry POS",
-    badge: "📦 Next.js 15 Monorepo + Prisma",
-    badgeColor: "bg-blue-50 text-[#0070f3] border-blue-200",
-    thumbnail: "/projects/bubbleworks/dashboard.png",
+    badge: "🧺 Cloud Laundry POS + Web Bluetooth",
+    badgeColor: "bg-teal-50 text-teal-800 border-teal-200",
+    thumbnail: "/projects/bubbleworks/bubbleworks_pos_counter_tab.webp",
     details: {
-      type: "Commercial Enterprise Billing Monorepo",
-      duration: "2025 – 2026",
+      type: "Commercial Laundry & Dry Cleaning Operations Platform",
+      duration: "2026 (Active & Production Maintained)",
       role: "Lead Full-Stack Architect",
-      status: "Production Monorepo",
-      architecture: "Next.js 15, React 18, Express 5, Prisma ORM, PostgreSQL, Shared Zod Schemas, Turborepo",
-      clientOrContext: "Commercial Laundry & Dry Cleaning Franchises",
+      status: "Live in Production on Vercel",
+      architecture: "React 18, TypeScript, Vite 5, Tailwind CSS, Firebase Cloud Firestore & Auth, Web Bluetooth API (80mm/58mm ESC/POS), Recharts, Shared Zod Monorepo",
+      clientOrContext: "Bubbleworks Laundry & Dry Cleaners (Franchise & Retail Operations)",
     },
     overview: {
       challenge:
-        "Commercial dry-cleaning chains need multi-stage order tracking (wash, dry, press, pack, delivered) and centralized pricing across multiple physical branches without data sync inconsistencies.",
+        "Commercial laundry and dry-cleaning franchises struggle with fragmented counter intake, tracking multi-stage garment processing queues (wash, dry, iron, ready for pickup, delivered), multi-branch cashier access control, and manual paper receipt errors. Existing POS software lacked native support for portable belt-clip Bluetooth thermal printers and real-time cloud sync across franchise branches.",
       solution:
-        "Architected an enterprise monorepo featuring a Next.js 15 operational web dashboard, a high-performance Express 5 API powered by Prisma ORM and PostgreSQL, and shared validation schemas across apps.",
+        "Architected Bubbleworks POS, an enterprise cloud point-of-sale platform featuring a touch-optimized counter billing screen, auto-generating bill serials (BW01-YYYYMMDD-XXX), customer CRM, multi-branch cashier role management, real-time Firebase Firestore database with auto-seeding engine, Recharts sales analytics, and dual wired & Web Bluetooth ESC/POS thermal receipt printing.",
       impact:
-        "Unified multi-branch laundry order processing, garment tag printing, and customer SMS pickup notifications within a robust type-safe codebase.",
+        "Achieved sub-15-second customer intake turnover, eliminated pricing discrepancies across laundry service modifiers (dry clean, wash & fold, steam press), enabled driverless wireless 80mm/58mm receipt printing, and centralized multi-branch franchise revenue auditing.",
     },
     coreFeatures: [
       {
-        title: "Monorepo Workspace Architecture",
-        description: "Clean separation: `apps/web` (Next.js 15 UI), `apps/api` (Express backend), and `packages/shared` (Zod schemas).",
+        title: "Rapid Counter POS Billing & Order Booking",
+        description: "Customer lookup by mobile or name, auto-generated bill numbers, express/normal delivery scheduling, remarks for stain notes, laundry catalog matrix with custom item overrides, and real-time total computation.",
       },
       {
-        title: "Prisma ORM & PostgreSQL Data Layer",
-        description: "Type-safe database migrations, relational schema models, and automated seeding scripts.",
+        title: "Dual-Protocol Thermal Print Center (80mm & 58mm ESC/POS)",
+        description: "Zero-driver browser printing and direct wireless Web Bluetooth API communication with portable 80mm and 58mm BLE thermal printers, featuring Customer/Shop copy toggles and A4 digital PDF export.",
       },
       {
-        title: "Multi-Stage Garment Workflow",
-        description: "Tracks individual items from intake drop-off through wash, dry-clean, quality check, and customer pickup.",
+        title: "Real-Time Firebase Cloud Firestore & Auto-Seeding",
+        description: "Real-time NoSQL document ledger with automatic database initialization for franchise branches (BW01), laundry services (Wash & Fold, Dry Cleaning, Steam Press), rate cards, and administrator credentials.",
       },
       {
-        title: "Customer Ledger & Payment Tracking",
-        description: "Full transaction accounting with support for advance deposits, partial balances, and credit ledger history.",
+        title: "Multi-Branch Franchise & Cashier Access Control",
+        description: "Centralized multi-branch assignment, role permissions (Admin, Cashier), instant active/inactive account toggles, and cashier shift activity tracking.",
+      },
+      {
+        title: "Visual Sales Analytics & Revenue Trends",
+        description: "Recharts-powered 30-day sales histograms, today's revenue breakdowns, settled collections, outstanding credit balance tracking, and active order queue tokens.",
+      },
+      {
+        title: "Multi-Stage Laundry Order Tracking Pipeline",
+        description: "End-to-end garment milestone tracking from intake drop-off through washing, drying, ironing, ready for pickup, and customer handover with real-time status badges.",
       },
     ],
     gallery: [
       {
-        url: "/projects/bubbleworks/dashboard.png",
-        caption: "Bubbleworks Enterprise Dashboard showing active laundry orders, revenue metrics, and processing status",
-        alt: "Bubbleworks Dashboard Screen",
+        url: "/projects/bubbleworks/bubbleworks_pos_counter_tab.webp",
+        caption: "Counter POS Billing & Order Intake (Tablet View): Customer lookup, delivery date scheduling, and catalog service selection",
+        alt: "Bubbleworks POS Counter Billing Tablet Mockup",
       },
       {
-        url: "/projects/bubbleworks/order.png",
-        caption: "Garment Intake & Order Creation View with item modifiers, garment care tags, and total calculations",
-        alt: "Garment Intake Order Screen",
+        url: "/projects/bubbleworks/bubbleworks_print_center_tab.webp",
+        caption: "Thermal Receipt Print Center (Tablet View): 80mm and 58mm ESC/POS thermal printing with Web Bluetooth wireless integration",
+        alt: "Bubbleworks Print Center Tablet Mockup",
+      },
+      {
+        url: "/projects/bubbleworks/bubbleworks_dashboard_tab.webp",
+        caption: "Overview Dashboard & Revenue Analytics (Tablet View): Live branch metrics, settled collections, balance tracking, and Recharts trends",
+        alt: "Bubbleworks Dashboard Tablet Mockup",
+      },
+      {
+        url: "/projects/bubbleworks/bubbleworks_cashiers_tab.webp",
+        caption: "Multi-Branch Cashier & Staff Management (Tablet View): Role-guarded access controls, branch assignments, and active account toggles",
+        alt: "Bubbleworks Cashiers Management Tablet Mockup",
+      },
+      {
+        url: "/projects/bubbleworks/bubbleworks_login_tab.webp",
+        caption: "Cashier Authentication & Sign-In Portal (Tablet View): Secure cloud sign-in with Firebase Auth and Google OAuth integration",
+        alt: "Bubbleworks Login Portal Tablet Mockup",
       },
     ],
     skillsUsed: [
       {
-        group: "Monorepo & Frontend",
-        skills: ["Next.js 15", "React 18", "Tailwind CSS", "TypeScript", "Zod"],
+        group: "Frontend & UI",
+        skills: ["React 18", "TypeScript", "Vite 5", "Tailwind CSS", "Recharts", "Lucide Icons", "React Router v6"],
       },
       {
-        group: "Backend & Database",
-        skills: ["Express 5", "Prisma ORM", "PostgreSQL", "Bcrypt", "REST APIs"],
+        group: "Backend & Cloud",
+        skills: ["Firebase Cloud Firestore", "Firebase Authentication", "Google OAuth", "Auto-Seeding Engine", "Vercel Hosting"],
+      },
+      {
+        group: "Hardware & Architecture",
+        skills: ["Web Bluetooth API", "ESC/POS Binary Protocol", "80mm/58mm Thermal Printing", "Shared Monorepo Zod Schemas"],
       },
     ],
     links: {
-      githubUrl: "https://github.com/madanvinayagam/bubbleworks-laundry-pos",
+      liveUrl: "https://bubbleworkspos-live.vercel.app",
+      githubUrl: "https://github.com/dhineshdevtech/bubbleworkspos-live",
     },
   },
 
