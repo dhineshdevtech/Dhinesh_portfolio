@@ -159,7 +159,7 @@ export default function ContactCTA() {
 
             {/* GitHub Channel */}
             <a
-              href="https://github.com/dhineshbuilder"
+              href="https://github.com/dhineshdevtech"
               target="_blank"
               rel="noopener noreferrer"
               className="p-4 rounded-xl bg-white/80 border border-[#cde0f8] hover:border-[#0070f3] hover:bg-white text-center transition-all group"
@@ -168,7 +168,7 @@ export default function ContactCTA() {
                 GitHub
               </div>
               <div className="text-xs sm:text-sm font-bold text-slate-800 mt-1 flex items-center justify-center gap-1">
-                <span>@dhineshbuilder</span>
+                <span>@dhineshdevtech</span>
                 <span className="text-[#0070f3]">↗</span>
               </div>
             </a>

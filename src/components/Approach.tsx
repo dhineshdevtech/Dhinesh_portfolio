@@ -266,7 +266,7 @@ export default function Approach() {
 
           <div className="pt-2">
             <a
-              href="https://github.com/dhineshbuilder"
+              href="https://github.com/dhineshdevtech"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-[#0070f3] to-[#00c2ff] hover:from-[#005cd6] hover:to-[#00a8e0] shadow-[0_6px_20px_rgba(0,112,243,0.35)] hover:shadow-[0_8px_25px_rgba(0,112,243,0.45)] transition-all hover:scale-[1.03] active:scale-[0.98] group cursor-pointer"

@@ -32,7 +32,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center gap-6">
           <div className="flex items-center gap-4 text-xs font-semibold text-slate-600">
             <a
-              href="https://github.com/dhineshbuilder"
+              href="https://github.com/dhineshdevtech"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#0070f3] transition-colors"

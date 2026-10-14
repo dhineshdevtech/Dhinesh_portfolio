@@ -384,7 +384,7 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
       },
     ],
     links: {
-      githubUrl: "https://github.com/dhineshbuilder/Aira",
+      githubUrl: "https://github.com/dhineshdevtech/Aira",
     },
   },
 
@@ -533,7 +533,7 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
       },
     ],
     links: {
-      githubUrl: "https://github.com/dhineshbuilder/demo-mpnmjec-attendance-system",
+      githubUrl: "https://github.com/dhineshdevtech/demo-mpnmjec-attendance-system",
     },
   },
 
@@ -672,7 +672,7 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
     ],
     links: {
       liveUrl: "https://6ix-quest.vercel.app",
-      githubUrl: "https://github.com/dhineshbuilder/6ixQuest",
+      githubUrl: "https://github.com/dhineshdevtech/6ixQuest",
     },
   },
 
@@ -750,7 +750,7 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
       },
     ],
     links: {
-      githubUrl: "https://github.com/dhineshbuilder/whatsapp_automation",
+      githubUrl: "https://github.com/dhineshdevtech/whatsapp_automation",
     },
   },
 
@@ -965,7 +965,7 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
     ],
     links: {
       liveUrl: "https://offline-canteen-billing-system.vercel.app/",
-      githubUrl: "https://github.com/dhineshbuilder/OFFLINE-CANTEEN-BILLING-SYSTEM",
+      githubUrl: "https://github.com/dhineshdevtech/OFFLINE-CANTEEN-BILLING-SYSTEM",
     },
   },
 
@@ -1106,7 +1106,7 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
     ],
     links: {
       liveUrl: "https://invoice-generator-sage-five.vercel.app",
-      githubUrl: "https://github.com/dhineshbuilder/Invoice_generator",
+      githubUrl: "https://github.com/dhineshdevtech/Invoice_generator",
     },
   },
 };
