@@ -12,7 +12,9 @@ export default function ContactPage() {
     subject: "",
     message: "",
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
 
@@ -24,20 +26,61 @@ export default function ContactPage() {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
-    // Trigger mailto with formatted subject and body
-    const mailtoSubject = encodeURIComponent(
-      formData.subject || `Project Inquiry from ${formData.name}`
-    );
-    const mailtoBody = encodeURIComponent(
-      `Hi Dhinesh,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n`
-    );
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 
-    window.location.href = `mailto:${emailAddress}?subject=${mailtoSubject}&body=${mailtoBody}`;
-    setSubmitted(true);
+    // Graceful fallback to mailto if key is not yet set in .env.local
+    if (!accessKey || accessKey.includes("your_web3forms_access_key")) {
+      const mailtoSubject = encodeURIComponent(
+        formData.subject || `Project Inquiry from ${formData.name}`
+      );
+      const mailtoBody = encodeURIComponent(
+        `Hi Dhinesh,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n`
+      );
+      window.location.href = `mailto:${emailAddress}?subject=${mailtoSubject}&body=${mailtoBody}`;
+      setSubmitStatus("success");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || `Portfolio Message from ${formData.name}`,
+          message: formData.message,
+          from_name: "Dhinesh Portfolio",
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setSubmitStatus("error");
+        setErrorMessage(data.message || "Failed to send message. Please try again.");
+      }
+    } catch {
+      setSubmitStatus("error");
+      setErrorMessage("Network error. Please try again or reach out via email directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleCopyEmail = () => {
@@ -185,28 +228,76 @@ export default function ContactPage() {
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-[#0070f3] to-[#00c2ff] text-white font-bold text-sm sm:text-base shadow-[0_10px_30px_rgba(0,112,243,0.3)] hover:shadow-[0_14px_40px_rgba(0,112,243,0.45)] hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer group"
+                      disabled={isSubmitting}
+                      className={`w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-[#0070f3] to-[#00c2ff] text-white font-bold text-sm sm:text-base shadow-[0_10px_30px_rgba(0,112,243,0.3)] hover:shadow-[0_14px_40px_rgba(0,112,243,0.45)] transition-all cursor-pointer group ${
+                        isSubmitting
+                          ? "opacity-75 cursor-not-allowed pointer-events-none"
+                          : "hover:scale-[1.01] active:scale-[0.99]"
+                      }`}
                     >
-                      <svg
-                        className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                      </svg>
-                      <span>Send Message</span>
+                      {isSubmitting ? (
+                        <>
+                          <svg className="w-4 h-4 animate-spin text-white" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                          </svg>
+                          <span>Sending Message...</span>
+                        </>
+                      ) : (
+                        <>
+                          <svg
+                            className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                          </svg>
+                          <span>Send Message</span>
+                        </>
+                      )}
                     </button>
                   </div>
 
-                  {/* Feedback Notification */}
-                  {submitted && (
-                    <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs sm:text-sm flex items-center justify-between gap-2 animate-in fade-in">
-                      <span>✓ Message ready! Your email client opened with this draft.</span>
+                  {/* Feedback Notifications */}
+                  {submitStatus === "success" && (
+                    <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs sm:text-sm flex items-start justify-between gap-3 animate-in fade-in">
+                      <div className="flex items-start gap-2.5">
+                        <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <div>
+                          <p className="font-bold">Thank you! Your message was sent successfully.</p>
+                          <p className="text-xs text-emerald-700/90 pt-0.5">I will review your message and get back to you within 24 hours.</p>
+                        </div>
+                      </div>
                       <button
                         type="button"
-                        onClick={() => setSubmitted(false)}
-                        className="text-emerald-700 hover:text-emerald-900 font-bold"
+                        onClick={() => setSubmitStatus("idle")}
+                        className="text-emerald-700 hover:text-emerald-900 font-bold p-1 cursor-pointer"
+                        title="Dismiss"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  )}
+
+                  {submitStatus === "error" && (
+                    <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs sm:text-sm flex items-start justify-between gap-3 animate-in fade-in">
+                      <div className="flex items-start gap-2.5">
+                        <svg className="w-5 h-5 text-rose-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div>
+                          <p className="font-bold">Message could not be delivered.</p>
+                          <p className="text-xs text-rose-700/90 pt-0.5">{errorMessage || "Please try again or email me directly."}</p>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setSubmitStatus("idle")}
+                        className="text-rose-700 hover:text-rose-900 font-bold p-1 cursor-pointer"
+                        title="Dismiss"
                       >
                         ✕
                       </button>
