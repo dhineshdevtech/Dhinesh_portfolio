@@ -414,7 +414,7 @@ export default function ContactPage() {
               {/* LinkedIn */}
               <FadeUp delay={60} className="h-full">
                 <a
-                  href="https://linkedin.com/in/dhineshbuilder"
+                  href="https://www.linkedin.com/in/dhineshdevtech/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="h-full group rounded-2xl border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 bg-[#f8fbfe] p-6 hover:border-[#0070f3] hover:shadow-[0_8px_25px_rgba(0,112,243,0.12)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3"
@@ -428,7 +428,7 @@ export default function ContactPage() {
                     <span className="text-sm font-bold text-slate-900 group-hover:text-[#0070f3] transition-colors block">
                       LinkedIn
                     </span>
-                    <span className="text-[11px] text-slate-400 font-medium">@dhineshbuilder</span>
+                    <span className="text-[11px] text-slate-400 font-medium">@dhineshdevtech</span>
                   </div>
                 </a>
               </FadeUp>

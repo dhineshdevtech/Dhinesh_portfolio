@@ -143,7 +143,7 @@ export default function ContactCTA() {
 
             {/* LinkedIn Channel */}
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/dhineshdevtech/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-4 rounded-xl bg-white/80 border border-[#cde0f8] hover:border-[#0070f3] hover:bg-white text-center transition-all group"

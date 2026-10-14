@@ -41,7 +41,7 @@ export default function Footer() {
             </a>
             <span className="text-slate-300">•</span>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/dhineshdevtech/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#0070f3] transition-colors"
