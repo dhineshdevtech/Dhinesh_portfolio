@@ -513,7 +513,7 @@ export default function Navbar() {
           {/* Bottom of Drawer: Resume Button & Contact Pill */}
           <div className="pt-6 border-t border-[#eef5fd] space-y-3">
             <a
-              href="/resume.pdf"
+              href="https://drive.google.com/file/d/1azy675F6qNYeU9Vqk2fnJEPtLRbSePCD/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#0070f3] to-[#00c2ff] shadow-sm hover:opacity-95 transition-all"

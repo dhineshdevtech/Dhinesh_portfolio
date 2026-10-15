@@ -120,9 +120,9 @@ export default function ResumePage() {
           {/* Main Action Buttons */}
           <FadeUp delay={260} duration={700}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto">
-              {/* Primary Button: View PDF */}
+              {/* Primary Button: View on Google Drive */}
               <a
-                href="/Dhinesh_Resume.pdf"
+                href="https://drive.google.com/file/d/1azy675F6qNYeU9Vqk2fnJEPtLRbSePCD/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#0070f3] to-[#00c2ff] text-white font-bold text-base shadow-[0_10px_30px_rgba(0,112,243,0.3)] hover:shadow-[0_14px_40px_rgba(0,112,243,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group"
@@ -140,7 +140,7 @@ export default function ResumePage() {
                     d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                   />
                 </svg>
-                <span>View Dhinesh&apos;s Resume (PDF)</span>
+                <span>View Resume (Google Drive)</span>
               </a>
 
               {/* Secondary Button: Download PDF Direct */}
