@@ -447,7 +447,7 @@ export default function TechStack() {
     <section
       ref={sectionRef}
       id="skills"
-      className="relative py-16 sm:py-20 lg:py-24 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 border-t border-[#d5e5f8] overflow-hidden"
+      className="relative py-12 sm:py-14 lg:py-16 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 border-t border-[#d5e5f8] overflow-hidden"
     >
       {/* Apple-style gradient section boundary line */}
       <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#0070f3]/35 to-transparent pointer-events-none" />
@@ -456,7 +456,7 @@ export default function TechStack() {
       <div className="absolute top-1/4 left-1/3 w-[700px] h-[700px] rounded-full bg-gradient-to-tr from-[#00f2fe]/8 via-[#0070f3]/5 to-transparent blur-3xl pointer-events-none -z-10" />
       <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-[#0070f3]/5 blur-3xl pointer-events-none -z-10" />
 
-      <div className="max-w-6xl mx-auto space-y-14">
+      <div className="max-w-6xl mx-auto space-y-8 sm:space-y-10">
         {/* Section Header (Down to Up Entrance Animation) */}
         <div
           className={`space-y-4 max-w-3xl text-left transition-all duration-700 ease-out ${

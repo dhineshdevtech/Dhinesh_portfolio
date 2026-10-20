@@ -28,11 +28,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
     <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-[#00f2fe]/30 selection:text-slate-900 flex flex-col justify-between">
       <Navbar />
 
-      <main className="relative pt-32 sm:pt-36 pb-20 sm:pb-28 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 overflow-hidden flex-1">
+      <main className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 overflow-hidden flex-1">
         <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#0070f3]/35 to-transparent pointer-events-none" />
         <div className="absolute top-20 right-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-bl from-[#00f2fe]/10 via-[#0070f3]/6 to-transparent blur-3xl pointer-events-none -z-10" />
 
-        <div className="max-w-5xl mx-auto space-y-12 sm:space-y-14">
+        <div className="max-w-5xl mx-auto space-y-8 sm:space-y-10">
           {/* Breadcrumb Navigation */}
           <FadeUp delay={0} duration={500}>
             <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500">

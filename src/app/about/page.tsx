@@ -13,7 +13,7 @@ export default function AboutPage() {
       <Navbar />
 
       {/* Main Container */}
-      <main className="relative pt-32 sm:pt-36 pb-20 sm:pb-24 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 overflow-hidden">
+      <main className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 overflow-hidden">
         {/* Apple-style gradient section boundary line */}
         <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#0070f3]/35 to-transparent pointer-events-none" />
 
@@ -25,7 +25,7 @@ export default function AboutPage() {
           {/* ========================================================================= */}
           {/* SECTION 1: ABOUT ME (Centered headline, balanced 2-column layout)         */}
           {/* ========================================================================= */}
-          <div className="space-y-10 sm:space-y-12">
+          <div className="space-y-8 sm:space-y-10">
             {/* Display Headline (Proper Top Center) */}
             <FadeUp delay={0} duration={700}>
               <div className="text-center w-full">
@@ -79,7 +79,7 @@ export default function AboutPage() {
           {/* ========================================================================= */}
           {/* SECTION 2: HOW I GOT HERE (Milestones & Journey Timeline)                 */}
           {/* ========================================================================= */}
-          <div className="mt-16 sm:mt-20 pt-12 sm:pt-14 border-t border-[#d8e6f7] text-left space-y-8">
+          <div className="mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-[#d8e6f7] text-left space-y-8">
             {/* Section Header */}
             <FadeUp delay={0}>
               <div className="space-y-2">
@@ -157,7 +157,7 @@ export default function AboutPage() {
           {/* ========================================================================= */}
           {/* SECTION 3: WHERE I BUILT MY FOUNDATION (Compact, Clean 3-Card Grid)       */}
           {/* ========================================================================= */}
-          <div className="mt-16 sm:mt-20 pt-12 sm:pt-14 border-t border-[#d8e6f7] text-left space-y-7">
+          <div className="mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-[#d8e6f7] text-left space-y-7">
             {/* Section Header */}
             <FadeUp delay={0}>
               <div className="space-y-2">
@@ -340,7 +340,7 @@ export default function AboutPage() {
           {/* ========================================================================= */}
           {/* SECTION 4: HOW I THINK ABOUT SOFTWARE (5 Core Principles)                 */}
           {/* ========================================================================= */}
-          <div className="mt-16 sm:mt-20 pt-12 sm:pt-14 border-t border-[#d8e6f7] text-left space-y-8">
+          <div className="mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-[#d8e6f7] text-left space-y-8">
             {/* Section Header */}
             <FadeUp delay={0}>
               <div className="space-y-2">
@@ -446,7 +446,7 @@ export default function AboutPage() {
           {/* ========================================================================= */}
           {/* SECTION 5: EDUCATION                                                      */}
           {/* ========================================================================= */}
-          <div className="mt-16 sm:mt-20 pt-12 sm:pt-14 border-t border-[#d8e6f7] text-left space-y-7">
+          <div className="mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-[#d8e6f7] text-left space-y-7">
             {/* Section Header */}
             <FadeUp delay={0}>
               <div>
@@ -521,7 +521,7 @@ export default function AboutPage() {
           {/* SECTION 6: WHERE I'M GOING                                                */}
           {/* ========================================================================= */}
           <FadeUp delay={0}>
-            <div className="mt-16 sm:mt-20 pt-12 sm:pt-14 border-t border-[#d8e6f7] text-left space-y-3.5">
+            <div className="mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-[#d8e6f7] text-left space-y-3.5">
               <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-slate-900 tracking-tight">
                 Where I&apos;m Going
               </h2>
@@ -536,7 +536,7 @@ export default function AboutPage() {
           {/* CALL TO ACTION BANNER: HAVE A PROJECT IN MIND?                             */}
           {/* ========================================================================= */}
           <FadeUp delay={60}>
-            <div className="mt-16 sm:mt-20 pt-14 sm:pt-16 border-t border-[#d8e6f7] text-center space-y-6">
+            <div className="mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-[#d8e6f7] text-center space-y-5">
               <div className="space-y-3 max-w-xl mx-auto">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
                   Have a project in mind?

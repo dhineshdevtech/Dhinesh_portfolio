@@ -183,7 +183,7 @@ export default function FeaturedWork() {
     <section
       ref={sectionRef}
       id="projects"
-      className="relative py-16 sm:py-20 lg:py-24 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 border-t border-[#d5e5f8] overflow-hidden"
+      className="relative py-12 sm:py-14 lg:py-16 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 border-t border-[#d5e5f8] overflow-hidden"
     >
       {/* Apple-style gradient section boundary line */}
       <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#0070f3]/35 to-transparent pointer-events-none" />
@@ -192,7 +192,7 @@ export default function FeaturedWork() {
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[850px] rounded-full bg-gradient-to-tr from-[#00f2fe]/10 via-[#0070f3]/6 to-transparent blur-3xl pointer-events-none -z-10" />
       <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-[#0070f3]/6 blur-3xl pointer-events-none -z-10" />
 
-      <div className="max-w-6xl mx-auto space-y-10 sm:space-y-12">
+      <div className="max-w-6xl mx-auto space-y-8 sm:space-y-10">
         {/* Section Header (Down to Up Entrance Animation) */}
         <div
           className={`space-y-4 max-w-3xl text-left transition-all duration-700 ease-out ${
@@ -216,7 +216,7 @@ export default function FeaturedWork() {
         </div>
 
         {/* 2x2 Project Cards Grid (Staggered Down to Up Entrance Animation) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {featuredProjects.map((project, index) => (
             <div
               key={project.id}

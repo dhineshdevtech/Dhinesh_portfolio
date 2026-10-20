@@ -101,7 +101,7 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Main Container */}
-      <main className="relative pt-32 sm:pt-36 pb-20 sm:pb-24 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 overflow-hidden">
+      <main className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 overflow-hidden">
         {/* Apple-style gradient section boundary line */}
         <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#0070f3]/35 to-transparent pointer-events-none" />
 
@@ -109,7 +109,7 @@ export default function ContactPage() {
         <div className="absolute top-20 right-1/4 w-[650px] h-[650px] rounded-full bg-gradient-to-bl from-[#00f2fe]/10 via-[#0070f3]/6 to-transparent blur-3xl pointer-events-none -z-10" />
         <div className="absolute top-1/2 left-10 w-96 h-96 rounded-full bg-[#0070f3]/5 blur-3xl pointer-events-none -z-10" />
 
-        <div className="max-w-6xl mx-auto space-y-16 sm:space-y-20">
+        <div className="max-w-6xl mx-auto space-y-10 sm:space-y-12">
           {/* ========================================================================= */}
           {/* 1. HERO SECTION: "Get in Touch"                                            */}
           {/* ========================================================================= */}

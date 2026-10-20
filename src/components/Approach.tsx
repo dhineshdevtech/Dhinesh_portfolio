@@ -134,7 +134,7 @@ export default function Approach() {
     <section
       ref={sectionRef}
       id="approach"
-      className="relative py-16 sm:py-20 lg:py-24 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 border-t border-[#d8e6f7] overflow-hidden"
+      className="relative py-12 sm:py-14 lg:py-16 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 border-t border-[#d8e6f7] overflow-hidden"
     >
       {/* Apple-style gradient section boundary line */}
       <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#0070f3]/35 to-transparent pointer-events-none" />
@@ -142,11 +142,11 @@ export default function Approach() {
       {/* Subtle background ambient cyber glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-gradient-to-tr from-[#00f2fe]/8 via-[#0070f3]/5 to-transparent blur-3xl pointer-events-none -z-10" />
 
-      <div className="max-w-5xl mx-auto space-y-16 sm:space-y-20">
+      <div className="max-w-5xl mx-auto space-y-10 sm:space-y-12">
         {/* ========================================================================= */}
         {/* 1. 04 APPROACH: How I Engineer Software                                   */}
         {/* ========================================================================= */}
-        <div className="text-center space-y-12">
+        <div className="text-center space-y-6 sm:space-y-8">
           {/* Section Header */}
           <div
             className={`space-y-4 max-w-2xl mx-auto transition-all duration-700 ease-out ${

@@ -11,7 +11,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-white border-t border-[#dce8f8] py-14 px-6 sm:px-8 lg:px-12 text-slate-600">
+    <footer className="relative bg-white border-t border-[#dce8f8] py-8 sm:py-10 px-6 sm:px-8 lg:px-12 text-slate-600">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
         {/* Left: Branding & Tagline */}
         <div className="flex flex-col items-center md:items-start gap-2.5 text-center md:text-left">

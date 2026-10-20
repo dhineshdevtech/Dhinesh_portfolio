@@ -11,7 +11,7 @@ export default function ResumePage() {
       <Navbar />
 
       {/* Main Hero Container - Centered Vertically */}
-      <main className="relative flex-1 flex flex-col items-center justify-center pt-32 sm:pt-36 pb-20 sm:pb-24 px-6 sm:px-8 lg:px-12 overflow-hidden">
+      <main className="relative flex-1 flex flex-col items-center justify-center pt-24 sm:pt-28 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 overflow-hidden">
         {/* Apple-style gradient section boundary line */}
         <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#0070f3]/35 to-transparent pointer-events-none" />
 

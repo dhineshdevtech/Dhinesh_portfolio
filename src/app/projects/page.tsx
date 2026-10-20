@@ -105,7 +105,7 @@ function ProjectsContent() {
     <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-[#00f2fe]/30 selection:text-slate-900 flex flex-col justify-between">
       <Navbar />
 
-      <main className="relative pt-32 sm:pt-36 pb-20 sm:pb-28 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 overflow-hidden flex-1">
+      <main className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 overflow-hidden flex-1">
         {/* Apple-style gradient section boundary line */}
         <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#0070f3]/35 to-transparent pointer-events-none" />
 
@@ -118,7 +118,7 @@ function ProjectsContent() {
           {/* LEVEL 4: PROJECT DETAILS CASE STUDY (If a project is selected)             */}
           {/* ========================================================================= */}
           {activeProject && (
-            <div className="space-y-12 sm:space-y-14">
+            <div className="space-y-8 sm:space-y-10">
               {/* Breadcrumb Navigation */}
               <FadeUp delay={0} duration={500}>
                 <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500">
@@ -455,7 +455,7 @@ function ProjectsContent() {
           {/* LEVEL 3: SUBCATEGORY PROJECTS GRID (Matching Screenshot 3)                */}
           {/* ========================================================================= */}
           {!activeProject && activeCategory && activeSubcategory && (
-            <div className="space-y-10 sm:space-y-12">
+            <div className="space-y-8 sm:space-y-10">
               {/* Back to Category Button */}
               <FadeUp delay={0} duration={500}>
                 <div>
@@ -546,7 +546,7 @@ function ProjectsContent() {
           {/* LEVEL 2: SUBCATEGORY LIST (Matching Screenshot 1 & 2)                      */}
           {/* ========================================================================= */}
           {!activeProject && activeCategory && !activeSubcategory && currentCategoryData && (
-            <div className="space-y-10 sm:space-y-12">
+            <div className="space-y-8 sm:space-y-10">
               {/* Back to All Collections Button (Matching Screenshot 1) */}
               <FadeUp delay={0} duration={500}>
                 <div>
@@ -638,7 +638,7 @@ function ProjectsContent() {
           {/* LEVEL 1: ALL COLLECTIONS HUB ("What I Build") - Nothing shown below!       */}
           {/* ========================================================================= */}
           {!activeCategory && !activeProject && (
-            <div className="space-y-12 sm:space-y-16">
+            <div className="space-y-8 sm:space-y-10">
               {/* Heading matching user inspiration */}
               <div className="text-center space-y-4 max-w-2xl mx-auto pt-4 sm:pt-6">
                 <FadeUp delay={0} duration={600}>

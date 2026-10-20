@@ -50,7 +50,7 @@ export default function CertificatesPage() {
       <Navbar />
 
       {/* Main Container */}
-      <main className="relative pt-32 sm:pt-36 pb-20 sm:pb-24 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 overflow-hidden">
+      <main className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 overflow-hidden">
         {/* Apple-style gradient section boundary line */}
         <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#0070f3]/35 to-transparent pointer-events-none" />
 
@@ -62,7 +62,7 @@ export default function CertificatesPage() {
           {/* ========================================================================= */}
           {/* HEADER SECTION: DIRECTLY INSPIRED BY REFERENCE SCREENSHOT                  */}
           {/* ========================================================================= */}
-          <div className="text-center max-w-2xl mx-auto space-y-4 mb-12 sm:mb-14">
+          <div className="text-center max-w-2xl mx-auto space-y-4 mb-8 sm:mb-10">
             {/* Display Headline */}
             <FadeUp delay={0} duration={600}>
               <h1 className="text-3xl sm:text-5xl lg:text-[52px] font-black text-slate-900 tracking-tight leading-[1.12]">
@@ -157,7 +157,7 @@ export default function CertificatesPage() {
           {/* BOTTOM NAVIGATION: EXPLORE RESUME OR PROJECTS                             */}
           {/* ========================================================================= */}
           <FadeUp delay={100}>
-            <div className="mt-16 sm:mt-20 pt-12 sm:pt-14 border-t border-[#d8e6f7] text-center space-y-5">
+            <div className="mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-[#d8e6f7] text-center space-y-4">
               <div className="space-y-1.5 max-w-xl mx-auto">
                 <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
                   Interested in my complete background?

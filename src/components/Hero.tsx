@@ -20,7 +20,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[92vh] flex items-center justify-center pt-24 sm:pt-28 pb-16 px-6 sm:px-8 lg:px-12 bg-[#f0f6fe] overflow-hidden"
+      className="relative pt-24 sm:pt-28 pb-12 sm:pb-14 px-6 sm:px-8 lg:px-12 bg-[#f0f6fe] overflow-hidden"
     >
       {/* Background ambient cyber-blue glow orbs */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-gradient-to-tr from-[#00f2fe]/20 via-[#0070f3]/12 to-transparent blur-3xl pointer-events-none -z-10" />
@@ -83,7 +83,7 @@ export default function Hero() {
           </div>
 
           {/* Metric Stats Counters (Bottom Bar - 2 Columns) */}
-          <div className="pt-8 border-t border-[#d8e6f8] flex items-center gap-6 sm:gap-8 max-w-md">
+          <div className="pt-6 border-t border-[#d8e6f8] flex items-center gap-6 sm:gap-8 max-w-md">
             <div>
               <div className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
                 {TOTAL_PROJECTS_COUNT}<span className="text-[#0070f3]">+</span>

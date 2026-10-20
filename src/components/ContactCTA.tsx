@@ -39,7 +39,7 @@ export default function ContactCTA() {
     <section
       ref={sectionRef}
       id="contact"
-      className="relative py-16 sm:py-20 lg:py-24 px-6 sm:px-8 lg:px-12 bg-[#f0f6fe] text-slate-900 border-t border-[#d8e6f7] overflow-hidden"
+      className="relative py-12 sm:py-14 lg:py-16 px-6 sm:px-8 lg:px-12 bg-[#f0f6fe] text-slate-900 border-t border-[#d8e6f7] overflow-hidden"
     >
       {/* Apple-style gradient section boundary line */}
       <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#0070f3]/40 to-transparent pointer-events-none" />
@@ -48,7 +48,7 @@ export default function ContactCTA() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-gradient-to-tr from-[#00f2fe]/20 via-[#0070f3]/12 to-transparent blur-3xl pointer-events-none -z-10" />
       <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-[#0070f3]/8 blur-3xl pointer-events-none -z-10" />
 
-      <div className="max-w-4xl mx-auto text-center space-y-10 sm:space-y-12">
+      <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
         {/* Availability Beacon Pill */}
         <div
           className={`transition-all duration-700 ease-out ${
