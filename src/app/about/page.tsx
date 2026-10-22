@@ -42,9 +42,9 @@ export default function AboutPage() {
                 <div className="md:col-span-5 lg:col-span-4 flex justify-center md:justify-start">
                   <div className="w-[260px] h-[260px] sm:w-[280px] sm:h-[280px] rounded-3xl bg-[#f8fbfe] border-2 border-[#bfd8f6] shadow-[0_8px_30px_rgba(0,112,243,0.08)] flex items-center justify-center p-5 flex-shrink-0">
                     {/* Circular Avatar with Glowing Azure Gradient Ring */}
-                    <div className="relative group/avatar cursor-pointer transition-all duration-300 hover:scale-105">
-                      <div className="w-48 h-48 sm:w-52 sm:h-52 rounded-full p-1.5 bg-gradient-to-tr from-[#0070f3] via-[#00c2ff] to-[#00f2fe] shadow-[0_0_24px_rgba(0,112,243,0.25)]">
-                        <div className="w-full h-full rounded-full overflow-hidden bg-white">
+                    <div className="relative group/avatar cursor-pointer">
+                      <div className="w-48 h-48 sm:w-52 sm:h-52 rounded-full overflow-hidden bg-white shadow-xs">
+
                           <Image
                             src="/profile.webp"
                             alt="Dhinesh - Software Engineer & Web & Mobile Application Developer"
@@ -53,7 +53,7 @@ export default function AboutPage() {
                             className="w-full h-full object-cover"
                             priority
                           />
-                        </div>
+
                       </div>
                     </div>
                   </div>
