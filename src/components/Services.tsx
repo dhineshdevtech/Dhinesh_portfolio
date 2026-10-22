@@ -20,7 +20,7 @@ const servicesList: ServiceItem[] = [
       "Building smooth, high-performance Android mobile applications using a clean Flutter codebase with responsive, pixel-perfect UI and native device performance.",
     tags: ["Flutter", "Dart", "Android", "State Management"],
     icon: (cls = "w-6 h-6") => (
-      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -38,7 +38,7 @@ const servicesList: ServiceItem[] = [
       "Engineering scalable, responsive web platforms using React, Next.js, and TypeScript with fast load times, clean component architecture, and modern UX design.",
     tags: ["Next.js", "React 18", "TypeScript", "Tailwind CSS"],
     icon: (cls = "w-6 h-6") => (
-      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -56,36 +56,30 @@ const servicesList: ServiceItem[] = [
       "Implementing live telemetry engines, bi-directional WebSocket event streams, Google Maps integration, and real-time vehicle/user location monitoring.",
     tags: ["WebSockets", "Google Maps API", "Live Telemetry", "GPS"],
     icon: (cls = "w-6 h-6") => (
-      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth={2}
-          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-        />
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+          d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
         />
       </svg>
     ),
   },
   {
-    id: "payment-gateways",
+    id: "backend-architecture",
     number: "04",
-    title: "Payment Gateways & Integrations",
+    title: "Backend Architecture & APIs",
     description:
-      "Integrating secure payment checkout flows like Razorpay and Stripe, third-party REST APIs, automated transaction handling, and robust security verification.",
-    tags: ["Razorpay", "Stripe", "REST APIs", "Secure Checkout"],
+      "Designing resilient RESTful APIs, relational & document databases (Supabase, Firebase, Node.js), real-time pub/sub synchronization, and authentication flows.",
+    tags: ["Node.js", "Express", "Supabase", "Firebase", "REST APIs"],
     icon: (cls = "w-6 h-6") => (
-      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth={2}
-          d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+          d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
         />
       </svg>
     ),
@@ -98,7 +92,7 @@ const servicesList: ServiceItem[] = [
       "Complete release pipeline to the Google Play Store — managing Android app bundles (AAB), signing keys, store listing optimization, policy compliance, and version updates.",
     tags: ["Google Play Console", "AAB Bundles", "Keystore Signing", "Release Ops"],
     icon: (cls = "w-6 h-6") => (
-      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -116,7 +110,7 @@ const servicesList: ServiceItem[] = [
       "Deploying and hosting live web applications and backends on production cloud platforms including Vercel, Render, Supabase, and Firebase with automated CI/CD pipelines.",
     tags: ["Vercel", "Render", "Supabase", "Firebase", "CI/CD"],
     icon: (cls = "w-6 h-6") => (
-      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -156,76 +150,68 @@ export default function Services() {
     <section
       ref={sectionRef}
       id="services"
-      className="relative py-12 sm:py-14 lg:py-16 px-6 sm:px-8 lg:px-12 bg-[#f8fbfe] text-slate-900 border-t border-[#d5e5f8] overflow-hidden"
+      className="relative py-12 sm:py-14 lg:py-16 px-6 sm:px-8 lg:px-12 bg-slate-50/60 text-slate-900 border-t border-slate-200/80 overflow-hidden"
     >
-      {/* Apple-style gradient section boundary line */}
-      <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#0070f3]/35 to-transparent pointer-events-none" />
-
-      {/* Subtle background ambient lighting */}
-      <div className="absolute top-1/3 right-1/4 w-[650px] h-[650px] rounded-full bg-gradient-to-tr from-[#00f2fe]/8 via-[#0070f3]/5 to-transparent blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-10 left-10 w-80 h-80 rounded-full bg-[#0070f3]/5 blur-3xl pointer-events-none -z-10" />
-
       <div className="max-w-6xl mx-auto space-y-8 sm:space-y-10">
-        {/* Section Header (Down to Up Entrance Animation) */}
+        {/* Section Header */}
         <div
-          className={`space-y-4 max-w-3xl text-left transition-all duration-700 ease-out ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          className={`space-y-3 max-w-3xl text-left transition-all duration-700 ease-out ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          <div className="font-mono text-xs sm:text-sm font-bold tracking-widest uppercase text-[#0070f3] flex items-center gap-2.5">
-            <span className="text-slate-400">02</span>
-            <span>SERVICES</span>
+          <div className="font-mono text-xs sm:text-sm font-bold tracking-wider uppercase text-[#0066ff] flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0066ff]" />
+            <span>CORE CAPABILITIES</span>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.08]">
-            Full-Stack Web &amp; Flutter Mobile Developer
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
+            Full-Stack Web &amp; Flutter Mobile Engineering
           </h2>
 
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            Building high-performance Flutter mobile apps, real-time tracking platforms, and production cloud systems with clean, scalable architecture.
+            Delivering cross-platform mobile apps, real-time GPS telemetry pipelines, and cloud-backed web platforms with clean, maintainable architecture.
           </p>
         </div>
 
-        {/* 3x2 Services Grid (Apple Crisp Border & Staggered Elevation) */}
+        {/* 3x2 Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {servicesList.map((service, index) => (
             <div
               key={service.id}
-              style={{ transitionDelay: `${index * 100 + 80}ms` }}
-              className={`h-full flex flex-col transition-all duration-700 ease-out ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+              style={{ transitionDelay: `${index * 80}ms` }}
+              className={`h-full flex flex-col transition-all duration-500 ease-out ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >
-              <div className="group relative flex flex-col justify-between h-full p-7 sm:p-8 rounded-2xl bg-white border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 hover:border-[#0070f3] active:border-[#0070f3] shadow-[0_2px_8px_rgba(15,23,42,0.05),0_12px_30px_rgba(0,112,243,0.06)] hover:shadow-[0_4px_16px_rgba(15,23,42,0.08),0_20px_45px_rgba(0,112,243,0.16)] active:shadow-[0_2px_10px_rgba(0,112,243,0.25)] transition-all duration-300 hover:-translate-y-1.5 active:scale-[0.99] cursor-default overflow-hidden select-none space-y-6">
-                
-                {/* Top Row: Index Number Pill & Icon Badge */}
+              <div className="group relative flex flex-col justify-between h-full p-6 sm:p-7 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0066ff] hover:shadow-md transition-[border-color,box-shadow] duration-200 overflow-hidden space-y-5">
+                {/* Top Row: Index Badge & Clean Icon */}
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs font-black tracking-wider text-[#0070f3] bg-[#edf4fd] border border-[#cde0f8] px-2.5 py-1 rounded-lg shadow-2xs">
+                  <span className="font-mono text-xs font-bold tracking-wider text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md">
                     {service.number}
                   </span>
 
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#eaf3fe] to-[#edf4fd] border border-[#cde0f8] flex items-center justify-center text-[#0070f3] group-hover:scale-110 group-hover:bg-[#0070f3] group-hover:text-white transition-all duration-300 shadow-2xs">
-                    {service.icon("w-5 h-5 transition-transform duration-300 group-hover:scale-110")}
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#0066ff] group-hover:bg-[#0066ff] group-hover:text-white transition-[background-color,color] duration-200">
+                    {service.icon("w-5 h-5")}
                   </div>
                 </div>
 
-                {/* Middle: Title & Description */}
-                <div className="space-y-3">
-                  <h3 className="text-xl sm:text-[22px] font-black text-slate-900 tracking-tight leading-snug group-hover:text-[#0070f3] transition-colors">
+                {/* Title & Description */}
+                <div className="space-y-2 flex-1">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight group-hover:text-[#0066ff] transition-colors">
                     {service.title}
                   </h3>
 
-                  <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+                  <p className="text-sm text-slate-600 leading-relaxed">
                     {service.description}
                   </p>
                 </div>
 
-                {/* Bottom: Tech Stack Pills */}
-                <div className="pt-2 flex flex-wrap gap-1.5 border-t border-[#edf4fc]">
+                {/* Tech Stack Pills */}
+                <div className="pt-3 flex flex-wrap gap-1.5 border-t border-slate-100">
                   {service.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2.5 py-0.5 rounded-lg text-[11px] font-semibold text-slate-600 bg-[#f0f6fe] border border-[#dce8f8]"
+                      className="px-2 py-0.5 rounded-md text-[11px] font-medium text-slate-600 bg-slate-50 border border-slate-200"
                     >
                       {tag}
                     </span>

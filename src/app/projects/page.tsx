@@ -105,13 +105,10 @@ function ProjectsContent() {
     <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-[#00f2fe]/30 selection:text-slate-900 flex flex-col justify-between">
       <Navbar />
 
-      <main className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 overflow-hidden flex-1">
-        {/* Apple-style gradient section boundary line */}
-        <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#0070f3]/35 to-transparent pointer-events-none" />
+      <main id="main-content" className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 overflow-hidden flex-1">
+        
 
-        {/* Ambient background glows */}
-        <div className="absolute top-20 right-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-bl from-[#00f2fe]/10 via-[#0070f3]/6 to-transparent blur-3xl pointer-events-none -z-10" />
-        <div className="absolute top-1/2 left-10 w-72 h-72 rounded-full bg-[#0070f3]/5 blur-3xl pointer-events-none -z-10" />
+        
 
         <div className="max-w-5xl mx-auto">
           {/* ========================================================================= */}

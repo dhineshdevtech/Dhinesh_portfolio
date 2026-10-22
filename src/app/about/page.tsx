@@ -13,13 +13,10 @@ export default function AboutPage() {
       <Navbar />
 
       {/* Main Container */}
-      <main className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 overflow-hidden">
-        {/* Apple-style gradient section boundary line */}
-        <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#0070f3]/35 to-transparent pointer-events-none" />
+      <main id="main-content" className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 overflow-hidden">
+        
 
-        {/* Background ambient cyber glow */}
-        <div className="absolute top-1/4 right-1/4 w-[700px] h-[700px] rounded-full bg-gradient-to-bl from-[#00f2fe]/10 via-[#0070f3]/6 to-transparent blur-3xl pointer-events-none -z-10" />
-        <div className="absolute top-1/2 left-10 w-80 h-80 rounded-full bg-[#0070f3]/5 blur-3xl pointer-events-none -z-10" />
+        
 
         <div className="max-w-5xl mx-auto">
           {/* ========================================================================= */}

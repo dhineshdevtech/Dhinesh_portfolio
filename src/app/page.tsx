@@ -9,27 +9,30 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-[#00f2fe]/30 selection:text-slate-900">
+    <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-[#0066ff]/20 selection:text-slate-900">
       {/* Navigation Bar */}
       <Navbar />
 
-      {/* Hero Section Component */}
-      <Hero />
+      {/* Main Content Landmark */}
+      <main id="main-content">
+        {/* Hero Section Component */}
+        <Hero />
 
-      {/* Featured Work / Projects Section (01) */}
-      <FeaturedWork />
+        {/* Featured Work / Projects Section */}
+        <FeaturedWork />
 
-      {/* Services Section (02) */}
-      <Services />
+        {/* Services & Core Capabilities Section */}
+        <Services />
 
-      {/* Tech Stack Section (03) */}
-      <TechStack />
+        {/* Tech Stack & Arsenal Section */}
+        <TechStack />
 
-      {/* Approach Section (04) with AI Automation spotlight & GitHub banner */}
-      <Approach />
+        {/* Engineering Approach & Practices */}
+        <Approach />
 
-      {/* Final Contact Call-to-Action Section */}
-      <ContactCTA />
+        {/* Final Contact Call-to-Action Section */}
+        <ContactCTA />
+      </main>
 
       {/* Footer */}
       <Footer />

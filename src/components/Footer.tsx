@@ -11,20 +11,20 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-white border-t border-[#dce8f8] py-8 sm:py-10 px-6 sm:px-8 lg:px-12 text-slate-600">
+    <footer className="relative bg-white border-t border-slate-200 py-8 sm:py-10 px-6 sm:px-8 lg:px-12 text-slate-600">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
         {/* Left: Branding & Tagline */}
-        <div className="flex flex-col items-center md:items-start gap-2.5 text-center md:text-left">
+        <div className="flex flex-col items-center md:items-start gap-2 text-center md:text-left">
           <div className="flex items-center gap-2">
-            <span className="w-8 h-8 rounded-xl bg-[#edf4fd] border border-[#d8e6f8] flex items-center justify-center font-black text-slate-900 text-sm shadow-2xs">
-              D<span className="w-1.5 h-1.5 rounded-full bg-[#00f2fe] ml-0.5" />
+            <span className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center font-bold text-slate-900 text-sm shadow-2xs">
+              D
             </span>
             <span className="font-extrabold text-slate-900 tracking-tight text-lg">
-              Dhinesh<span className="text-[#0070f3]">.</span>
+              Dhinesh
             </span>
           </div>
-          <p className="text-xs sm:text-sm text-slate-500 max-w-sm">
-            Web &amp; Mobile Application Developer • Crafting scalable modern web apps and high-performance cross-platform mobile experiences.
+          <p className="text-xs sm:text-sm text-slate-500 max-w-sm leading-relaxed">
+            Software Engineer • Web &amp; Mobile Application Developer crafting scalable systems and verified cross-platform apps.
           </p>
         </div>
 
@@ -35,23 +35,23 @@ export default function Footer() {
               href="https://github.com/dhineshdevtech"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#0070f3] transition-colors"
+              className="hover:text-[#0066ff] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] rounded-xs transition-colors"
             >
               GitHub ↗
             </a>
-            <span className="text-slate-300">•</span>
+            <span className="text-slate-300" aria-hidden="true">•</span>
             <a
               href="https://www.linkedin.com/in/dhineshdevtech/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#0070f3] transition-colors"
+              className="hover:text-[#0066ff] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] rounded-xs transition-colors"
             >
               LinkedIn ↗
             </a>
-            <span className="text-slate-300">•</span>
+            <span className="text-slate-300" aria-hidden="true">•</span>
             <Link
               href="/contact"
-              className="hover:text-[#0070f3] transition-colors"
+              className="hover:text-[#0066ff] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] rounded-xs transition-colors"
             >
               Contact
             </Link>
@@ -60,19 +60,20 @@ export default function Footer() {
           <button
             type="button"
             onClick={scrollToTop}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-[#f0f6fe] border border-[#d8e6f8] hover:bg-[#e4effd] hover:text-[#0070f3] transition-all cursor-pointer shadow-2xs"
+            aria-label="Scroll back to top of page"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-slate-700 bg-slate-50 border border-slate-200 hover:bg-slate-100 hover:text-[#0066ff] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] transition-colors cursor-pointer"
           >
             <span>Back to top</span>
-            <span className="text-sm">↑</span>
+            <span className="text-sm" aria-hidden="true">↑</span>
           </button>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-[#edf3fb] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <div className="max-w-6xl mx-auto mt-8 pt-5 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
         <p>© 2026 Dhinesh. All rights reserved.</p>
         <p className="flex items-center gap-1.5">
-          <span>Built with</span>
-          <span className="text-[#0070f3] font-semibold">Next.js &amp; Tailwind CSS</span>
+          <span>Engineered with</span>
+          <span className="text-slate-700 font-semibold">Next.js &amp; Tailwind CSS</span>
         </p>
       </div>
     </footer>

@@ -447,33 +447,26 @@ export default function TechStack() {
     <section
       ref={sectionRef}
       id="skills"
-      className="relative py-12 sm:py-14 lg:py-16 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 border-t border-[#d5e5f8] overflow-hidden"
+      className="relative py-12 sm:py-14 lg:py-16 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 border-t border-slate-200/80 overflow-hidden"
     >
-      {/* Apple-style gradient section boundary line */}
-      <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#0070f3]/35 to-transparent pointer-events-none" />
-
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/4 left-1/3 w-[700px] h-[700px] rounded-full bg-gradient-to-tr from-[#00f2fe]/8 via-[#0070f3]/5 to-transparent blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-[#0070f3]/5 blur-3xl pointer-events-none -z-10" />
-
       <div className="max-w-6xl mx-auto space-y-8 sm:space-y-10">
-        {/* Section Header (Down to Up Entrance Animation) */}
+        {/* Section Header */}
         <div
-          className={`space-y-4 max-w-3xl text-left transition-all duration-700 ease-out ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          className={`space-y-3 max-w-3xl text-left transition-all duration-700 ease-out ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          <div className="font-mono text-xs sm:text-sm font-bold tracking-widest uppercase text-[#0070f3] flex items-center gap-2.5">
-            <span className="text-slate-400">03</span>
-            <span>TECH STACK</span>
+          <div className="font-mono text-xs sm:text-sm font-bold tracking-wider uppercase text-[#0066ff] flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0066ff]" />
+            <span>TECHNICAL ARSENAL</span>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.08]">
-            What I Work With
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
+            Languages, Frameworks &amp; Infrastructure
           </h2>
 
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            Technologies, frameworks, and tools I use to build scalable web applications, Flutter mobile experiences, and real-time cloud systems.
+            Core technologies and operational tools I rely on to build scalable web applications, cross-platform Flutter experiences, and cloud-backed microservices.
           </p>
         </div>
 
@@ -482,32 +475,32 @@ export default function TechStack() {
           {techCategories.map((category, index) => (
             <div
               key={category.id}
-              style={{ transitionDelay: `${index * 120 + 80}ms` }}
-              className={`h-full flex flex-col transition-all duration-700 ease-out ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+              style={{ transitionDelay: `${index * 80}ms` }}
+              className={`h-full flex flex-col transition-all duration-500 ease-out ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >
-              <div className="group relative flex flex-col justify-between h-full p-7 sm:p-8 rounded-2xl bg-[#f8fbfe] border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 hover:border-[#0070f3] active:border-[#0070f3] shadow-[0_2px_8px_rgba(15,23,42,0.05),0_12px_30px_rgba(0,112,243,0.06)] hover:shadow-[0_4px_16px_rgba(15,23,42,0.08),0_20px_45px_rgba(0,112,243,0.16)] active:shadow-[0_2px_10px_rgba(0,112,243,0.25)] transition-all duration-300 hover:-translate-y-1.5 active:scale-[0.99] cursor-default overflow-hidden select-none space-y-6">
+              <div className="group relative flex flex-col justify-between h-full p-6 sm:p-7 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#0066ff] hover:shadow-md transition-[border-color,box-shadow] duration-200 space-y-5">
                 
                 {/* Category Header with Icon */}
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-[#cde0f8] flex items-center justify-center text-[#0070f3] group-hover:bg-[#0070f3] group-hover:text-white transition-all duration-300 shadow-2xs">
-                    {category.icon("w-5 h-5")}
+                  <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#0066ff] group-hover:bg-[#0066ff] group-hover:text-white transition-[background-color,color] duration-200">
+                    {category.icon("w-4.5 h-4.5")}
                   </div>
 
-                  <h3 className="text-xl sm:text-[22px] font-black text-slate-900 tracking-tight group-hover:text-[#0070f3] transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight group-hover:text-[#0066ff] transition-colors">
                     {category.title}
                   </h3>
                 </div>
 
-                {/* Tech Pills Collection with Official Vector Logos */}
-                <div className="flex flex-wrap gap-2.5 pt-1">
+                {/* Tech Pills Collection */}
+                <div className="flex flex-wrap gap-2 pt-1" aria-label={`${category.title} skills`}>
                   {category.skills.map((skill) => (
                     <span
                       key={skill.name}
-                      className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-[13px] font-semibold text-slate-800 bg-white border border-[#cde0f8] shadow-2xs hover:border-[#0070f3] hover:text-[#0070f3] hover:shadow-xs hover:scale-105 active:scale-95 transition-all duration-200 cursor-default select-none"
+                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-700 bg-slate-50 border border-slate-200 hover:border-[#0066ff]/50 hover:bg-blue-50/40 transition-[background-color,border-color] duration-150 select-none"
                     >
-                      <span className="w-4 h-4 flex-shrink-0 flex items-center justify-center">
+                      <span className="w-4 h-4 flex-shrink-0 flex items-center justify-center" aria-hidden="true">
                         {skill.icon}
                       </span>
                       <span>{skill.name}</span>
@@ -519,24 +512,24 @@ export default function TechStack() {
           ))}
         </div>
 
-        {/* Bottom "Also working with" Strip with Mini Badges */}
+        {/* Bottom 'Also working with' Strip */}
         <div
-          className={`pt-2 transition-all duration-700 delay-500 ease-out ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          className={`pt-2 transition-all duration-500 delay-300 ease-out ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          <div className="p-6 sm:p-7 rounded-2xl bg-[#edf4fd]/70 border-2 border-[#bfd8f6] shadow-2xs flex flex-col sm:flex-row items-center sm:items-baseline gap-3 text-center sm:text-left">
-            <span className="font-bold text-sm text-slate-900 whitespace-nowrap flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#0070f3] animate-pulse" />
+          <div className="p-5 sm:p-6 rounded-xl bg-slate-50/80 border border-slate-200 shadow-2xs flex flex-col sm:flex-row items-center sm:items-baseline gap-3 text-center sm:text-left">
+            <span className="font-bold text-xs sm:text-sm text-slate-800 uppercase tracking-wide whitespace-nowrap flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#0066ff]" />
               Also working with:
             </span>
-            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1.5">
               {secondaryTools.map((tool) => (
                 <span
                   key={tool.name}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold text-slate-700 bg-white border border-[#cde0f8] shadow-3xs hover:border-[#0070f3] hover:text-[#0070f3] hover:scale-105 transition-all duration-150 cursor-default"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:border-slate-300 transition-colors select-none"
                 >
-                  <span className="w-3.5 h-3.5 flex items-center justify-center flex-shrink-0">
+                  <span className="w-3.5 h-3.5 flex items-center justify-center flex-shrink-0" aria-hidden="true">
                     {tool.icon}
                   </span>
                   <span>{tool.name}</span>

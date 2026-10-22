@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dhinesh",
-  description: "Personal portfolio showcasing projects, experience, and technical skills.",
+  title: "Dhinesh — Web & Mobile Application Developer",
+  description: "Production software engineer building scalable full-stack web platforms and high-performance Flutter mobile applications.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -24,7 +24,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <a href="#main-content" className="skip-to-content">
+          Skip to main content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

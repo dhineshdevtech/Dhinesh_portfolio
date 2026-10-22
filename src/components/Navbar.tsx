@@ -259,7 +259,7 @@ export default function Navbar() {
           <Link
             href="/"
             onClick={(e) => scrollToSection(e, "/")}
-            className="group flex items-center gap-3 focus:outline-hidden"
+            className="group flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] rounded-lg"
             aria-label="Dhinesh - Back to home"
           >
             <div className="relative flex items-center justify-center px-2.5 h-9 rounded-xl bg-[#edf4fd] border border-[#cde0f8] shadow-2xs group-hover:scale-105 group-hover:shadow-[0_0_16px_rgba(0,242,254,0.35)] group-hover:border-[#0070f3]/40 transition-all duration-300">
@@ -322,7 +322,7 @@ export default function Navbar() {
                               key={cat.id}
                               type="button"
                               onClick={() => handleCategorySelect(cat.id)}
-                              className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-left hover:bg-[#f0f6fe] group/item transition-colors duration-150 cursor-pointer"
+                              className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-left hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] group/item transition-colors duration-150 cursor-pointer"
                             >
                               <div className="flex items-center gap-3 min-w-0">
                                 <div className="w-7 h-7 rounded-lg bg-slate-100/90 border border-slate-200/70 text-slate-600 flex items-center justify-center flex-shrink-0 group-hover/item:bg-[#0070f3]/10 group-hover/item:text-[#0070f3] group-hover/item:border-[#bfd8f6] transition-all">
@@ -368,7 +368,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 hover:text-slate-900 focus:outline-hidden"
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff]"
             aria-label="Open navigation menu"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -415,7 +415,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center justify-center w-9 h-9 rounded-xl border border-slate-200 bg-slate-50 text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors focus:outline-hidden"
+                className="flex items-center justify-center w-9 h-9 rounded-xl border border-slate-200 bg-slate-50 text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff]"
                 aria-label="Close navigation menu"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
