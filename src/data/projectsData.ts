@@ -144,10 +144,22 @@ export const CATEGORIES_DATA: Record<CategoryKey, CategoryData> = {
   },
 };
 
-export const TOTAL_PROJECTS_COUNT = Object.values(CATEGORIES_DATA).reduce(
-  (acc, cat) => acc + cat.subcategories.reduce((subAcc, sub) => subAcc + sub.projectCount, 0),
-  0
-);
+export const CATEGORY_PROJECT_SLUGS: Record<CategoryKey, string[]> = {
+  mobile: ["mpnmjec-bus-tracker", "mpnmjec-driver-app"],
+  websites: [
+    "mpnmjec-dispatch-console",
+    "quizforge-ai",
+    "aletheia-compliance",
+    "zapple-digital",
+  ],
+  business: [
+    "appu-canteen-pos",
+    "bubbleworks-pos",
+    "invoice-generator",
+  ],
+};
+
+export const TOTAL_PROJECTS_COUNT = 9;
 
 export const PROJECTS_DATA: Record<string, ProjectDetail> = {
   // --------------------------------------------------------------------------

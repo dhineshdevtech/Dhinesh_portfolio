@@ -25,51 +25,41 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   const category = CATEGORIES_DATA[project.categoryKey];
 
   return (
-    <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-[#00f2fe]/30 selection:text-slate-900 flex flex-col justify-between">
+    <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-[#0066ff]/20 selection:text-slate-900 flex flex-col justify-between">
       <Navbar />
 
       <main id="main-content" className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 overflow-hidden flex-1">
-        
-        
-
         <div className="max-w-5xl mx-auto space-y-8 sm:space-y-10">
           {/* Breadcrumb Navigation */}
           <FadeUp delay={0} duration={500}>
-            <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500">
-              <Link href="/projects" className="hover:text-[#0070f3] transition-colors">
+            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500">
+              <Link href="/projects" className="hover:text-[#0066ff] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] rounded-xs">
                 All Collections
               </Link>
-              <span>/</span>
+              <span aria-hidden="true">/</span>
               <Link
                 href={`/projects?category=${project.categoryKey}`}
-                className="hover:text-[#0070f3] transition-colors"
+                className="hover:text-[#0066ff] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] rounded-xs"
               >
                 {category.title}
               </Link>
-              <span>/</span>
-              <Link
-                href={`/projects?category=${project.categoryKey}&subcategory=${project.subcategoryKey}`}
-                className="hover:text-[#0070f3] transition-colors"
-              >
-                {project.subcategoryTitle}
-              </Link>
-              <span>/</span>
-              <span className="text-slate-900 truncate max-w-[200px]">
+              <span aria-hidden="true">/</span>
+              <span className="text-slate-900 font-bold truncate max-w-[240px]">
                 {project.title}
               </span>
-            </div>
+            </nav>
           </FadeUp>
 
           {/* Title & Tagline */}
           <div className="text-center space-y-4 max-w-3xl mx-auto">
             <FadeUp delay={60} duration={600}>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold border backdrop-blur-md shadow-2xs mb-1 border-[#bfd8f6]">
-                <span className="w-2 h-2 rounded-full bg-[#0070f3] animate-pulse" />
-                <span className="text-[#0070f3] uppercase tracking-wider text-[11px]">
-                  {project.subcategoryTitle}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold border border-blue-200 bg-blue-50/50 shadow-2xs mb-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0066ff]" />
+                <span className="text-[#0066ff] uppercase tracking-wider text-[11px]">
+                  {category.title} • {project.details.type}
                 </span>
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
                 {project.title}
               </h1>
             </FadeUp>
@@ -83,14 +73,14 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
           {/* Project Details Box */}
           <FadeUp delay={180} duration={700}>
-            <div className="rounded-2xl bg-[#fafcff] border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 p-6 sm:p-8 shadow-[0_2px_8px_rgba(15,23,42,0.05),0_14px_36px_rgba(0,112,243,0.09)] space-y-6">
-              <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight text-center">
-                Project Details
+            <div className="rounded-2xl bg-slate-50/70 border border-slate-200 p-6 sm:p-7 shadow-xs space-y-5">
+              <h2 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight text-center">
+                Project Specifications
               </h2>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 pt-1">
                 <div>
-                  <span className="block text-[11px] font-extrabold text-[#0070f3] uppercase tracking-wider">
+                  <span className="block text-[11px] font-mono font-bold text-[#0066ff] uppercase tracking-wider">
                     Type
                   </span>
                   <p className="text-sm font-semibold text-slate-800 mt-1">
@@ -99,7 +89,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </div>
 
                 <div>
-                  <span className="block text-[11px] font-extrabold text-[#0070f3] uppercase tracking-wider">
+                  <span className="block text-[11px] font-mono font-bold text-[#0066ff] uppercase tracking-wider">
                     Duration
                   </span>
                   <p className="text-sm font-semibold text-slate-800 mt-1">
@@ -108,7 +98,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </div>
 
                 <div>
-                  <span className="block text-[11px] font-extrabold text-[#0070f3] uppercase tracking-wider">
+                  <span className="block text-[11px] font-mono font-bold text-[#0066ff] uppercase tracking-wider">
                     Role
                   </span>
                   <p className="text-sm font-semibold text-slate-800 mt-1">
@@ -117,7 +107,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </div>
 
                 <div>
-                  <span className="block text-[11px] font-extrabold text-[#0070f3] uppercase tracking-wider">
+                  <span className="block text-[11px] font-mono font-bold text-[#0066ff] uppercase tracking-wider">
                     Status
                   </span>
                   <p className="text-sm font-semibold text-slate-800 mt-1">
@@ -126,7 +116,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </div>
 
                 <div>
-                  <span className="block text-[11px] font-extrabold text-[#0070f3] uppercase tracking-wider">
+                  <span className="block text-[11px] font-mono font-bold text-[#0066ff] uppercase tracking-wider">
                     Context / Client
                   </span>
                   <p className="text-sm font-semibold text-slate-800 mt-1">
@@ -135,7 +125,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </div>
 
                 <div>
-                  <span className="block text-[11px] font-extrabold text-[#0070f3] uppercase tracking-wider">
+                  <span className="block text-[11px] font-mono font-bold text-[#0066ff] uppercase tracking-wider">
                     Architecture
                   </span>
                   <p className="text-xs sm:text-sm font-semibold text-slate-800 mt-1">
@@ -148,15 +138,15 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
           {/* Project Overview */}
           <FadeUp delay={220} duration={700}>
-            <div className="space-y-6 pt-2">
+            <div className="space-y-4 pt-2">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 Project Overview
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-5 sm:p-6 rounded-2xl bg-white border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 shadow-xs hover:border-[#0070f3] transition-all duration-200 space-y-2">
-                  <div className="text-xs font-black text-rose-600 uppercase tracking-wider flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-rose-500" />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2">
+                  <div className="text-xs font-mono font-bold text-rose-600 uppercase tracking-wider flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
                     The Problem
                   </div>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -164,9 +154,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   </p>
                 </div>
 
-                <div className="p-5 sm:p-6 rounded-2xl bg-white border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 shadow-xs hover:border-[#0070f3] transition-all duration-200 space-y-2">
-                  <div className="text-xs font-black text-[#0070f3] uppercase tracking-wider flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-[#0070f3]" />
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2">
+                  <div className="text-xs font-mono font-bold text-[#0066ff] uppercase tracking-wider flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0066ff]" />
                     The Engineering Solution
                   </div>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -174,9 +164,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   </p>
                 </div>
 
-                <div className="p-5 sm:p-6 rounded-2xl bg-white border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 shadow-xs hover:border-[#0070f3] transition-all duration-200 space-y-2">
-                  <div className="text-xs font-black text-emerald-600 uppercase tracking-wider flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2">
+                  <div className="text-xs font-mono font-bold text-emerald-600 uppercase tracking-wider flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                     Real-World Outcome
                   </div>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -189,19 +179,19 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
           {/* Core Features */}
           <FadeUp delay={260} duration={700}>
-            <div className="space-y-6 pt-2">
+            <div className="space-y-4 pt-2">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 Core Features
               </h2>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {project.coreFeatures.map((feat, idx) => (
                   <div
                     key={idx}
-                    className="p-5 rounded-2xl bg-[#fafcff] border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 hover:border-[#0070f3] transition-all duration-200 space-y-2"
+                    className="p-5 rounded-2xl bg-slate-50/70 border border-slate-200 space-y-2"
                   >
                     <div className="flex items-center gap-2">
-                      <span className="w-6 h-6 rounded-lg bg-[#edf4fd] text-[#0070f3] font-black text-xs flex items-center justify-center flex-shrink-0">
+                      <span className="w-6 h-6 rounded-lg bg-blue-50 border border-blue-200 text-[#0066ff] font-bold text-xs flex items-center justify-center flex-shrink-0">
                         {idx + 1}
                       </span>
                       <h3 className="text-sm sm:text-base font-bold text-slate-900">
@@ -219,24 +209,24 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
           {/* Project Gallery */}
           <FadeUp delay={300} duration={700}>
-            <div className="space-y-6 pt-2">
+            <div className="space-y-4 pt-2">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 Project Gallery
               </h2>
 
               <div
-                className={`grid gap-6 ${
+                className={`grid gap-5 ${
                   project.gallery.length === 1
-                    ? "grid-cols-1 max-w-4xl mx-auto"
+                    ? "grid-cols-1 max-w-3xl mx-auto"
                     : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
                 }`}
               >
                 {project.gallery.map((img, idx) => (
                   <div
                     key={idx}
-                    className="group rounded-2xl bg-[#f8fafc] border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 overflow-hidden shadow-[0_2px_8px_rgba(15,23,42,0.05)] hover:shadow-lg hover:border-[#0070f3] transition-all duration-300 flex flex-col justify-between"
+                    className="group rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-xs hover:border-[#0066ff] transition-colors flex flex-col justify-between"
                   >
-                    <div className="relative w-full aspect-video sm:aspect-[16/10] bg-[#f4f8fe] flex items-center justify-center overflow-hidden">
+                    <div className="relative w-full aspect-video sm:aspect-[16/10] bg-slate-50 flex items-center justify-center overflow-hidden">
                       <Image
                         src={img.url}
                         alt={img.alt}
@@ -246,7 +236,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                         priority={idx === 0}
                       />
                     </div>
-                    <div className="p-3.5 bg-white border-t-2 border-[#d2e4f8]">
+                    <div className="p-3 bg-white border-t border-slate-100">
                       <p className="text-xs text-slate-600 font-medium leading-relaxed">
                         {img.caption}
                       </p>
@@ -259,25 +249,25 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
           {/* Technologies & Skills Used */}
           <FadeUp delay={340} duration={700}>
-            <div className="space-y-6 pt-2">
+            <div className="space-y-4 pt-2">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 Technologies &amp; Skills Used
               </h2>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {project.skillsUsed.map((group, idx) => (
                   <div
                     key={idx}
-                    className="p-5 rounded-2xl bg-white border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 hover:border-[#0070f3] transition-all duration-200 space-y-3"
+                    className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3"
                   >
-                    <h3 className="text-xs font-bold text-[#0070f3] uppercase tracking-wider">
+                    <h3 className="text-xs font-mono font-bold text-[#0066ff] uppercase tracking-wider">
                       {group.group}
                     </h3>
                     <div className="flex flex-wrap gap-1.5">
                       {group.skills.map((skill) => (
                         <span
                           key={skill}
-                          className="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200"
+                          className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-slate-50 text-slate-700 border border-slate-200"
                         >
                           {skill}
                         </span>
@@ -289,18 +279,18 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </div>
           </FadeUp>
 
-          {/* Project Links */}
+          {/* Action Links Bar */}
           <FadeUp delay={380} duration={700}>
-            <div className="pt-6 border-t border-[#e2eaf4] flex flex-wrap items-center justify-between gap-4">
+            <div className="pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
               <div className="flex flex-wrap items-center gap-3">
                 {project.links.playStore && (
                   <a
                     href={project.links.playStore}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0070f3] hover:bg-[#005cd6] text-white text-xs sm:text-sm font-bold shadow-[0_4px_14px_rgba(0,112,243,0.3)] transition-all cursor-pointer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0066ff] hover:bg-[#0052cc] text-white text-xs sm:text-sm font-bold shadow-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] cursor-pointer"
                   >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M3.609 1.814L13.792 12 3.61 22.186a2.096 2.096 0 01-.61-1.488V3.302c0-.58.232-1.118.609-1.488zm11.328 11.331l2.585-2.585-2.585-2.585 3.327 1.921c.882.51.882 1.817 0 2.328l-3.327 1.921zM4.698.814l10.147 10.147-1.147 1.147L3.486 1.896c.321-.571.792-.93 1.212-1.082zm0 22.372c-.42-.152-.891-.511-1.212-1.082L13.698 11.89l1.147 1.147L4.698 23.186z" />
                     </svg>
                     Google Play Store ↗
@@ -312,7 +302,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     href={project.links.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0070f3] hover:bg-[#005cd6] text-white text-xs sm:text-sm font-bold shadow-[0_4px_14px_rgba(0,112,243,0.3)] transition-all cursor-pointer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0066ff] hover:bg-[#0052cc] text-white text-xs sm:text-sm font-bold shadow-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] cursor-pointer"
                   >
                     Live System Demo ↗
                   </a>
@@ -323,9 +313,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     href={project.links.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs sm:text-sm font-semibold transition-all cursor-pointer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 text-xs sm:text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] cursor-pointer"
                   >
-                    <svg className="w-4 h-4 text-slate-800" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-slate-800" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path
                         fillRule="evenodd"
                         clipRule="evenodd"
@@ -337,11 +327,12 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 )}
               </div>
 
+              {/* Direct Back to Category */}
               <Link
-                href={`/projects?category=${project.categoryKey}&subcategory=${project.subcategoryKey}`}
-                className="text-xs sm:text-sm font-semibold text-slate-500 hover:text-[#0070f3] transition-colors"
+                href={`/projects?category=${project.categoryKey}`}
+                className="text-xs sm:text-sm font-bold text-slate-600 hover:text-[#0066ff] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] rounded-xs"
               >
-                ← Back to {project.subcategoryTitle}
+                ← Back to {category.title}
               </Link>
             </div>
           </FadeUp>

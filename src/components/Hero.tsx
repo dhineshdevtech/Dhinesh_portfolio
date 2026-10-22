@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { TOTAL_PROJECTS_COUNT } from "@/data/projectsData";
 
 export default function Hero() {
@@ -67,16 +68,32 @@ export default function Hero() {
               <span>Explore Featured Work</span>
             </button>
 
-            <button
-              type="button"
-              onClick={() => scrollTo("contact")}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold border border-slate-300 bg-white text-slate-800 hover:border-[#0066ff] hover:text-[#0066ff] hover:bg-slate-50/80 shadow-xs transition-[border-color,color,background-color,transform] active:translate-y-px focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] cursor-pointer"
+            <Link
+              href="/contact"
+              className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold border border-slate-300 bg-white text-slate-800 hover:border-slate-400 hover:bg-slate-50 shadow-xs transition-[border-color,background-color,color,transform] active:translate-y-px focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff]"
             >
-              <svg className="w-4 h-4 text-[#0066ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+              <svg
+                className="w-4 h-4 text-[#0066ff] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform duration-150"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"
+                />
               </svg>
-              <span>Get In Touch</span>
-            </button>
+              <span>Let&apos;s Talk</span>
+              <span
+                className="text-slate-400 group-hover:text-slate-700 transition-colors text-xs font-mono ml-0.5"
+                aria-hidden="true"
+              >
+                ↗
+              </span>
+            </Link>
           </div>
 
           {/* Metric Stats Counters */}

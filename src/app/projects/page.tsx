@@ -11,6 +11,7 @@ import {
   CategoryKey,
   CATEGORIES_DATA,
   PROJECTS_DATA,
+  CATEGORY_PROJECT_SLUGS,
   ProjectDetail,
 } from "@/data/projectsData";
 
@@ -21,21 +22,21 @@ function getCategoryIcon(key: CategoryKey, cls = "w-5 h-5") {
   switch (key) {
     case "mobile":
       return (
-        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <rect x="5" y="2" width="14" height="20" rx="3" strokeWidth={1.8} />
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 18h.01" />
         </svg>
       );
     case "websites":
       return (
-        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <circle cx="12" cy="12" r="9" strokeWidth={1.8} />
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3.6 9h16.8M3.6 15h16.8M12 3a15.3 15.3 0 014 9 15.3 15.3 0 01-4 9 15.3 15.3 0 01-4-9 15.3 15.3 0 014-9z" />
         </svg>
       );
     case "business":
       return (
-        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <rect x="3" y="7" width="18" height="13" rx="2" strokeWidth={1.8} />
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m-5 4h18" />
         </svg>
@@ -48,22 +49,17 @@ function ProjectsContent() {
   const searchParams = useSearchParams();
 
   const categoryParam = searchParams.get("category")?.toLowerCase() as CategoryKey | undefined;
-  const subcategoryParam = searchParams.get("subcategory") || undefined;
   const projectParam = searchParams.get("project") || undefined;
 
-  // Resolve current active node in hierarchy
-  const activeCategory =
+  // Resolve active category
+  const activeCategory: CategoryKey | null =
     categoryParam && ["mobile", "websites", "business"].includes(categoryParam)
       ? categoryParam
       : null;
 
   const currentCategoryData = activeCategory ? CATEGORIES_DATA[activeCategory] : null;
 
-  const activeSubcategory =
-    currentCategoryData && subcategoryParam
-      ? currentCategoryData.subcategories.find((s) => s.key === subcategoryParam) || null
-      : null;
-
+  // Resolve active project
   const activeProject: ProjectDetail | null =
     projectParam && PROJECTS_DATA[projectParam]
       ? PROJECTS_DATA[projectParam]
@@ -75,23 +71,14 @@ function ProjectsContent() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const navigateToSubcategory = (catKey: CategoryKey, subKey: string) => {
-    router.push(`/projects?category=${catKey}&subcategory=${subKey}`);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   const navigateToProject = (projectSlug: string) => {
-    if (activeCategory && activeSubcategory) {
-      router.push(
-        `/projects?category=${activeCategory}&subcategory=${activeSubcategory.key}&project=${projectSlug}`
-      );
+    const proj = PROJECTS_DATA[projectSlug];
+    if (proj) {
+      router.push(`/projects?category=${proj.categoryKey}&project=${projectSlug}`);
+    } else if (activeCategory) {
+      router.push(`/projects?category=${activeCategory}&project=${projectSlug}`);
     } else {
-      const proj = PROJECTS_DATA[projectSlug];
-      if (proj) {
-        router.push(
-          `/projects?category=${proj.categoryKey}&subcategory=${proj.subcategoryKey}&project=${projectSlug}`
-        );
-      }
+      router.push(`/projects?project=${projectSlug}`);
     }
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -101,69 +88,58 @@ function ProjectsContent() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Get project count for category
+  const getProjectCount = (key: CategoryKey) => {
+    return CATEGORY_PROJECT_SLUGS[key]?.length || 0;
+  };
+
   return (
-    <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-[#00f2fe]/30 selection:text-slate-900 flex flex-col justify-between">
+    <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-[#0066ff]/20 selection:text-slate-900 flex flex-col justify-between">
       <Navbar />
 
       <main id="main-content" className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 overflow-hidden flex-1">
-        
+        <div className="max-w-5xl mx-auto space-y-8 sm:space-y-10">
 
-        
-
-        <div className="max-w-5xl mx-auto">
           {/* ========================================================================= */}
-          {/* LEVEL 4: PROJECT DETAILS CASE STUDY (If a project is selected)             */}
+          {/* VIEW 1: PROJECT DETAILS CASE STUDY                                        */}
           {/* ========================================================================= */}
           {activeProject && (
             <div className="space-y-8 sm:space-y-10">
               {/* Breadcrumb Navigation */}
               <FadeUp delay={0} duration={500}>
-                <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500">
+                <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500">
                   <button
                     type="button"
                     onClick={navigateToCollections}
-                    className="hover:text-[#0070f3] transition-colors cursor-pointer"
+                    className="hover:text-[#0066ff] transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] rounded-xs"
                   >
                     All Collections
                   </button>
-                  <span>/</span>
+                  <span aria-hidden="true">/</span>
                   <button
                     type="button"
                     onClick={() => navigateToCategory(activeProject.categoryKey)}
-                    className="hover:text-[#0070f3] transition-colors cursor-pointer"
+                    className="hover:text-[#0066ff] transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] rounded-xs"
                   >
                     {CATEGORIES_DATA[activeProject.categoryKey].title}
                   </button>
-                  <span>/</span>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      navigateToSubcategory(
-                        activeProject.categoryKey,
-                        activeProject.subcategoryKey
-                      )
-                    }
-                    className="hover:text-[#0070f3] transition-colors cursor-pointer"
-                  >
-                    {activeProject.subcategoryTitle}
-                  </button>
-                  <span>/</span>
-                  <span className="text-slate-900 truncate max-w-[200px]">
+                  <span aria-hidden="true">/</span>
+                  <span className="text-slate-900 font-bold truncate max-w-[240px]">
                     {activeProject.title}
                   </span>
-                </div>
+                </nav>
               </FadeUp>
 
               {/* Title & Tagline */}
               <div className="text-center space-y-4 max-w-3xl mx-auto">
                 <FadeUp delay={60} duration={600}>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold border backdrop-blur-md shadow-2xs mb-1" style={{ borderColor: "#bfd8f6" }}>
-                    <span className="w-2 h-2 rounded-full bg-[#0070f3] animate-pulse" />
-                    <span className="text-[#0070f3] uppercase tracking-wider text-[11px]">
-                      {activeProject.subcategoryTitle}
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold border border-blue-200 bg-blue-50/50 shadow-2xs mb-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0066ff]" />
+                    <span className="text-[#0066ff] uppercase tracking-wider text-[11px]">
+                      {CATEGORIES_DATA[activeProject.categoryKey].title} • {activeProject.details.type}
                     </span>
                   </div>
-                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
                     {activeProject.title}
                   </h1>
                 </FadeUp>
@@ -175,16 +151,16 @@ function ProjectsContent() {
                 </FadeUp>
               </div>
 
-              {/* SECTION: Project Details Box (Matching Home Page Signature Styling) */}
+              {/* SECTION: Project Details Specs Box */}
               <FadeUp delay={180} duration={700}>
-                <div className="rounded-2xl bg-[#fafcff] border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 p-6 sm:p-8 shadow-[0_2px_8px_rgba(15,23,42,0.05),0_14px_36px_rgba(0,112,243,0.09)] space-y-6">
-                  <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight text-center">
-                    Project Details
+                <div className="rounded-2xl bg-slate-50/70 border border-slate-200 p-6 sm:p-7 shadow-xs space-y-5">
+                  <h2 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight text-center">
+                    Project Specifications
                   </h2>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 pt-1">
                     <div>
-                      <span className="block text-[11px] font-extrabold text-[#0070f3] uppercase tracking-wider">
+                      <span className="block text-[11px] font-mono font-bold text-[#0066ff] uppercase tracking-wider">
                         Type
                       </span>
                       <p className="text-sm font-semibold text-slate-800 mt-1">
@@ -193,7 +169,7 @@ function ProjectsContent() {
                     </div>
 
                     <div>
-                      <span className="block text-[11px] font-extrabold text-[#0070f3] uppercase tracking-wider">
+                      <span className="block text-[11px] font-mono font-bold text-[#0066ff] uppercase tracking-wider">
                         Duration
                       </span>
                       <p className="text-sm font-semibold text-slate-800 mt-1">
@@ -202,7 +178,7 @@ function ProjectsContent() {
                     </div>
 
                     <div>
-                      <span className="block text-[11px] font-extrabold text-[#0070f3] uppercase tracking-wider">
+                      <span className="block text-[11px] font-mono font-bold text-[#0066ff] uppercase tracking-wider">
                         Role
                       </span>
                       <p className="text-sm font-semibold text-slate-800 mt-1">
@@ -211,7 +187,7 @@ function ProjectsContent() {
                     </div>
 
                     <div>
-                      <span className="block text-[11px] font-extrabold text-[#0070f3] uppercase tracking-wider">
+                      <span className="block text-[11px] font-mono font-bold text-[#0066ff] uppercase tracking-wider">
                         Status
                       </span>
                       <p className="text-sm font-semibold text-slate-800 mt-1">
@@ -220,7 +196,7 @@ function ProjectsContent() {
                     </div>
 
                     <div>
-                      <span className="block text-[11px] font-extrabold text-[#0070f3] uppercase tracking-wider">
+                      <span className="block text-[11px] font-mono font-bold text-[#0066ff] uppercase tracking-wider">
                         Context / Client
                       </span>
                       <p className="text-sm font-semibold text-slate-800 mt-1">
@@ -229,7 +205,7 @@ function ProjectsContent() {
                     </div>
 
                     <div>
-                      <span className="block text-[11px] font-extrabold text-[#0070f3] uppercase tracking-wider">
+                      <span className="block text-[11px] font-mono font-bold text-[#0066ff] uppercase tracking-wider">
                         Architecture
                       </span>
                       <p className="text-xs sm:text-sm font-semibold text-slate-800 mt-1">
@@ -242,15 +218,15 @@ function ProjectsContent() {
 
               {/* SECTION: Project Overview */}
               <FadeUp delay={220} duration={700}>
-                <div className="space-y-6 pt-2">
+                <div className="space-y-4 pt-2">
                   <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                     Project Overview
                   </h2>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="p-5 sm:p-6 rounded-2xl bg-white border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 shadow-xs hover:border-[#0070f3] transition-all duration-200 space-y-2">
-                      <div className="text-xs font-black text-rose-600 uppercase tracking-wider flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-rose-500" />
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2">
+                      <div className="text-xs font-mono font-bold text-rose-600 uppercase tracking-wider flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
                         The Problem
                       </div>
                       <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -258,9 +234,9 @@ function ProjectsContent() {
                       </p>
                     </div>
 
-                    <div className="p-5 sm:p-6 rounded-2xl bg-white border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 shadow-xs hover:border-[#0070f3] transition-all duration-200 space-y-2">
-                      <div className="text-xs font-black text-[#0070f3] uppercase tracking-wider flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-[#0070f3]" />
+                    <div className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2">
+                      <div className="text-xs font-mono font-bold text-[#0066ff] uppercase tracking-wider flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#0066ff]" />
                         The Engineering Solution
                       </div>
                       <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -268,9 +244,9 @@ function ProjectsContent() {
                       </p>
                     </div>
 
-                    <div className="p-5 sm:p-6 rounded-2xl bg-white border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 shadow-xs hover:border-[#0070f3] transition-all duration-200 space-y-2">
-                      <div className="text-xs font-black text-emerald-600 uppercase tracking-wider flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                    <div className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2">
+                      <div className="text-xs font-mono font-bold text-emerald-600 uppercase tracking-wider flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                         Real-World Outcome
                       </div>
                       <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -283,19 +259,19 @@ function ProjectsContent() {
 
               {/* SECTION: Core Features */}
               <FadeUp delay={260} duration={700}>
-                <div className="space-y-6 pt-2">
+                <div className="space-y-4 pt-2">
                   <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                     Core Features
                   </h2>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {activeProject.coreFeatures.map((feat, idx) => (
                       <div
                         key={idx}
-                        className="p-5 rounded-2xl bg-[#fafcff] border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 hover:border-[#0070f3] transition-all duration-200 space-y-2"
+                        className="p-5 rounded-2xl bg-slate-50/70 border border-slate-200 space-y-2"
                       >
                         <div className="flex items-center gap-2">
-                          <span className="w-6 h-6 rounded-lg bg-[#edf4fd] text-[#0070f3] font-black text-xs flex items-center justify-center flex-shrink-0">
+                          <span className="w-6 h-6 rounded-lg bg-blue-50 border border-blue-200 text-[#0066ff] font-bold text-xs flex items-center justify-center flex-shrink-0">
                             {idx + 1}
                           </span>
                           <h3 className="text-sm sm:text-base font-bold text-slate-900">
@@ -313,24 +289,24 @@ function ProjectsContent() {
 
               {/* SECTION: Project Gallery */}
               <FadeUp delay={300} duration={700}>
-                <div className="space-y-6 pt-2">
+                <div className="space-y-4 pt-2">
                   <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                     Project Gallery
                   </h2>
 
                   <div
-                    className={`grid gap-6 ${
+                    className={`grid gap-5 ${
                       activeProject.gallery.length === 1
-                        ? "grid-cols-1 max-w-4xl mx-auto"
+                        ? "grid-cols-1 max-w-3xl mx-auto"
                         : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
                     }`}
                   >
                     {activeProject.gallery.map((img, idx) => (
                       <div
                         key={idx}
-                        className="group rounded-2xl bg-[#f8fafc] border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 overflow-hidden shadow-[0_2px_8px_rgba(15,23,42,0.05)] hover:shadow-lg hover:border-[#0070f3] transition-all duration-300 flex flex-col justify-between"
+                        className="group rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-xs hover:border-[#0066ff] transition-colors flex flex-col justify-between"
                       >
-                        <div className="relative w-full aspect-video sm:aspect-[16/10] bg-[#f4f8fe] flex items-center justify-center overflow-hidden">
+                        <div className="relative w-full aspect-video sm:aspect-[16/10] bg-slate-50 flex items-center justify-center overflow-hidden">
                           <Image
                             src={img.url}
                             alt={img.alt}
@@ -340,7 +316,7 @@ function ProjectsContent() {
                             priority={idx === 0}
                           />
                         </div>
-                        <div className="p-3.5 bg-white border-t-2 border-[#d2e4f8]">
+                        <div className="p-3 bg-white border-t border-slate-100">
                           <p className="text-xs text-slate-600 font-medium leading-relaxed">
                             {img.caption}
                           </p>
@@ -353,25 +329,25 @@ function ProjectsContent() {
 
               {/* SECTION: Technologies & Skills Used */}
               <FadeUp delay={340} duration={700}>
-                <div className="space-y-6 pt-2">
+                <div className="space-y-4 pt-2">
                   <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                     Technologies &amp; Skills Used
                   </h2>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {activeProject.skillsUsed.map((group, idx) => (
                       <div
                         key={idx}
-                        className="p-5 rounded-2xl bg-white border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 hover:border-[#0070f3] transition-all duration-200 space-y-3"
+                        className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3"
                       >
-                        <h3 className="text-xs font-bold text-[#0070f3] uppercase tracking-wider">
+                        <h3 className="text-xs font-mono font-bold text-[#0066ff] uppercase tracking-wider">
                           {group.group}
                         </h3>
                         <div className="flex flex-wrap gap-1.5">
                           {group.skills.map((skill) => (
                             <span
                               key={skill}
-                              className="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200"
+                              className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-slate-50 text-slate-700 border border-slate-200"
                             >
                               {skill}
                             </span>
@@ -383,18 +359,18 @@ function ProjectsContent() {
                 </div>
               </FadeUp>
 
-              {/* SECTION: Project Links */}
+              {/* SECTION: Action Links Bar & Bottom Navigation */}
               <FadeUp delay={380} duration={700}>
-                <div className="pt-6 border-t border-[#e2eaf4] flex flex-wrap items-center justify-between gap-4">
+                <div className="pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
                   <div className="flex flex-wrap items-center gap-3">
                     {activeProject.links.playStore && (
                       <a
                         href={activeProject.links.playStore}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0070f3] hover:bg-[#005cd6] text-white text-xs sm:text-sm font-bold shadow-[0_4px_14px_rgba(0,112,243,0.3)] transition-all cursor-pointer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0066ff] hover:bg-[#0052cc] text-white text-xs sm:text-sm font-bold shadow-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] cursor-pointer"
                       >
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                           <path d="M3.609 1.814L13.792 12 3.61 22.186a2.096 2.096 0 01-.61-1.488V3.302c0-.58.232-1.118.609-1.488zm11.328 11.331l2.585-2.585-2.585-2.585 3.327 1.921c.882.51.882 1.817 0 2.328l-3.327 1.921zM4.698.814l10.147 10.147-1.147 1.147L3.486 1.896c.321-.571.792-.93 1.212-1.082zm0 22.372c-.42-.152-.891-.511-1.212-1.082L13.698 11.89l1.147 1.147L4.698 23.186z" />
                         </svg>
                         Google Play Store ↗
@@ -406,7 +382,7 @@ function ProjectsContent() {
                         href={activeProject.links.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0070f3] hover:bg-[#005cd6] text-white text-xs sm:text-sm font-bold shadow-[0_4px_14px_rgba(0,112,243,0.3)] transition-all cursor-pointer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0066ff] hover:bg-[#0052cc] text-white text-xs sm:text-sm font-bold shadow-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] cursor-pointer"
                       >
                         Live System Demo ↗
                       </a>
@@ -417,9 +393,9 @@ function ProjectsContent() {
                         href={activeProject.links.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs sm:text-sm font-semibold transition-all cursor-pointer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 text-xs sm:text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] cursor-pointer"
                       >
-                        <svg className="w-4 h-4 text-slate-800" fill="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 text-slate-800" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                           <path
                             fillRule="evenodd"
                             clipRule="evenodd"
@@ -431,17 +407,13 @@ function ProjectsContent() {
                     )}
                   </div>
 
+                  {/* Back to Category Button */}
                   <button
                     type="button"
-                    onClick={() =>
-                      navigateToSubcategory(
-                        activeProject.categoryKey,
-                        activeProject.subcategoryKey
-                      )
-                    }
-                    className="text-xs sm:text-sm font-semibold text-slate-500 hover:text-[#0070f3] transition-colors cursor-pointer"
+                    onClick={() => navigateToCategory(activeProject.categoryKey)}
+                    className="text-xs sm:text-sm font-bold text-slate-600 hover:text-[#0066ff] transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] rounded-xs"
                   >
-                    ← Back to {activeProject.subcategoryTitle}
+                    ← Back to {CATEGORIES_DATA[activeProject.categoryKey].title}
                   </button>
                 </div>
               </FadeUp>
@@ -449,123 +421,63 @@ function ProjectsContent() {
           )}
 
           {/* ========================================================================= */}
-          {/* LEVEL 3: SUBCATEGORY PROJECTS GRID (Matching Screenshot 3)                */}
+          {/* VIEW 2: MAIN SECTION DIRECT PROPER CARDS (No Subsections!)                */}
           {/* ========================================================================= */}
-          {!activeProject && activeCategory && activeSubcategory && (
+          {!activeProject && activeCategory && currentCategoryData && (
             <div className="space-y-8 sm:space-y-10">
-              {/* Back to Category Button */}
+              {/* Top Navigation & Category Filter Tabs */}
               <FadeUp delay={0} duration={500}>
-                <div>
-                  <button
-                    type="button"
-                    onClick={() => navigateToCategory(activeCategory)}
-                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-[#0070f3] transition-colors group cursor-pointer"
-                  >
-                    <span className="group-hover:-translate-x-1 transition-transform">←</span>
-                    {currentCategoryData?.title}
-                  </button>
-                </div>
-              </FadeUp>
-
-              {/* Subcategory Header */}
-              <div className="text-center space-y-3 max-w-2xl mx-auto">
-                <FadeUp delay={60} duration={600}>
-                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-                    {activeSubcategory.title}
-                  </h1>
-                </FadeUp>
-
-                <FadeUp delay={120} duration={650}>
-                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-                    {activeSubcategory.description}
-                  </p>
-                </FadeUp>
-              </div>
-
-              {/* Grid of Projects (Matching Screenshot 3: Victory Arena / YUMMEZ style) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
-                {activeSubcategory.projectSlugs.map((slug, idx) => {
-                  const proj = PROJECTS_DATA[slug];
-                  if (!proj) return null;
-
-                  return (
-                    <FadeUp key={slug} delay={idx * 100} duration={700}>
-                      <button
-                        type="button"
-                        onClick={() => navigateToProject(slug)}
-                        className="w-full text-left rounded-2xl bg-white border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 hover:border-[#0070f3] shadow-[0_2px_8px_rgba(15,23,42,0.05),0_14px_36px_rgba(0,112,243,0.09)] hover:shadow-[0_4px_14px_rgba(15,23,42,0.08),0_24px_50px_rgba(0,112,243,0.18)] transition-all duration-300 hover:-translate-y-1.5 overflow-hidden group cursor-pointer flex flex-col"
-                      >
-                        {/* Thumbnail Viewport */}
-                        <div className="relative aspect-video sm:aspect-[16/10] w-full bg-[#f4f8fe] flex items-center justify-center overflow-hidden border-b-2 border-[#d2e4f8]">
-                          <Image
-                            src={proj.thumbnail}
-                            alt={proj.title}
-                            width={700}
-                            height={450}
-                            className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-300"
-                          />
-
-                          <div className="absolute top-3 left-3 z-10">
-                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/90 text-slate-700 border border-slate-200 backdrop-blur-sm">
-                              {activeSubcategory.title}
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* Card Info */}
-                        <div className="p-6 space-y-2 flex-1 flex flex-col justify-between">
-                          <div>
-                            <h3 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-[#0070f3] transition-colors tracking-tight">
-                              {proj.title}
-                            </h3>
-                            <span className="block text-xs font-semibold text-[#0070f3] mt-1">
-                              {proj.details.type}
-                            </span>
-                            <p className="text-xs sm:text-sm text-slate-500 font-normal mt-2 line-clamp-2 leading-relaxed">
-                              {proj.tagline}
-                            </p>
-                          </div>
-
-                          <div className="pt-4 flex items-center justify-between text-xs font-bold text-[#0070f3]">
-                            <span>Explore Case Study</span>
-                            <span className="group-hover:translate-x-1 transition-transform">→</span>
-                          </div>
-                        </div>
-                      </button>
-                    </FadeUp>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-
-          {/* ========================================================================= */}
-          {/* LEVEL 2: SUBCATEGORY LIST (Matching Screenshot 1 & 2)                      */}
-          {/* ========================================================================= */}
-          {!activeProject && activeCategory && !activeSubcategory && currentCategoryData && (
-            <div className="space-y-8 sm:space-y-10">
-              {/* Back to All Collections Button (Matching Screenshot 1) */}
-              <FadeUp delay={0} duration={500}>
-                <div>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-200">
                   <button
                     type="button"
                     onClick={navigateToCollections}
-                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500 hover:text-[#0070f3] transition-colors group cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-500 hover:text-[#0066ff] transition-colors group cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] rounded-xs"
                   >
-                    <span className="group-hover:-translate-x-1 transition-transform">←</span>
-                    All Collections
+                    <span className="group-hover:-translate-x-1 transition-transform" aria-hidden="true">←</span>
+                    <span>All Collections</span>
                   </button>
+
+                  {/* Quick Switcher Tabs */}
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={navigateToCollections}
+                      className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-100 transition-colors cursor-pointer"
+                    >
+                      All
+                    </button>
+                    {CATEGORIES_LIST.map((cat) => {
+                      const isSelected = cat.key === activeCategory;
+                      return (
+                        <button
+                          key={cat.key}
+                          type="button"
+                          onClick={() => navigateToCategory(cat.key)}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] ${
+                            isSelected
+                              ? "bg-[#0066ff] text-white shadow-xs"
+                              : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                          }`}
+                        >
+                          <span>{cat.title}</span>
+                          <span className={`px-1.5 py-0.2 rounded-full text-[10px] ${isSelected ? "bg-white/20 text-white" : "bg-white text-slate-600"}`}>
+                            {getProjectCount(cat.key)}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               </FadeUp>
 
-              {/* Category Header & Pitch Banner (Matching Screenshot 1) */}
+              {/* Main Section Header */}
               <div className="text-center space-y-4 max-w-2xl mx-auto">
                 <FadeUp delay={60} duration={600}>
                   <div className="flex items-center justify-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#edf4fd] border border-[#d8e6f8] text-[#0070f3] flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-[#0066ff] flex items-center justify-center">
                       {getCategoryIcon(activeCategory, "w-5 h-5")}
                     </div>
-                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
                       {currentCategoryData.title}
                     </h1>
                   </div>
@@ -577,13 +489,13 @@ function ProjectsContent() {
                   </p>
                 </FadeUp>
 
-                {/* Pitch Banner from Inspiration */}
+                {/* Pitch Callout */}
                 <FadeUp delay={180} duration={700}>
-                  <div className="inline-block p-3 sm:p-3.5 rounded-xl bg-[#f0f6fe] border border-[#bfd8f6] text-xs sm:text-[13px] text-slate-700 font-medium">
+                  <div className="inline-block p-3 sm:p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-[13px] text-slate-700 font-medium">
                     {currentCategoryData.pitch}{" "}
                     <Link
                       href="/contact"
-                      className="text-[#0070f3] font-bold hover:underline ml-1 inline-flex items-center gap-1"
+                      className="text-[#0066ff] font-bold hover:underline ml-1 inline-flex items-center gap-1"
                     >
                       {currentCategoryData.pitchCta} →
                     </Link>
@@ -591,38 +503,190 @@ function ProjectsContent() {
                 </FadeUp>
               </div>
 
-              {/* List of Sub-Category Rows (Matching Screenshot 1 & 2) */}
-              <div className="space-y-3 pt-4">
-                {currentCategoryData.subcategories.map((sub, idx) => (
-                  <FadeUp key={sub.key} delay={idx * 70} duration={650}>
+              {/* DIRECT PROPER PROJECT CARDS GRID (No subsections!) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                {(CATEGORY_PROJECT_SLUGS[activeCategory] || []).map((slug, idx) => {
+                  const proj = PROJECTS_DATA[slug];
+                  if (!proj) return null;
+
+                  return (
+                    <FadeUp key={slug} delay={idx * 80} duration={600}>
+                      <article className="group relative flex flex-col h-full rounded-2xl bg-white border border-slate-200 hover:border-[#0066ff] shadow-xs hover:shadow-md transition-[border-color,box-shadow] duration-200 overflow-hidden">
+                        {/* Thumbnail Viewport (Direct link to project details) */}
+                        <div
+                          onClick={() => navigateToProject(slug)}
+                          className="relative aspect-video sm:aspect-[16/10] w-full bg-slate-50 flex items-center justify-center overflow-hidden border-b border-slate-200 cursor-pointer"
+                        >
+                          <Image
+                            src={proj.thumbnail}
+                            alt={proj.title}
+                            width={700}
+                            height={450}
+                            className="w-full h-full object-contain p-2 sm:p-3 group-hover:scale-[1.02] transition-transform duration-300"
+                          />
+
+                          {/* Top Tag Badges */}
+                          <div className="absolute top-3 left-3 z-10 flex flex-wrap items-center gap-1.5">
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-white text-slate-800 border border-slate-200 shadow-xs">
+                              {currentCategoryData.title}
+                            </span>
+                            {proj.badge && (
+                              <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold shadow-2xs ${proj.badgeColor || "bg-blue-50 text-[#0066ff] border border-blue-200"}`}>
+                                {proj.badge}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Card Info & Meta */}
+                        <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                          <div className="space-y-2">
+                            <button
+                              type="button"
+                              onClick={() => navigateToProject(slug)}
+                              className="text-left w-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] rounded-xs cursor-pointer"
+                            >
+                              <h2 className="text-xl font-bold text-slate-900 group-hover:text-[#0066ff] transition-colors tracking-tight">
+                                {proj.title}
+                              </h2>
+                            </button>
+
+                            <span className="block text-xs font-mono font-bold text-[#0066ff]">
+                              {proj.details.type}
+                            </span>
+
+                            <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed line-clamp-2">
+                              {proj.tagline}
+                            </p>
+                          </div>
+
+                          {/* Architecture & Role Specs */}
+                          <div className="pt-2 pb-1 border-t border-slate-100 grid grid-cols-2 gap-2 text-[11px] text-slate-500 font-mono">
+                            <div>
+                              <span className="text-slate-400 block">ROLE:</span>
+                              <span className="text-slate-700 font-semibold truncate block">{proj.details.role}</span>
+                            </div>
+                            <div>
+                              <span className="text-slate-400 block">STATUS:</span>
+                              <span className="text-slate-700 font-semibold truncate block">{proj.details.status}</span>
+                            </div>
+                          </div>
+
+                          {/* Tech Stack Pills */}
+                          <div className="flex flex-wrap gap-1.5">
+                            {(proj.skillsUsed?.[0]?.skills || ["React", "TypeScript", "Tailwind"]).slice(0, 4).map((skill) => (
+                              <span
+                                key={skill}
+                                className="px-2 py-0.5 rounded-md text-[11px] font-medium bg-slate-50 text-slate-700 border border-slate-200"
+                              >
+                                {skill}
+                              </span>
+                            ))}
+                          </div>
+
+                          {/* Card Action Footer */}
+                          <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                            <button
+                              type="button"
+                              onClick={() => navigateToProject(slug)}
+                              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0066ff] hover:text-[#0052cc] transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff] rounded-xs"
+                            >
+                              <span>Explore Project Details</span>
+                              <span aria-hidden="true">→</span>
+                            </button>
+
+                            {proj.links.playStore && (
+                              <a
+                                href={proj.links.playStore}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition-colors"
+                              >
+                                <span>Play Store ↗</span>
+                              </a>
+                            )}
+
+                            {proj.links.liveUrl && !proj.links.playStore && (
+                              <a
+                                href={proj.links.liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold bg-blue-50 text-[#0066ff] border border-blue-200 hover:bg-blue-100 transition-colors"
+                              >
+                                <span>Live Demo ↗</span>
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      </article>
+                    </FadeUp>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* ========================================================================= */}
+          {/* VIEW 3: ALL COLLECTIONS HUB (What I Build)                                */}
+          {/* ========================================================================= */}
+          {!activeCategory && !activeProject && (
+            <div className="space-y-8 sm:space-y-10">
+              {/* Main Heading */}
+              <div className="text-center space-y-3 max-w-2xl mx-auto pt-2">
+                <FadeUp delay={40} duration={600}>
+                  <div className="font-mono text-xs font-bold tracking-wider uppercase text-[#0066ff]">
+                    ENGINEERING DIRECTORY
+                  </div>
+                  <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
+                    What I Build
+                  </h1>
+                </FadeUp>
+
+                <FadeUp delay={100} duration={650}>
+                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+                    Select a core engineering discipline below to view production-ready mobile applications, web platforms, and commercial business systems.
+                  </p>
+                </FadeUp>
+              </div>
+
+              {/* 3 Main Category Cards (Clicking directly opens that category's proper cards!) */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+                {CATEGORIES_LIST.map((cat, idx) => (
+                  <FadeUp key={cat.key} delay={idx * 100} duration={650}>
                     <button
                       type="button"
-                      onClick={() => navigateToSubcategory(activeCategory, sub.key)}
-                      className="w-full text-left p-5 sm:p-6 rounded-2xl bg-white hover:bg-[#fafcff] border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 hover:border-[#0070f3] shadow-[0_2px_8px_rgba(15,23,42,0.05),0_14px_36px_rgba(0,112,243,0.09)] hover:shadow-[0_4px_14px_rgba(15,23,42,0.08),0_24px_50px_rgba(0,112,243,0.18)] transition-all duration-300 hover:-translate-y-1 flex items-center justify-between group cursor-pointer"
+                      onClick={() => navigateToCategory(cat.key)}
+                      className="w-full text-left p-6 sm:p-7 rounded-2xl bg-white border border-slate-200 hover:border-[#0066ff] shadow-xs hover:shadow-md transition-[border-color,box-shadow,transform] duration-200 flex flex-col justify-between group cursor-pointer h-full space-y-6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066ff]"
                     >
-                      <div className="space-y-1">
-                        <h2 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0070f3] transition-colors tracking-tight">
-                          {sub.title}
-                        </h2>
-                        <span className="block text-xs text-slate-500 font-normal">
-                          {sub.projectCount} {sub.projectCount === 1 ? "project" : "projects"}
-                        </span>
+                      <div className="space-y-4">
+                        {/* Icon & Count Pill */}
+                        <div className="flex items-center justify-between">
+                          <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-200 text-[#0066ff] flex items-center justify-center group-hover:bg-[#0066ff] group-hover:text-white transition-[background-color,color] duration-200">
+                            {getCategoryIcon(cat.key, "w-5 h-5")}
+                          </div>
+
+                          <span className="font-mono text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md">
+                            {getProjectCount(cat.key)} {getProjectCount(cat.key) === 1 ? "Project" : "Projects"}
+                          </span>
+                        </div>
+
+                        {/* Title & Description */}
+                        <div className="space-y-2">
+                          <h2 className="text-xl font-bold text-slate-900 group-hover:text-[#0066ff] transition-colors tracking-tight">
+                            {cat.title}
+                          </h2>
+                          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                            {cat.description}
+                          </p>
+                        </div>
                       </div>
 
-                      <div className="text-slate-400 group-hover:text-[#0070f3] group-hover:translate-x-1 transition-all">
-                        <svg
-                          className="w-5 h-5"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2.2}
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
+                      {/* Explore Button */}
+                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#0066ff]">
+                        <span>View {cat.title} Cards</span>
+                        <span className="group-hover:translate-x-1 transition-transform" aria-hidden="true">→</span>
                       </div>
                     </button>
                   </FadeUp>
@@ -631,97 +695,6 @@ function ProjectsContent() {
             </div>
           )}
 
-          {/* ========================================================================= */}
-          {/* LEVEL 1: ALL COLLECTIONS HUB ("What I Build") - Nothing shown below!       */}
-          {/* ========================================================================= */}
-          {!activeCategory && !activeProject && (
-            <div className="space-y-8 sm:space-y-10">
-              {/* Heading matching user inspiration */}
-              <div className="text-center space-y-4 max-w-2xl mx-auto pt-4 sm:pt-6">
-                <FadeUp delay={0} duration={600}>
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
-                    What I{" "}
-                    <span className="bg-gradient-to-r from-[#0070f3] via-[#00a6ff] to-[#00c2ff] bg-clip-text text-transparent">
-                      Build
-                    </span>
-                  </h1>
-                </FadeUp>
-
-                <FadeUp delay={80} duration={700}>
-                  <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-                    Explore the kinds of digital products and software systems I build for real-world needs.
-                  </p>
-                </FadeUp>
-              </div>
-
-              {/* The 4 Category Cards in 2x2 Grid */}
-              <FadeUp delay={160} duration={750}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                  {CATEGORIES_LIST.map((cat) => {
-                    const totalProjects = cat.subcategories.reduce(
-                      (acc, s) => acc + s.projectCount,
-                      0
-                    );
-
-                    return (
-                      <button
-                        key={cat.key}
-                        type="button"
-                        onClick={() => navigateToCategory(cat.key)}
-                        className="group relative text-left p-6 sm:p-7 rounded-2xl bg-white hover:bg-[#fafcff] border-2 border-[#bfd8f6] ring-1 ring-slate-900/5 hover:border-[#0070f3] shadow-[0_2px_8px_rgba(15,23,42,0.05),0_14px_36px_rgba(0,112,243,0.09)] hover:shadow-[0_4px_14px_rgba(15,23,42,0.08),0_24px_50px_rgba(0,112,243,0.18)] transition-all duration-300 hover:-translate-y-1.5 cursor-pointer"
-                      >
-                        <div className="flex items-start gap-4">
-                          {/* Monochromatic SVG Icon */}
-                          <div className="w-12 h-12 rounded-xl bg-[#edf4fd] border border-[#d8e6f8] text-[#0070f3] group-hover:bg-[#0070f3] group-hover:text-white flex items-center justify-center flex-shrink-0 transition-all duration-200 shadow-2xs">
-                            {getCategoryIcon(cat.key, "w-5 h-5")}
-                          </div>
-
-                          {/* Text Content */}
-                          <div className="flex-1 min-w-0 pr-6">
-                            <div className="flex items-center gap-2.5">
-                              <h3 className="text-lg sm:text-[19px] font-bold text-slate-900 group-hover:text-[#0070f3] transition-colors tracking-tight">
-                                {cat.title}
-                              </h3>
-                              <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200/80">
-                                {totalProjects} {totalProjects === 1 ? "project" : "projects"}
-                              </span>
-                            </div>
-                            <p className="text-[13.5px] sm:text-sm text-slate-600 font-normal mt-1.5 leading-relaxed">
-                              {cat.description}
-                            </p>
-                          </div>
-
-                          {/* Right Chevron Arrow */}
-                          <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 group-hover:text-[#0070f3] group-hover:translate-x-1 transition-all">
-                            <svg
-                              className="w-5 h-5"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2.2}
-                                d="M9 5l7 7-7 7"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </FadeUp>
-
-              {/* Clean bottom spacer - Nothing below */}
-              <div className="pt-8 text-center">
-                <p className="text-xs text-slate-400 font-medium">
-                  Click any category above to view dedicated sub-collections &amp; production case studies.
-                </p>
-              </div>
-            </div>
-          )}
         </div>
       </main>
 
@@ -734,8 +707,8 @@ export default function ProjectsPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-white flex items-center justify-center">
-          <div className="w-8 h-8 rounded-full border-2 border-[#0070f3] border-t-transparent animate-spin" />
+        <div className="min-h-screen flex items-center justify-center bg-white text-slate-600">
+          Loading projects...
         </div>
       }
     >
