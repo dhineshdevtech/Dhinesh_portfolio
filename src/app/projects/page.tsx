@@ -7,6 +7,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FadeUp from "@/components/FadeUp";
+import CompactVideoShowcase from "@/components/CompactVideoShowcase";
 import {
   CategoryKey,
   CATEGORIES_DATA,
@@ -41,6 +42,12 @@ function getCategoryIcon(key: CategoryKey, cls = "w-5 h-5") {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m-5 4h18" />
         </svg>
       );
+    case "ai-videos":
+      return (
+        <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        </svg>
+      );
   }
 }
 
@@ -53,7 +60,7 @@ function ProjectsContent() {
 
   // Resolve active category
   const activeCategory: CategoryKey | null =
-    categoryParam && ["mobile", "websites", "business"].includes(categoryParam)
+    categoryParam && ["mobile", "websites", "business", "ai-videos"].includes(categoryParam)
       ? categoryParam
       : null;
 
@@ -150,6 +157,17 @@ function ProjectsContent() {
                   </p>
                 </FadeUp>
               </div>
+
+              {/* Custom Compact Video Showcase for Video Projects (Clean Reel Player: No 3-Dots, No Fullscreen, No Volume Popup) */}
+              {activeProject.videoUrl && (
+                <FadeUp delay={150} duration={700}>
+                  <CompactVideoShowcase
+                    videoUrl={activeProject.videoUrl}
+                    title="Commercial Video"
+                    subtitle="9:16 Reel"
+                  />
+                </FadeUp>
+              )}
 
               {/* SECTION: Project Details Specs Box */}
               <FadeUp delay={180} duration={700}>
@@ -287,45 +305,47 @@ function ProjectsContent() {
                 </div>
               </FadeUp>
 
-              {/* SECTION: Project Gallery */}
-              <FadeUp delay={300} duration={700}>
-                <div className="space-y-4 pt-2">
-                  <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                    Project Gallery
-                  </h2>
+              {/* SECTION: Project Gallery (Shown only for projects with gallery images and not video-only showcases) */}
+              {activeProject.gallery && activeProject.gallery.length > 0 && !activeProject.videoUrl && (
+                <FadeUp delay={300} duration={700}>
+                  <div className="space-y-4 pt-2">
+                    <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                      Project Gallery
+                    </h2>
 
-                  <div
-                    className={`grid gap-5 ${
-                      activeProject.gallery.length === 1
-                        ? "grid-cols-1 max-w-3xl mx-auto"
-                        : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-                    }`}
-                  >
-                    {activeProject.gallery.map((img, idx) => (
-                      <div
-                        key={idx}
-                        className="group rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-xs hover:border-[#0066ff] transition-colors flex flex-col justify-between"
-                      >
-                        <div className="relative w-full aspect-video sm:aspect-[16/10] bg-slate-50 flex items-center justify-center overflow-hidden">
-                          <Image
-                            src={img.url}
-                            alt={img.alt}
-                            width={1400}
-                            height={950}
-                            className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300"
-                            priority={idx === 0}
-                          />
+                    <div
+                      className={`grid gap-5 ${
+                        activeProject.gallery.length === 1
+                          ? "grid-cols-1 max-w-3xl mx-auto"
+                          : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                      }`}
+                    >
+                      {activeProject.gallery.map((img, idx) => (
+                        <div
+                          key={idx}
+                          className="group rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-xs hover:border-[#0066ff] transition-colors flex flex-col justify-between"
+                        >
+                          <div className="relative w-full aspect-video sm:aspect-[16/10] bg-slate-50 flex items-center justify-center overflow-hidden">
+                            <Image
+                              src={img.url}
+                              alt={img.alt}
+                              width={1400}
+                              height={950}
+                              className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300"
+                              priority={idx === 0}
+                            />
+                          </div>
+                          <div className="p-3 bg-white border-t border-slate-100">
+                            <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                              {img.caption}
+                            </p>
+                          </div>
                         </div>
-                        <div className="p-3 bg-white border-t border-slate-100">
-                          <p className="text-xs text-slate-600 font-medium leading-relaxed">
-                            {img.caption}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </FadeUp>
+                </FadeUp>
+              )}
 
               {/* SECTION: Technologies & Skills Used */}
               <FadeUp delay={340} duration={700}>
@@ -517,13 +537,26 @@ function ProjectsContent() {
                           onClick={() => navigateToProject(slug)}
                           className="relative aspect-video sm:aspect-[16/10] w-full bg-slate-50 flex items-center justify-center overflow-hidden border-b border-slate-200 cursor-pointer"
                         >
-                          <Image
-                            src={proj.thumbnail}
-                            alt={proj.title}
-                            width={700}
-                            height={450}
-                            className="w-full h-full object-contain p-2 sm:p-3 group-hover:scale-[1.02] transition-transform duration-300"
-                          />
+                          {proj.videoUrl ? (
+                            <div className="relative w-full h-full bg-slate-950 flex items-center justify-center overflow-hidden">
+                              <video
+                                src={proj.videoUrl}
+                                playsInline
+                                muted
+                                loop
+                                autoPlay
+                                className="h-full w-full object-contain"
+                              />
+                            </div>
+                          ) : (
+                            <Image
+                              src={proj.thumbnail}
+                              alt={proj.title}
+                              width={700}
+                              height={450}
+                              className="w-full h-full object-contain p-2 sm:p-3 group-hover:scale-[1.02] transition-transform duration-300"
+                            />
+                          )}
 
                           {/* Top Tag Badges */}
                           <div className="absolute top-3 left-3 z-10 flex flex-wrap items-center gap-1.5">
@@ -651,8 +684,8 @@ function ProjectsContent() {
                 </FadeUp>
               </div>
 
-              {/* 3 Main Category Cards (Clicking directly opens that category's proper cards!) */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+              {/* Main Category Cards (2x2 Balanced Grid) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto pt-2">
                 {CATEGORIES_LIST.map((cat, idx) => (
                   <FadeUp key={cat.key} delay={idx * 100} duration={650}>
                     <button
@@ -685,7 +718,7 @@ function ProjectsContent() {
 
                       {/* Explore Button */}
                       <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#0066ff]">
-                        <span>View {cat.title} Cards</span>
+                        <span>Browse {cat.title}</span>
                         <span className="group-hover:translate-x-1 transition-transform" aria-hidden="true">→</span>
                       </div>
                     </button>

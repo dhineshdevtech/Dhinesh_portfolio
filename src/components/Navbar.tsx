@@ -12,7 +12,7 @@ interface NavItem {
 }
 
 export interface ProjectCategory {
-  id: "mobile" | "websites" | "business";
+  id: "mobile" | "websites" | "business" | "ai-videos";
   name: string;
   icon: (className?: string) => React.ReactNode;
 }
@@ -45,6 +45,16 @@ export const projectCategories: ProjectCategory[] = [
       <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <rect x="3" y="7" width="18" height="13" rx="2" strokeWidth={1.8} />
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m-5 4h18" />
+      </svg>
+    ),
+  },
+
+  {
+    id: "ai-videos",
+    name: "AI Video Ads",
+    icon: (cls = "w-4 h-4") => (
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
       </svg>
     ),
   },

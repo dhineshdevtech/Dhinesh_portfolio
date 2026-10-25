@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FeaturedWork from "@/components/FeaturedWork";
+import AIVideoSpotlight from "@/components/AIVideoSpotlight";
 import Services from "@/components/Services";
 import TechStack from "@/components/TechStack";
 import Approach from "@/components/Approach";
@@ -20,6 +21,9 @@ export default function Home() {
 
         {/* Featured Work / Projects Section */}
         <FeaturedWork />
+
+        {/* AI Video Commercials Spotlight Section */}
+        <AIVideoSpotlight />
 
         {/* Services & Core Capabilities Section */}
         <Services />

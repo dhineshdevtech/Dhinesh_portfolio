@@ -4,6 +4,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FadeUp from "@/components/FadeUp";
+import CompactVideoShowcase from "@/components/CompactVideoShowcase";
 import { PROJECTS_DATA, CATEGORIES_DATA } from "@/data/projectsData";
 
 export function generateStaticParams() {
@@ -70,6 +71,17 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               </p>
             </FadeUp>
           </div>
+
+          {/* Custom Compact Video Showcase for Video Projects (Clean Reel Player: No 3-Dots, No Fullscreen, No Volume Popup) */}
+          {project.videoUrl && (
+            <FadeUp delay={150} duration={700}>
+              <CompactVideoShowcase
+                videoUrl={project.videoUrl}
+                title="Commercial Video"
+                subtitle="9:16 Reel"
+              />
+            </FadeUp>
+          )}
 
           {/* Project Details Box */}
           <FadeUp delay={180} duration={700}>
@@ -207,45 +219,47 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </div>
           </FadeUp>
 
-          {/* Project Gallery */}
-          <FadeUp delay={300} duration={700}>
-            <div className="space-y-4 pt-2">
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                Project Gallery
-              </h2>
+          {/* Project Gallery (Shown only for projects with gallery images and not video-only showcases) */}
+          {project.gallery && project.gallery.length > 0 && !project.videoUrl && (
+            <FadeUp delay={300} duration={700}>
+              <div className="space-y-4 pt-2">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                  Project Gallery
+                </h2>
 
-              <div
-                className={`grid gap-5 ${
-                  project.gallery.length === 1
-                    ? "grid-cols-1 max-w-3xl mx-auto"
-                    : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-                }`}
-              >
-                {project.gallery.map((img, idx) => (
-                  <div
-                    key={idx}
-                    className="group rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-xs hover:border-[#0066ff] transition-colors flex flex-col justify-between"
-                  >
-                    <div className="relative w-full aspect-video sm:aspect-[16/10] bg-slate-50 flex items-center justify-center overflow-hidden">
-                      <Image
-                        src={img.url}
-                        alt={img.alt}
-                        width={1400}
-                        height={950}
-                        className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300"
-                        priority={idx === 0}
-                      />
+                <div
+                  className={`grid gap-5 ${
+                    project.gallery.length === 1
+                      ? "grid-cols-1 max-w-3xl mx-auto"
+                      : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                  }`}
+                >
+                  {project.gallery.map((img, idx) => (
+                    <div
+                      key={idx}
+                      className="group rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-xs hover:border-[#0066ff] transition-colors flex flex-col justify-between"
+                    >
+                      <div className="relative w-full aspect-video sm:aspect-[16/10] bg-slate-50 flex items-center justify-center overflow-hidden">
+                        <Image
+                          src={img.url}
+                          alt={img.alt}
+                          width={1400}
+                          height={950}
+                          className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300"
+                          priority={idx === 0}
+                        />
+                      </div>
+                      <div className="p-3 bg-white border-t border-slate-100">
+                        <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                          {img.caption}
+                        </p>
+                      </div>
                     </div>
-                    <div className="p-3 bg-white border-t border-slate-100">
-                      <p className="text-xs text-slate-600 font-medium leading-relaxed">
-                        {img.caption}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          </FadeUp>
+            </FadeUp>
+          )}
 
           {/* Technologies & Skills Used */}
           <FadeUp delay={340} duration={700}>

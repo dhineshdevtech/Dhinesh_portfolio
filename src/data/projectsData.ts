@@ -1,4 +1,4 @@
-export type CategoryKey = "mobile" | "websites" | "business";
+export type CategoryKey = "mobile" | "websites" | "business" | "ai-videos";
 
 export interface ProjectDetail {
   slug: string;
@@ -10,6 +10,8 @@ export interface ProjectDetail {
   badge: string;
   badgeColor: string;
   thumbnail: string;
+  videoUrl?: string;
+  videoAspect?: "9:16" | "16:9";
 
   // Project Details Box
   details: {
@@ -142,6 +144,30 @@ export const CATEGORIES_DATA: Record<CategoryKey, CategoryData> = {
       },
     ],
   },
+  "ai-videos": {
+    key: "ai-videos",
+    title: "AI Video Commercials",
+    description:
+      "High-converting, hyper-realistic AI video commercials and promotional campaigns engineered for digital products, mobile services, and modern brands.",
+    pitch: "Need a cinematic AI commercial to launch your mobile app or e-commerce platform?",
+    pitchCta: "Commission an AI Ad",
+    subcategories: [
+      {
+        key: "app-service-ads",
+        title: "App Service Commercials",
+        description: "Direct-response video ads for mobile application development and software service launches.",
+        projectCount: 1,
+        projectSlugs: ["app-development-ad"],
+      },
+      {
+        key: "ecommerce-ads",
+        title: "E-Commerce Brand Ads",
+        description: "Photorealistic AI commercial video campaigns for textile, fashion, and retail platforms.",
+        projectCount: 1,
+        projectSlugs: ["textile-ecommerce-ad"],
+      },
+    ],
+  },
 };
 
 export const CATEGORY_PROJECT_SLUGS: Record<CategoryKey, string[]> = {
@@ -157,9 +183,13 @@ export const CATEGORY_PROJECT_SLUGS: Record<CategoryKey, string[]> = {
     "bubbleworks-pos",
     "invoice-generator",
   ],
+  "ai-videos": [
+    "app-development-ad",
+    "textile-ecommerce-ad",
+  ],
 };
 
-export const TOTAL_PROJECTS_COUNT = 9;
+export const TOTAL_PROJECTS_COUNT = 11;
 
 export const PROJECTS_DATA: Record<string, ProjectDetail> = {
   // --------------------------------------------------------------------------
@@ -1277,6 +1307,127 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
     links: {
       liveUrl: "https://laundrypos-live.vercel.app",
       githubUrl: "https://github.com/dhineshdevtech/Invoice_generator",
+    },
+  },
+
+  // --------------------------------------------------------------------------
+  // 4. AI VIDEO COMMERCIALS
+  // --------------------------------------------------------------------------
+  "app-development-ad": {
+    slug: "app-development-ad",
+    title: "App Development Service Commercial",
+    tagline: "High-impact vertical video ad engineered for mobile product development & agency client acquisition with photorealistic generative rendering.",
+    categoryKey: "ai-videos",
+    subcategoryKey: "app-service-ads",
+    subcategoryTitle: "App Service Commercials",
+    badge: "🎬 9:16 AI Commercial Ad",
+    badgeColor: "bg-blue-50 text-[#0066ff] border-blue-200",
+    thumbnail: "/profile-clean.jpg",
+    videoUrl: "/videos/video1.mp4",
+    videoAspect: "9:16",
+    details: {
+      type: "Commercial Video Ad (9:16 Reel)",
+      duration: "48-Hour Turnaround",
+      role: "AI Creative Technologist & Director",
+      status: "Published Production Ad",
+      architecture: "Generative Video + AI Voice Synthesis",
+      clientOrContext: "Mobile Development Client Acquisition",
+    },
+    overview: {
+      challenge: "Capturing client and founder attention in under 3 seconds in a crowded software agency market without spending thousands on physical studio production.",
+      solution: "Engineered a fast-paced, cinematic vertical ad combining photorealistic generative models, high-energy pacing, custom voiceover synthesis, and crisp dynamic text overlays.",
+      impact: "High direct-response engagement rate, delivering studio-grade production value at 90% lower production costs and 48-hour delivery.",
+    },
+    coreFeatures: [
+      {
+        title: "Photorealistic Motion & Physics",
+        description: "Generated using advanced video diffusion models with fluid camera transitions, motion consistency, and realistic lighting.",
+      },
+      {
+        title: "Neural AI Voiceover & Sound Design",
+        description: "Studio-mastered voice synthesis with rhythm-matched sound effects and cinematic low-end impact.",
+      },
+      {
+        title: "Direct-Response Conversion Hook",
+        description: "Structured specifically for TikTok, Instagram Reels, and YouTube Shorts with a 2-second hook and clear call-to-action.",
+      },
+      {
+        title: "4K Master Delivery",
+        description: "AI-upscaled video with clean color grading and typography optimized for mobile viewing.",
+      },
+    ],
+    gallery: [],
+    skillsUsed: [
+      {
+        group: "AI Video & Generative Tools",
+        skills: ["Google Vids", "Gemini Veo", "ChatGPT"],
+      },
+      {
+        group: "Video Editing & Post-Production",
+        skills: ["CapCut", "Edits"],
+      },
+    ],
+    links: {
+      liveUrl: "/videos/video1.mp4",
+    },
+  },
+
+  "textile-ecommerce-ad": {
+    slug: "textile-ecommerce-ad",
+    title: "AI Textile E-Commerce Showcase Ad",
+    tagline: "Cinematic commercial promoting AI-featured textile & fashion e-commerce platform engineering with realistic fabric flow and modern retail aesthetic.",
+    categoryKey: "ai-videos",
+    subcategoryKey: "ecommerce-ads",
+    subcategoryTitle: "E-Commerce Brand Ads",
+    badge: "🎬 9:16 Fashion Commercial",
+    badgeColor: "bg-indigo-50 text-indigo-700 border-indigo-200",
+    thumbnail: "/profile-clean.jpg",
+    videoUrl: "/videos/video2.mp4",
+    videoAspect: "9:16",
+    details: {
+      type: "E-Commerce Brand Commercial (9:16)",
+      duration: "48-Hour Turnaround",
+      role: "AI Creative Technologist & Director",
+      status: "Published Production Ad",
+      architecture: "Generative Diffusion + Commercial Sound",
+      clientOrContext: "AI Textile & Fashion E-Commerce",
+    },
+    overview: {
+      challenge: "Showcasing high-end textile craftsmanship and smart digital e-commerce features with hyper-realistic fabric textures without expensive location filming.",
+      solution: "Created photorealistic AI video sequences capturing micro-texture fabric motion, elegant model presentation, and digital shop interface overlays.",
+      impact: "Commercial-grade fashion aesthetic that elevates e-commerce brand credibility and drives clicks on social paid ad channels.",
+    },
+    coreFeatures: [
+      {
+        title: "Realistic Fabric Flow & Micro-Textures",
+        description: "Ultra-fine visual detail in cloth physics, textile sheen, and realistic light reflection.",
+      },
+      {
+        title: "E-Commerce Digital Overlay Integration",
+        description: "Seamless blending of physical-looking textile video with modern app/web store interfaces.",
+      },
+      {
+        title: "Cinematic Color Grading",
+        description: "Balanced warm tones, high contrast, and editorial fashion palette tailored for premium consumer appeal.",
+      },
+      {
+        title: "Optimized for Paid Social Ads",
+        description: "Engineered with 9:16 vertical aspect ratio to maximize ROAS on Instagram Reels and TikTok ad sets.",
+      },
+    ],
+    gallery: [],
+    skillsUsed: [
+      {
+        group: "AI Video & Generative Tools",
+        skills: ["Google Vids", "Gemini Veo", "ChatGPT"],
+      },
+      {
+        group: "Video Editing & Post-Production",
+        skills: ["CapCut", "Edits"],
+      },
+    ],
+    links: {
+      liveUrl: "/videos/video2.mp4",
     },
   },
 };

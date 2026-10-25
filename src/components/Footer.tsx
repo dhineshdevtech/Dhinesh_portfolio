@@ -129,6 +129,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/projects?category=ai-videos"
+                  className="hover:text-[#0066ff] transition-colors focus-visible:outline-2 focus-visible:outline-[#0066ff] rounded-xs"
+                >
+                  AI Video Ads
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/projects/mpnmjec-bus-tracker"
                   className="hover:text-[#0066ff] transition-colors focus-visible:outline-2 focus-visible:outline-[#0066ff] rounded-xs"
                 >
