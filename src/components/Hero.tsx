@@ -36,7 +36,7 @@ export default function Hero() {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs">
             <span className="w-2 h-2 rounded-full bg-[#0066ff]" />
             <span className="text-xs font-mono font-semibold tracking-wide uppercase text-slate-700">
-              Software Engineer • Web &amp; Mobile
+              Web &amp; Mobile Developer • Realistic AI Video Ads
             </span>
           </div>
 
@@ -46,13 +46,13 @@ export default function Hero() {
               Dhinesh
             </h1>
             <h2 className="text-xl sm:text-2xl font-bold text-slate-700 tracking-tight">
-              Web &amp; Mobile Application Developer
+              Software Engineer &amp; AI Video Creator
             </h2>
           </div>
 
           {/* Impact Bio */}
           <p className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed">
-            Specializing in building and shipping production web applications, cross-platform Flutter mobile experiences, and real-time backend architectures that solve real operational problems.
+            I develop production-ready mobile and web applications that scale. I also produce realistic AI video commercials that drive real sales.
           </p>
 
           {/* Action CTA Buttons with accessible focus-visible */}
@@ -97,24 +97,35 @@ export default function Hero() {
           </div>
 
           {/* Metric Stats Counters */}
-          <div className="pt-6 border-t border-slate-200/90 flex items-center gap-6 sm:gap-8 max-w-md">
+          <div className="pt-6 border-t border-slate-200/90 flex items-center justify-start gap-4 sm:gap-6 lg:gap-8">
             <div>
-              <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight whitespace-nowrap">
                 {TOTAL_PROJECTS_COUNT}<span className="text-[#0066ff]">+</span>
               </div>
-              <div className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
+              <div className="text-[11px] sm:text-xs text-slate-500 font-medium mt-0.5 whitespace-nowrap">
                 Shipped Systems
               </div>
             </div>
 
-            <div className="h-10 w-px bg-slate-200" aria-hidden="true" />
+            <div className="h-9 w-px bg-slate-200 shrink-0" aria-hidden="true" />
 
             <div>
-              <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight whitespace-nowrap">
+              <div className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight whitespace-nowrap">
                 Production
               </div>
-              <div className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
-                Web &amp; Mobile Apps
+              <div className="text-[11px] sm:text-xs text-slate-500 font-medium mt-0.5 whitespace-nowrap">
+                Web &amp; Mobile
+              </div>
+            </div>
+
+            <div className="h-9 w-px bg-slate-200 shrink-0" aria-hidden="true" />
+
+            <div>
+              <div className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#0066ff] tracking-tight whitespace-nowrap">
+                Photoreal
+              </div>
+              <div className="text-[11px] sm:text-xs text-slate-500 font-medium mt-0.5 whitespace-nowrap">
+                AI Video Ads
               </div>
             </div>
           </div>
@@ -134,7 +145,7 @@ export default function Hero() {
               <div className="relative w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] lg:w-[350px] lg:h-[350px] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200/80">
                 <Image
                   src="/profile.webp"
-                  alt="Dhinesh - Web and Mobile Application Developer"
+                  alt="Dhinesh - Web and Mobile Application Developer & AI Video Creator"
                   width={400}
                   height={400}
                   className="w-full h-full object-cover"
@@ -144,7 +155,7 @@ export default function Hero() {
             </div>
 
             {/* Bottom-Left Real Technical Verification Card */}
-            <div className="absolute -bottom-5 sm:-bottom-6 -left-3 sm:-left-5 z-20 w-[240px] sm:w-[260px] rounded-xl bg-white border border-slate-200 p-3.5 shadow-lg text-left animate-fadeIn">
+            <div className="absolute -bottom-5 sm:-bottom-6 -left-3 sm:-left-5 z-20 w-[250px] sm:w-[270px] rounded-xl bg-white border border-slate-200 p-3.5 shadow-lg text-left animate-fadeIn">
               <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-100">
                 <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0066ff]">
                   Production Verification
@@ -162,11 +173,11 @@ export default function Hero() {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500">Stack:</span>
-                  <span className="font-semibold text-slate-800">Flutter • React • TS</span>
+                  <span className="font-semibold text-slate-800">Flutter • Next.js • TS</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-500">Architecture:</span>
-                  <span className="font-semibold text-slate-800">Full-Stack Cloud</span>
+                  <span className="text-slate-500">Creative AI:</span>
+                  <span className="font-semibold text-[#0066ff]">Realistic Video Ads</span>
                 </div>
               </div>
             </div>
