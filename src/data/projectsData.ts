@@ -99,6 +99,13 @@ export const CATEGORIES_DATA: Record<CategoryKey, CategoryData> = {
     pitchCta: "Discuss your web product",
     subcategories: [
       {
+        key: "ecommerce",
+        title: "Luxury E-Commerce & AI Retail",
+        description: "Full-stack luxury apparel platform with neural AI virtual try-on, Razorpay checkout, and live inventory sync.",
+        projectCount: 1,
+        projectSlugs: ["vanya-ecommerce"],
+      },
+      {
         key: "campus-platforms",
         title: "Campus Platforms",
         description: "Integrated institutional web platforms for fleet transit and real-time operations.",
@@ -173,6 +180,7 @@ export const CATEGORIES_DATA: Record<CategoryKey, CategoryData> = {
 export const CATEGORY_PROJECT_SLUGS: Record<CategoryKey, string[]> = {
   mobile: ["mpnmjec-bus-tracker", "mpnmjec-driver-app"],
   websites: [
+    "vanya-ecommerce",
     "mpnmjec-dispatch-console",
     "quizforge-ai",
     "aletheia-compliance",
@@ -189,7 +197,7 @@ export const CATEGORY_PROJECT_SLUGS: Record<CategoryKey, string[]> = {
   ],
 };
 
-export const TOTAL_PROJECTS_COUNT = 11;
+export const TOTAL_PROJECTS_COUNT = 12;
 
 export const PROJECTS_DATA: Record<string, ProjectDetail> = {
   // --------------------------------------------------------------------------
@@ -437,6 +445,114 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
   },
 
 
+
+  // --------------------------------------------------------------------------
+  // 3. WEBSITES -> LUXURY E-COMMERCE & AI RETAIL
+  // --------------------------------------------------------------------------
+  "vanya-ecommerce": {
+    slug: "vanya-ecommerce",
+    title: "VANYA – Luxury Men's Textiles & AI Virtual Try-On",
+    tagline:
+      "Full-stack luxury e-commerce platform featuring an in-browser AI neural drape engine, Razorpay payments, atomic Firebase inventory locks, and administrative operations suite.",
+    categoryKey: "websites",
+    subcategoryKey: "ecommerce",
+    subcategoryTitle: "Luxury E-Commerce & AI Retail",
+    badge: "✨ AI Virtual Try-On • Razorpay",
+    badgeColor: "bg-amber-50 text-amber-900 border-amber-200",
+    thumbnail: "/projects/vanya/vanya_storefront_tab.webp",
+    details: {
+      type: "Full-Stack Luxury E-Commerce & AI Retail Platform",
+      duration: "Production Release",
+      role: "Lead Full-Stack Architect & AI Engineer",
+      status: "Live in Production",
+      architecture: "Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Firebase Firestore, Razorpay, Cloudinary",
+      clientOrContext: "VANYA Men's Haute Wardrobe (Live Production)",
+    },
+    overview: {
+      challenge:
+        "Luxury menswear crafted from 100% Egyptian Giza Cotton and Normandy Flax Linen struggles online due to customer hesitation over fit and fabric drape. Generic e-commerce templates lack intelligent virtual fitting, and standard carts suffer race conditions and overselling during limited fabric drops.",
+      solution:
+        "Architected VANYA, an end-to-end haute retail platform with 'The Atelier Digital Fitting Suite'—an AI neural fitting mirror that models torso geometry and drapes authentic garment weaves onto customer portraits. Built a complete transactional engine with Razorpay payments, automated stock decrement locks, and a companion administrative console.",
+      impact:
+        "Transforms online luxury conversion through interactive split-slider silhouette preview, guarantees zero overselling with atomic Firestore inventory locks, and streamlines atelier order dispatching through a dedicated admin suite.",
+    },
+    coreFeatures: [
+      {
+        title: "Atelier AI Virtual Try-On Fitting Suite",
+        description:
+          "Neural digital fitting mirror measuring shoulder contour, torso silhouette, and garment folds with interactive split-slider comparison and one-click cart acquisition.",
+      },
+      {
+        title: "Razorpay Payment Gateway & Order Verification",
+        description:
+          "Secure checkout pipeline featuring server-side order generation, client checkout modal, HMAC-SHA256 signature verification, and automated confirmation emails.",
+      },
+      {
+        title: "Atomic Inventory Control & Stock Matrix",
+        description:
+          "Multi-variant stock reservation system (size, weave, color) backed by Firestore transactions to prevent double-booking during concurrent checkout flows.",
+      },
+      {
+        title: "Patron Account & Order Consignment Portal",
+        description:
+          "Customer profile management tracking live order consignments, delivery addresses, and persistent wishlist collections with OTP authentication.",
+      },
+      {
+        title: "Operations & Atelier Admin Dashboard",
+        description:
+          "Dedicated administrative operations console (vanya-ecommerce-admin) managing cataloged garments, size matrix inventory, and gross transaction volume.",
+      },
+      {
+        title: "High-Performance Media & Asset Protection",
+        description:
+          "Cloudinary CDN image optimization with client-side WebP compression and active content protection against digital asset scraping.",
+      },
+    ],
+    gallery: [
+      {
+        url: "/projects/vanya/vanya_storefront_tab.webp",
+        caption: "Storefront (Tablet View): Curated natural fiber luxury collection with live weave filters and real-time pricing matrix",
+        alt: "VANYA Storefront Catalog Tablet Showcase Screen",
+      },
+      {
+        url: "/projects/vanya/vanya_virtual_tryon_modal.png",
+        caption: "Atelier Fitting Suite: Virtual mirror modal guiding customer portrait upload with tailor precision rules",
+        alt: "VANYA AI Virtual Try-On Modal Screen",
+      },
+      {
+        url: "/projects/vanya/vanya_tryon_split_preview.png",
+        caption: "Neural Drape Result: Split comparison slider showcasing photorealistic fabric fit onto client silhouette",
+        alt: "VANYA AI Virtual Fitting Split Preview Screen",
+      },
+      {
+        url: "/projects/vanya/vanya_customer_account.png",
+        caption: "Patron Account Portal: Order & consignment tracking, saved delivery addresses, and wishlist storage",
+        alt: "VANYA Customer Account Portal Screen",
+      },
+      {
+        url: "/projects/vanya/vanya_admin_inventory_console.png",
+        caption: "Operations Console: Dedicated administrative portal managing cataloged garments, size matrix, and gross volume",
+        alt: "VANYA Atelier Admin Inventory Console Screen",
+      },
+    ],
+    skillsUsed: [
+      {
+        group: "Frontend & Architecture",
+        skills: ["Next.js 16 (App Router)", "React 19", "TypeScript", "Tailwind CSS v4", "Zustand", "Lucide Icons"],
+      },
+      {
+        group: "Commerce & Payments",
+        skills: ["Razorpay Checkout SDK", "HMAC Verification", "Nodemailer Receipts", "OTP Auth Store", "Stock Lock Matrix"],
+      },
+      {
+        group: "Cloud & AI Pipeline",
+        skills: ["AI Virtual Try-On API", "Firebase Firestore", "Cloudinary CDN", "WebP Image Compressor", "Vercel Edge"],
+      },
+    ],
+    links: {
+      liveUrl: "https://vanya-ecommerce.vercel.app",
+    },
+  },
 
   // --------------------------------------------------------------------------
   // 4. WEBSITES -> EDUTECH

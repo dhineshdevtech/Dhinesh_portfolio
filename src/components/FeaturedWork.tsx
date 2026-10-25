@@ -17,11 +17,26 @@ interface FeaturedProject {
   badgeLabel?: string;
   liveUrl?: string;
   githubUrl?: string;
-  type: "mpnmjec" | "6ixquest" | "bubbleworks" | "canteen";
+  type: "vanya" | "mpnmjec" | "6ixquest" | "bubbleworks" | "canteen";
   categories: CategoryKey[];
 }
 
 const featuredProjects: FeaturedProject[] = [
+  {
+    id: "vanya-ecommerce",
+    slug: "vanya-ecommerce",
+    category: "LUXURY E-COMMERCE • AI RETAIL",
+    title: "VANYA – Luxury Textiles & AI Virtual Try-On",
+    description:
+      "A full-stack haute e-commerce platform featuring 'The Atelier Digital Fitting Suite' with neural AI garment drape simulation, secure Razorpay checkout, and atomic Firebase stock locking.",
+    tags: ["Next.js 16", "React 19", "AI Virtual Try-On", "Razorpay", "Firebase Firestore", "Zustand"],
+    backdropBg: "from-amber-100/70 via-[#fdfbf7] to-stone-50/60 border-amber-200/70",
+    badgeBg: "bg-amber-50 text-amber-900 border border-amber-200",
+    badgeLabel: "✨ AI Virtual Try-On • Razorpay",
+    liveUrl: "https://vanya-ecommerce.vercel.app",
+    type: "vanya",
+    categories: ["websites"],
+  },
   {
     id: "mpnmjec-buses",
     slug: "mpnmjec-bus-tracker",
@@ -73,6 +88,21 @@ const featuredProjects: FeaturedProject[] = [
 ];
 
 function ProjectVisualPreview({ type }: { type: FeaturedProject["type"] }) {
+  if (type === "vanya") {
+    return (
+      <div className="relative w-full h-full select-none overflow-hidden">
+        <Image
+          src="/projects/vanya/vanya_storefront_tab.webp"
+          alt="VANYA Luxury Men's Textiles & AI Virtual Try-On Tablet Showcase"
+          fill
+          className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-300"
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          priority
+        />
+      </div>
+    );
+  }
+
   if (type === "mpnmjec") {
     return (
       <div className="relative w-full h-full select-none">
