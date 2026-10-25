@@ -122,7 +122,7 @@ export default function ContactPage() {
 
             <FadeUp delay={80} duration={700}>
               <p className="text-base sm:text-lg lg:text-[19px] text-slate-600 leading-relaxed max-w-2xl mx-auto">
-                Have a product idea, mobile app, business system, or software project in mind? I build cross-platform mobile apps, websites, business software, and admin panels — fill out the form below or reach out directly.
+                Have a product idea, mobile app, realistic AI video commercial, or software project in mind? I build cross-platform mobile apps, scalable websites, and high-converting AI commercial video ads — fill out the form below or reach out directly.
               </p>
             </FadeUp>
           </div>
@@ -199,7 +199,7 @@ export default function ContactPage() {
                       type="text"
                       value={formData.subject}
                       onChange={handleChange}
-                      placeholder="Project Inquiry / Role Discussion"
+                      placeholder="Mobile App / Web Platform / AI Video Ad Commission"
                       className="w-full px-4 py-3 rounded-xl bg-white border border-[#bfd8f6] text-slate-900 placeholder:text-slate-400 text-sm focus:outline-hidden focus:border-[#0070f3] focus:ring-2 focus:ring-[#0070f3]/20 transition-all shadow-2xs"
                     />
                   </div>
@@ -216,7 +216,7 @@ export default function ContactPage() {
                       rows={5}
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Tell me about your project, timeline, tech stack, or requirements..."
+                      placeholder="Tell me about your project, mobile app, AI video ad, timeline, or requirements..."
                       className="w-full px-4 py-3 rounded-xl bg-white border border-[#bfd8f6] text-slate-900 placeholder:text-slate-400 text-sm focus:outline-hidden focus:border-[#0070f3] focus:ring-2 focus:ring-[#0070f3]/20 transition-all shadow-2xs resize-y"
                     />
                   </div>

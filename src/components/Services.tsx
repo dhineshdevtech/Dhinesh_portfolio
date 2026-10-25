@@ -15,10 +15,10 @@ const servicesList: ServiceItem[] = [
   {
     id: "flutter-mobile",
     number: "01",
-    title: "Flutter Mobile App Development",
+    title: "Flutter Mobile Apps",
     description:
-      "Building smooth, high-performance Android mobile applications using a clean Flutter codebase with responsive, pixel-perfect UI and native device performance.",
-    tags: ["Flutter", "Dart", "Android", "State Management"],
+      "High-performance Android & cross-platform mobile apps, built for scale and published directly to the Google Play Store.",
+    tags: ["Flutter", "Dart", "Android", "Google Play Console"],
     icon: (cls = "w-6 h-6") => (
       <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
         <path
@@ -33,10 +33,10 @@ const servicesList: ServiceItem[] = [
   {
     id: "fullstack-web",
     number: "02",
-    title: "Modern Full-Stack Web Apps",
+    title: "Full-Stack Web Apps",
     description:
-      "Engineering scalable, responsive web platforms using React, Next.js, and TypeScript with fast load times, clean component architecture, and modern UX design.",
-    tags: ["Next.js", "React 18", "TypeScript", "Tailwind CSS"],
+      "Fast, responsive web applications and modern dashboards built with clean architecture, high performance, and SEO in mind.",
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     icon: (cls = "w-6 h-6") => (
       <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
         <path
@@ -49,73 +49,37 @@ const servicesList: ServiceItem[] = [
     ),
   },
   {
-    id: "realtime-tracking",
+    id: "ai-video-ads",
     number: "03",
-    title: "Live GPS & Real-Time Tracking",
+    title: "Realistic AI Video Ads",
     description:
-      "Implementing live telemetry engines, bi-directional WebSocket event streams, Google Maps integration, and real-time vehicle/user location monitoring.",
-    tags: ["WebSockets", "Google Maps API", "Live Telemetry", "GPS"],
+      "High-converting 9:16 vertical video commercials and promotional campaigns engineered to drive real product sales.",
+    tags: ["Google Vids", "Gemini Veo", "ChatGPT", "CapCut", "Edits"],
     icon: (cls = "w-6 h-6") => (
       <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth={2}
-          d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
+          d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
         />
       </svg>
     ),
   },
   {
-    id: "backend-architecture",
+    id: "backend-cloud",
     number: "04",
-    title: "Backend Architecture & APIs",
+    title: "Backend & Real-Time Cloud",
     description:
-      "Designing resilient RESTful APIs, relational & document databases (Supabase, Firebase, Node.js), real-time pub/sub synchronization, and authentication flows.",
-    tags: ["Node.js", "Express", "Supabase", "Firebase", "REST APIs"],
+      "Scalable REST APIs, live GPS telemetry, and cloud database architectures with instant real-time data synchronization.",
+    tags: ["Node.js", "Supabase", "Firebase", "WebSockets"],
     icon: (cls = "w-6 h-6") => (
       <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth={2}
-          d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
-        />
-      </svg>
-    ),
-  },
-  {
-    id: "play-store-launch",
-    number: "05",
-    title: "Google Play Store Launch",
-    description:
-      "Complete release pipeline to the Google Play Store — managing Android app bundles (AAB), signing keys, store listing optimization, policy compliance, and version updates.",
-    tags: ["Google Play Console", "AAB Bundles", "Keystore Signing", "Release Ops"],
-    icon: (cls = "w-6 h-6") => (
-      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M12 18l-8-6 8-6v12z"
-        />
-      </svg>
-    ),
-  },
-  {
-    id: "cloud-deployment",
-    number: "06",
-    title: "Cloud Deployment & Platforms",
-    description:
-      "Deploying and hosting live web applications and backends on production cloud platforms including Vercel, Render, Supabase, and Firebase with automated CI/CD pipelines.",
-    tags: ["Vercel", "Render", "Supabase", "Firebase", "CI/CD"],
-    icon: (cls = "w-6 h-6") => (
-      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z"
+          d="M13 10V3L4 14h7v7l9-11h-7z"
         />
       </svg>
     ),
@@ -152,7 +116,7 @@ export default function Services() {
       id="services"
       className="relative py-12 sm:py-14 lg:py-16 px-6 sm:px-8 lg:px-12 bg-slate-50/60 text-slate-900 border-t border-slate-200/80 overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto space-y-8 sm:space-y-10">
+      <div className="max-w-5xl mx-auto space-y-8 sm:space-y-10">
         {/* Section Header */}
         <div
           className={`space-y-3 max-w-3xl text-left transition-all duration-700 ease-out ${
@@ -165,16 +129,16 @@ export default function Services() {
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
-            Full-Stack Web &amp; Flutter Mobile Engineering
+            Software Development &amp; AI Video Creation
           </h2>
 
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            Delivering cross-platform mobile apps, real-time GPS telemetry pipelines, and cloud-backed web platforms with clean, maintainable architecture.
+            I develop production-ready mobile and web applications that scale, and produce realistic AI video commercials that drive real sales.
           </p>
         </div>
 
-        {/* 3x2 Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+        {/* 2x2 Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
           {servicesList.map((service, index) => (
             <div
               key={service.id}
@@ -201,7 +165,7 @@ export default function Services() {
                     {service.title}
                   </h3>
 
-                  <p className="text-sm text-slate-600 leading-relaxed">
+                  <p className="text-sm text-slate-600 leading-relaxed font-normal">
                     {service.description}
                   </p>
                 </div>

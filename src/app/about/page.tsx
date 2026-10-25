@@ -62,11 +62,11 @@ export default function AboutPage() {
                 {/* Proper Right Section: Narrative Content */}
                 <div className="md:col-span-7 lg:col-span-8 space-y-5 text-left pt-1">
                   <p className="text-base sm:text-lg lg:text-[19px] text-slate-700 leading-relaxed sm:leading-[1.75] font-normal">
-                    I&apos;m <strong className="font-extrabold text-slate-900">Dhinesh</strong>, a Software Engineer and Flutter Mobile App Developer with <strong className="font-extrabold text-[#0070f3]">proven experience</strong> building cross-platform apps. My path into software wasn&apos;t limited to one technology or one role — it grew through digital work, mobile development, internships, production projects, and eventually professional software engineering.
+                    I&apos;m <strong className="font-extrabold text-slate-900">Dhinesh</strong>, a Software Engineer, Flutter Developer, and AI Video Commercial Creator with <strong className="font-extrabold text-[#0070f3]">proven experience</strong> delivering scalable cross-platform apps and realistic commercial video campaigns. My path grew through digital creative work, mobile app engineering, production software deployments, and generative media.
                   </p>
 
                   <p className="text-base sm:text-lg lg:text-[19px] text-slate-700 leading-relaxed sm:leading-[1.75] font-normal">
-                    Today, I focus on building real-world software that is useful, maintainable, and built to last.
+                    Today, I develop production-ready mobile and web applications that scale, and produce realistic AI video commercials that drive real sales.
                   </p>
                 </div>
               </div>
@@ -102,10 +102,10 @@ export default function AboutPage() {
                   </div>
                   <div className="md:col-span-9 space-y-1.5 text-left">
                     <h3 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-[#0070f3] transition-colors">
-                      Software Engineer &amp; Production Scaling
+                      Software Engineer &amp; AI Video Creator
                     </h3>
                     <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-                      Now building production software with a stronger focus on architecture, scalability, live telemetry (WebSockets), performance, and real-world product requirements.
+                      Now building production software with a strong focus on clean architecture, live telemetry (WebSockets), and directing hyper-realistic AI video commercials that drive real sales.
                     </p>
                   </div>
                 </div>

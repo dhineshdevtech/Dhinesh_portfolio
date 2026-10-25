@@ -124,7 +124,7 @@ export default function ContactCTA() {
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-            Have a project in mind, mobile app idea, or engineering role? Send a message below or reach out directly.
+            Have a project in mind, mobile app, realistic AI video commercial, or engineering role? Send a message below or reach out directly.
           </p>
         </div>
 
@@ -202,7 +202,7 @@ export default function ContactCTA() {
                     type="text"
                     value={formData.subject}
                     onChange={handleChange}
-                    placeholder="Project Inquiry / Role Discussion"
+                    placeholder="Mobile App / Web Platform / AI Video Ad Commission"
                     className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#bfd8f6] text-slate-900 placeholder:text-slate-400 text-sm focus:outline-hidden focus:border-[#0070f3] focus:ring-2 focus:ring-[#0070f3]/20 transition-all shadow-2xs"
                   />
                 </div>
@@ -219,7 +219,7 @@ export default function ContactCTA() {
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Tell me about your project, timeline, tech stack, or requirements..."
+                    placeholder="Tell me about your project, mobile app, AI video ad, timeline, or requirements..."
                     className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#bfd8f6] text-slate-900 placeholder:text-slate-400 text-sm focus:outline-hidden focus:border-[#0070f3] focus:ring-2 focus:ring-[#0070f3]/20 transition-all shadow-2xs resize-y"
                   />
                 </div>

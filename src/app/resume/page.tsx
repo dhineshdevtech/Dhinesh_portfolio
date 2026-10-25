@@ -105,7 +105,7 @@ export default function ResumePage() {
           {/* Role Bio Statement */}
           <FadeUp delay={140} duration={700}>
             <p className="text-base sm:text-lg lg:text-[19px] font-medium text-slate-800 max-w-2xl leading-relaxed mb-3">
-              Software Engineer and Web &amp; Mobile Application Developer, currently building production cross-platform apps and scalable web platforms.
+              Software Engineer, Web &amp; Mobile Developer, and AI Video Creator — building scalable production applications and directing high-converting AI commercial video ads.
             </p>
           </FadeUp>
 

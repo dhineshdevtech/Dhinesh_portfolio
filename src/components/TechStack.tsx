@@ -327,6 +327,63 @@ const techCategories: TechCategory[] = [
       },
     ],
   },
+  {
+    id: "ai-video",
+    title: "AI Video Creation",
+    icon: (cls = "w-5 h-5") => (
+      <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+        />
+      </svg>
+    ),
+    skills: [
+      {
+        name: "Google Vids",
+        icon: (
+          <svg className="w-4 h-4 text-[#4285F4]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm6 4v8l6-4-6-4z" />
+          </svg>
+        ),
+      },
+      {
+        name: "Gemini Veo",
+        icon: (
+          <svg className="w-4 h-4 text-[#8E75FF]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+            <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93" />
+          </svg>
+        ),
+      },
+      {
+        name: "ChatGPT",
+        icon: (
+          <svg className="w-4 h-4 text-[#10a37f]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+            <circle cx="12" cy="12" r="3" />
+            <path d="M12 2a10 10 0 0110 10M12 22a10 10 0 01-10-10M2 12a10 10 0 0110-10M22 12a10 10 0 01-10 10" strokeDasharray="3 3" />
+          </svg>
+        ),
+      },
+      {
+        name: "CapCut",
+        icon: (
+          <svg className="w-4 h-4 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+            <path d="M4 6l8 6-8 6M20 6l-8 6 8 6" />
+          </svg>
+        ),
+      },
+      {
+        name: "Edits",
+        icon: (
+          <svg className="w-4 h-4 text-[#0066ff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+          </svg>
+        ),
+      },
+    ],
+  },
 ];
 
 interface SecondaryTool {
@@ -466,7 +523,7 @@ export default function TechStack() {
           </h2>
 
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            Core technologies and operational tools I rely on to build scalable web applications, cross-platform Flutter experiences, and cloud-backed microservices.
+            Core technologies, generative video tools, and operational frameworks I rely on to build scalable software and commercial video campaigns.
           </p>
         </div>
 

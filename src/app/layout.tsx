@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dhinesh — Web & Mobile Application Developer",
-  description: "Production software engineer building scalable full-stack web platforms and high-performance Flutter mobile applications.",
+  title: "Dhinesh — Web & Mobile Application Developer • Realistic AI Video Ads",
+  description: "Software engineer and AI video creator building scalable web & mobile applications and directing high-converting realistic AI video commercials.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
