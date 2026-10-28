@@ -173,6 +173,13 @@ export const CATEGORIES_DATA: Record<CategoryKey, CategoryData> = {
         projectCount: 1,
         projectSlugs: ["textile-ecommerce-ad"],
       },
+      {
+        key: "retail-jewellery-ads",
+        title: "Retail & Jewellery Commercials",
+        description: "Direct-response regional AI video campaigns for retail jewellery and pledged gold settlement services.",
+        projectCount: 1,
+        projectSlugs: ["durga-gold-jewellery-ad"],
+      },
     ],
   },
 };
@@ -194,10 +201,11 @@ export const CATEGORY_PROJECT_SLUGS: Record<CategoryKey, string[]> = {
   "ai-videos": [
     "app-development-ad",
     "textile-ecommerce-ad",
+    "durga-gold-jewellery-ad",
   ],
 };
 
-export const TOTAL_PROJECTS_COUNT = 12;
+export const TOTAL_PROJECTS_COUNT = 13;
 
 export const PROJECTS_DATA: Record<string, ProjectDetail> = {
   // --------------------------------------------------------------------------
@@ -1444,10 +1452,10 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
     details: {
       type: "Commercial Video Ad (9:16 Reel)",
       duration: "48-Hour Turnaround",
-      role: "AI Creative Technologist & Director",
+      role: "AI Creative Technologist & Video Producer (Strategy 360 Intern)",
       status: "Published Production Ad",
       architecture: "Generative Video + AI Voice Synthesis",
-      clientOrContext: "Mobile Development Client Acquisition",
+      clientOrContext: "Agency Client Acquisition (Strategy 360)",
     },
     overview: {
       challenge: "Capturing client and founder attention in under 3 seconds in a crowded software agency market without spending thousands on physical studio production.",
@@ -1503,10 +1511,10 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
     details: {
       type: "E-Commerce Brand Commercial (9:16)",
       duration: "48-Hour Turnaround",
-      role: "AI Creative Technologist & Director",
+      role: "AI Creative Technologist & Video Producer (Strategy 360 Intern)",
       status: "Published Production Ad",
       architecture: "Generative Diffusion + Commercial Sound",
-      clientOrContext: "AI Textile & Fashion E-Commerce",
+      clientOrContext: "VANYA Men's Textiles via Strategy 360",
     },
     overview: {
       challenge: "Showcasing high-end textile craftsmanship and smart digital e-commerce features with hyper-realistic fabric textures without expensive location filming.",
@@ -1544,6 +1552,65 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
     ],
     links: {
       liveUrl: "/videos/video2.mp4",
+    },
+  },
+
+  "durga-gold-jewellery-ad": {
+    slug: "durga-gold-jewellery-ad",
+    title: "Durga Gold – Commercial AI Video Ad",
+    tagline: "Direct-response Tamil influencer commercial ad produced for Durga Gold (T. Nagar, Chennai) via Strategy 360, demonstrating pledged gold release, digital appraisal, and instant cash settlement.",
+    categoryKey: "ai-videos",
+    subcategoryKey: "retail-jewellery-ads",
+    subcategoryTitle: "Retail & Jewellery Commercials",
+    badge: "🎬 9:16 Retail Commercial Ad",
+    badgeColor: "bg-amber-50 text-amber-700 border-amber-200",
+    thumbnail: "/projects/durga-gold-thumb.jpg",
+    videoUrl: "/videos/video3.mp4",
+    videoAspect: "9:16",
+    details: {
+      type: "Commercial Video Ad (9:16 Reel)",
+      duration: "48-Hour Turnaround",
+      role: "AI Video Creator & Prompt Engineer (Strategy 360 Intern)",
+      status: "Production Client Ad",
+      architecture: "Generative Video + Multilingual Voice Synthesis",
+      clientOrContext: "Durga Gold (T. Nagar, Chennai) via Strategy 360",
+    },
+    overview: {
+      challenge: "Durga Gold in T. Nagar, Chennai required an authentic, high-converting regional video ad addressing customers with gold pledged at high-interest pawn brokers or banks, communicating transparent digital valuation and immediate cash payout without expensive on-location video crews.",
+      solution: "Engineered an AI video production pipeline featuring an authentic Tamil dialogue script between an influencer and store manager in a lavish jewellery showroom, demonstrating precision digital scales (52.36g), bank gold loan pledge releases, transparent appraisal, and social call-to-actions.",
+      impact: "Delivered a broadcast-ready 9:16 vertical commercial optimized for Instagram Reels and YouTube Shorts at 90% cost savings, driving inbound calls and comment engagement.",
+    },
+    coreFeatures: [
+      {
+        title: "Photorealistic Regional Character & Ambiance Diffusion",
+        description: "High-fidelity rendering of traditional South Indian silk attire, warm jewellery showroom glass display lighting, and natural human lip-sync and expressions.",
+      },
+      {
+        title: "Authentic Conversational Tamil Dialogue & Scripting",
+        description: "Engaging problem-solution influencer script addressing school fees, college fees, and emergency cash requirements with empathetic regional voiceover.",
+      },
+      {
+        title: "Valuation & Digital Scale Transparency Demonstration",
+        description: "Visual storytelling showing bank gold loan paperwork, pawn broker release process, and real-time digital scale verification (52.36g).",
+      },
+      {
+        title: "Direct-Response Conversion Call-to-Action",
+        description: "Crafted specifically for social media engagement with on-screen T. Nagar contact numbers and a 'Comment DURGA GOLD' viral lead trigger.",
+      },
+    ],
+    gallery: [],
+    skillsUsed: [
+      {
+        group: "AI Video & Generative Tools",
+        skills: ["Google Vids", "Gemini Veo", "ChatGPT"],
+      },
+      {
+        group: "Video Editing & Post-Production",
+        skills: ["CapCut", "Edits"],
+      },
+    ],
+    links: {
+      liveUrl: "/videos/video3.mp4",
     },
   },
 };

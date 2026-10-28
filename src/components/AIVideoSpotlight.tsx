@@ -188,15 +188,15 @@ function VideoPlayerCard({
 export default function AIVideoSpotlight() {
   const videoAds = [
     {
-      id: "app-development-ad",
-      slug: "app-development-ad",
-      title: "App Development Service Commercial",
+      id: "durga-gold-jewellery-ad",
+      slug: "durga-gold-jewellery-ad",
+      title: "Durga Gold – Commercial AI Video Ad",
       subtitle:
-        "High-energy vertical video ad engineered for mobile product development & agency client acquisition with photorealistic generative rendering.",
-      category: "Mobile Service Commercial",
-      videoSrc: "/videos/video1.mp4",
+        "Direct-response Tamil influencer commercial ad engineered for Durga Gold (T. Nagar), showcasing pledged gold release, digital appraisal, and instant cash settlement.",
+      category: "Retail Jewellery Commercial",
+      videoSrc: "/videos/video3.mp4",
       deliverable: "9:16 Vertical Reel",
-      clientContext: "Client Acquisition Ad",
+      clientContext: "Strategy 360 • Durga Gold",
       tags: ["Google Vids", "Gemini Veo", "ChatGPT", "CapCut", "Edits"],
     },
     {
@@ -208,7 +208,19 @@ export default function AIVideoSpotlight() {
       category: "E-Commerce Fashion Ad",
       videoSrc: "/videos/video2.mp4",
       deliverable: "9:16 Vertical Reel",
-      clientContext: "Fashion E-Commerce Ad",
+      clientContext: "Strategy 360 • VANYA",
+      tags: ["Google Vids", "Gemini Veo", "ChatGPT", "CapCut", "Edits"],
+    },
+    {
+      id: "app-development-ad",
+      slug: "app-development-ad",
+      title: "App Development Service Commercial",
+      subtitle:
+        "High-energy vertical video ad engineered for mobile product development & agency client acquisition with photorealistic generative rendering.",
+      category: "Mobile Service Commercial",
+      videoSrc: "/videos/video1.mp4",
+      deliverable: "9:16 Vertical Reel",
+      clientContext: "Strategy 360 Agency Ad",
       tags: ["Google Vids", "Gemini Veo", "ChatGPT", "CapCut", "Edits"],
     },
   ];
@@ -218,14 +230,14 @@ export default function AIVideoSpotlight() {
       id="ai-video-showcase"
       className="relative py-10 sm:py-12 px-6 sm:px-8 lg:px-12 bg-[#f8fbfe] text-slate-900 border-b border-slate-200/80 overflow-hidden"
     >
-      <div className="max-w-4xl mx-auto space-y-8 sm:space-y-9">
+      <div className="max-w-6xl mx-auto space-y-8 sm:space-y-9">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-2">
+        <div className="text-center max-w-3xl mx-auto space-y-2">
           <FadeUp delay={0} duration={600}>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase text-[#0070f3] bg-blue-50 border border-blue-200 shadow-2xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0070f3] animate-pulse" />
-              <span>COMMERCIAL CREATIVE PIPELINE</span>
+              <span>STRATEGY 360 INTERNSHIP • COMMERCIAL AI VIDEO ADS</span>
             </div>
             
             <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-black text-slate-900 tracking-tight leading-[1.1] pt-1">
@@ -235,13 +247,13 @@ export default function AIVideoSpotlight() {
 
           <FadeUp delay={80} duration={650}>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-              Commercial-grade 9:16 vertical video ads engineered for mobile apps, SaaS launches, and e-commerce brands with photorealistic visual diffusion and neural voiceover.
+              Commercial-grade 9:16 vertical video ads engineered during my creative technologist internship at Strategy 360 (Chennai) for retail jewellery, haute fashion e-commerce, and software agency launches.
             </p>
           </FadeUp>
         </div>
 
-        {/* 2-Column Portrait Video Showcase Grid (Sleek & Compact) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-3xl mx-auto items-stretch">
+        {/* 3-Column Portrait Video Showcase Grid (Sleek & Compact) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-6 max-w-5xl mx-auto items-stretch">
           {videoAds.map((ad, idx) => (
             <FadeUp key={ad.id} delay={120 + idx * 80} duration={700} className="h-full">
               <VideoPlayerCard {...ad} />
