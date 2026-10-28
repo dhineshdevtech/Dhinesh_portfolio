@@ -7,6 +7,8 @@ import FadeUp from "@/components/FadeUp";
 import CompactVideoShowcase from "@/components/CompactVideoShowcase";
 import { PROJECTS_DATA, CATEGORIES_DATA } from "@/data/projectsData";
 
+export const instant = false;
+
 export function generateStaticParams() {
   return Object.keys(PROJECTS_DATA).map((slug) => ({ slug }));
 }
