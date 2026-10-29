@@ -25,6 +25,28 @@ interface CourseCertificate {
 
 const COURSE_CERTIFICATES: CourseCertificate[] = [
   {
+    id: "mygyan-python-foundations",
+    title: "Python Foundations for SDE-1 Interviews",
+    issuer: "myGyan",
+    year: "2026",
+    date: "October 29, 2026",
+    credentialId: "12b34760-ecec-4460-a334-43b6ae07bcf9",
+    candidate: "Dhinesh",
+    image: "/certificates/mygyan-python-foundations.webp",
+    signatory: "myGyan Learning Path Authority",
+    description:
+      "Successfully completed the guided learning path in Python Foundations for SDE-1 Interviews on myGyan. Verified proficiency in Python core programming, data structures, algorithms, object-oriented concepts, time & space complexity, and technical interview problem solving.",
+    skills: [
+      "Python 3",
+      "Data Structures",
+      "Algorithms",
+      "Object-Oriented Programming (OOP)",
+      "SDE-1 Problem Solving",
+      "Time & Space Complexity",
+    ],
+    accreditations: ["Verified Credential", "Guided Learning Path", "myGyan Certified", "QR Code Verified"],
+  },
+  {
     id: "corizo-web-dev",
     title: "Web Development Course",
     issuer: "Corizo",
@@ -330,7 +352,7 @@ export default function CertificatesPage() {
 
                   <a
                     href={selectedCert.image}
-                    download="Dhinesh_Corizo_Web_Development_Certificate.webp"
+                    download={`Dhinesh_${selectedCert.title.replace(/[^a-zA-Z0-9]/g, "_")}_Certificate.webp`}
                     className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-white border border-[#bfd8f6] text-slate-800 font-semibold text-xs sm:text-sm hover:text-[#0070f3] hover:border-[#0070f3] transition-colors"
                   >
                     <span>Download</span>
