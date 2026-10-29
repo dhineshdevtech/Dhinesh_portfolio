@@ -184,6 +184,17 @@ export default function Footer() {
               </li>
               <li>
                 <a
+                  href="https://www.instagram.com/dhinesh.devtech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#0066ff] transition-colors inline-flex items-center gap-1 focus-visible:outline-2 focus-visible:outline-[#0066ff] rounded-xs"
+                >
+                  <span>Instagram (@dhinesh.devtech)</span>
+                  <span className="text-[10px] text-slate-400" aria-hidden="true">↗</span>
+                </a>
+              </li>
+              <li>
+                <a
                   href="https://wa.me/919025873422"
                   target="_blank"
                   rel="noopener noreferrer"

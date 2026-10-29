@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,12 +10,59 @@ import { PROJECTS_DATA, CATEGORIES_DATA } from "@/data/projectsData";
 
 export const instant = false;
 
+const BASE_URL = "https://dhineshdevtech.vercel.app";
+
 export function generateStaticParams() {
   return Object.keys(PROJECTS_DATA).map((slug) => ({ slug }));
 }
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = PROJECTS_DATA[slug];
+
+  if (!project) {
+    return {
+      title: "Project Not Found",
+    };
+  }
+
+  const url = `${BASE_URL}/projects/${slug}`;
+  const ogImage = project.thumbnail?.startsWith("http")
+    ? project.thumbnail
+    : `${BASE_URL}${project.thumbnail || "/profile.webp"}`;
+
+  return {
+    title: `${project.title} — Architecture & Case Study`,
+    description: `${project.tagline} Built by Dhinesh with ${project.skillsUsed
+      .flatMap((s) => s.skills)
+      .slice(0, 5)
+      .join(", ")}.`,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${project.title} | Dhinesh`,
+      description: project.tagline,
+      url,
+      type: "article",
+      images: [
+        {
+          url: ogImage,
+          alt: project.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} | Dhinesh`,
+      description: project.tagline,
+      images: [ogImage],
+    },
+  };
 }
 
 export default async function ProjectDetailPage({ params }: PageProps) {
@@ -27,11 +75,57 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
   const category = CATEGORIES_DATA[project.categoryKey];
 
+  const isVideoAd = project.categoryKey === "ai-videos";
+  const projectSchema = isVideoAd
+    ? {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        name: project.title,
+        description: project.tagline,
+        thumbnailUrl: `${BASE_URL}${project.thumbnail || "/profile.webp"}`,
+        uploadDate: "2026-10-28",
+        contentUrl: `${BASE_URL}${project.videoUrl}`,
+        creator: {
+          "@type": "Person",
+          name: "Dhinesh",
+          url: BASE_URL,
+        },
+        productionCompany: {
+          "@type": "Organization",
+          name: "Strategy 360",
+          location: "Chennai, Tamil Nadu, India",
+        },
+      }
+    : {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: project.title,
+        description: project.tagline,
+        applicationCategory: project.categoryKey,
+        operatingSystem: project.categoryKey === "mobile" ? "Android, iOS" : "Web Browser",
+        author: {
+          "@type": "Person",
+          name: "Dhinesh",
+          url: BASE_URL,
+        },
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+        },
+      };
+
   return (
     <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-[#0066ff]/20 selection:text-slate-900 flex flex-col justify-between">
       <Navbar />
 
       <main id="main-content" className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 px-6 sm:px-8 lg:px-12 bg-white text-slate-900 overflow-hidden flex-1">
+        {/* Dynamic Project JSON-LD Schema for GEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
+        />
+
         <div className="max-w-5xl mx-auto space-y-8 sm:space-y-10">
           {/* Breadcrumb Navigation */}
           <FadeUp delay={0} duration={500}>

@@ -1446,7 +1446,7 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
     subcategoryTitle: "App Service Commercials",
     badge: "🎬 9:16 AI Commercial Ad",
     badgeColor: "bg-blue-50 text-[#0066ff] border-blue-200",
-    thumbnail: "/profile-clean.jpg",
+    thumbnail: "/profile.webp",
     videoUrl: "/videos/video1.mp4",
     videoAspect: "9:16",
     details: {
@@ -1505,7 +1505,7 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
     subcategoryTitle: "E-Commerce Brand Ads",
     badge: "🎬 9:16 Fashion Commercial",
     badgeColor: "bg-indigo-50 text-indigo-700 border-indigo-200",
-    thumbnail: "/profile-clean.jpg",
+    thumbnail: "/profile.webp",
     videoUrl: "/videos/video2.mp4",
     videoAspect: "9:16",
     details: {

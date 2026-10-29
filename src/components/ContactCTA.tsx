@@ -436,7 +436,7 @@ export default function ContactCTA() {
                     Location &amp; Remote
                   </span>
                   <span className="text-xs sm:text-sm font-bold text-slate-900 block">
-                    Tamil Nadu, India
+                    Chennai, Tamil Nadu, India
                   </span>
                   <p className="text-xs text-slate-500">
                     Open to Onsite, Hybrid &amp; Global Remote Roles
