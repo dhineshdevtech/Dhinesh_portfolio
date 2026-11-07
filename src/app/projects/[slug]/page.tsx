@@ -173,6 +173,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             <FadeUp delay={150} duration={700}>
               <CompactVideoShowcase
                 videoUrl={project.videoUrl}
+                poster={project.thumbnail}
                 title="Commercial Video"
                 subtitle="9:16 Reel"
               />

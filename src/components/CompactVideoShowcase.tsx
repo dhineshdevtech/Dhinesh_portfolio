@@ -4,12 +4,14 @@ import { useState, useRef, useEffect } from "react";
 
 interface CompactVideoShowcaseProps {
   videoUrl: string;
+  poster?: string;
   title?: string;
   subtitle?: string;
 }
 
 export default function CompactVideoShowcase({
   videoUrl,
+  poster,
   title = "Commercial Video",
   subtitle = "9:16 Vertical Reel",
 }: CompactVideoShowcaseProps) {
@@ -82,6 +84,7 @@ export default function CompactVideoShowcase({
         <video
           ref={videoRef}
           src={videoUrl}
+          poster={poster}
           playsInline
           loop
           muted={isMuted}

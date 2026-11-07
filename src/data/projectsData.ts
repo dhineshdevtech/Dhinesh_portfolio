@@ -160,11 +160,18 @@ export const CATEGORIES_DATA: Record<CategoryKey, CategoryData> = {
     pitchCta: "Commission an AI Ad",
     subcategories: [
       {
-        key: "app-service-ads",
-        title: "App Service Commercials",
-        description: "Direct-response video ads for mobile application development and software service launches.",
-        projectCount: 1,
-        projectSlugs: ["app-development-ad"],
+        key: "retail-jewellery-ads",
+        title: "Retail & Jewellery Commercials",
+        description: "Direct-response regional AI video campaigns for retail jewellery and pledged gold settlement services.",
+        projectCount: 2,
+        projectSlugs: ["durga-gold-jewellery-ad", "durga-gold-jewellery-ad-2"],
+      },
+      {
+        key: "agency-growth-ads",
+        title: "Agency & Performance Marketing Ads",
+        description: "Commercial B2B and client acquisition video campaigns engineered for digital marketing and creative agencies.",
+        projectCount: 2,
+        projectSlugs: ["strategy360-performance-marketing-ad", "strategy360-commercial-production-ad"],
       },
       {
         key: "ecommerce-ads",
@@ -174,11 +181,11 @@ export const CATEGORIES_DATA: Record<CategoryKey, CategoryData> = {
         projectSlugs: ["textile-ecommerce-ad"],
       },
       {
-        key: "retail-jewellery-ads",
-        title: "Retail & Jewellery Commercials",
-        description: "Direct-response regional AI video campaigns for retail jewellery and pledged gold settlement services.",
+        key: "app-service-ads",
+        title: "App Service Commercials",
+        description: "Direct-response video ads for mobile application development and software service launches.",
         projectCount: 1,
-        projectSlugs: ["durga-gold-jewellery-ad"],
+        projectSlugs: ["app-development-ad"],
       },
     ],
   },
@@ -199,13 +206,16 @@ export const CATEGORY_PROJECT_SLUGS: Record<CategoryKey, string[]> = {
     "invoice-generator",
   ],
   "ai-videos": [
-    "app-development-ad",
-    "textile-ecommerce-ad",
     "durga-gold-jewellery-ad",
+    "durga-gold-jewellery-ad-2",
+    "strategy360-performance-marketing-ad",
+    "strategy360-commercial-production-ad",
+    "textile-ecommerce-ad",
+    "app-development-ad",
   ],
 };
 
-export const TOTAL_PROJECTS_COUNT = 13;
+export const TOTAL_PROJECTS_COUNT = 16;
 
 export const PROJECTS_DATA: Record<string, ProjectDetail> = {
   // --------------------------------------------------------------------------
@@ -1446,7 +1456,7 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
     subcategoryTitle: "App Service Commercials",
     badge: "🎬 9:16 AI Commercial Ad",
     badgeColor: "bg-blue-50 text-[#0066ff] border-blue-200",
-    thumbnail: "/profile.webp",
+    thumbnail: "/projects/app-dev-ad-thumb.webp",
     videoUrl: "/videos/video1.mp4",
     videoAspect: "9:16",
     details: {
@@ -1505,7 +1515,7 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
     subcategoryTitle: "E-Commerce Brand Ads",
     badge: "🎬 9:16 Fashion Commercial",
     badgeColor: "bg-indigo-50 text-indigo-700 border-indigo-200",
-    thumbnail: "/profile.webp",
+    thumbnail: "/projects/textile-ad-thumb.webp",
     videoUrl: "/videos/video2.mp4",
     videoAspect: "9:16",
     details: {
@@ -1557,15 +1567,15 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
 
   "durga-gold-jewellery-ad": {
     slug: "durga-gold-jewellery-ad",
-    title: "Durga Gold – Commercial AI Video Ad",
-    tagline: "Direct-response Tamil influencer commercial ad produced for Durga Gold (T. Nagar, Chennai) via Strategy 360, demonstrating pledged gold release, digital appraisal, and instant cash settlement.",
+    title: "Durga Gold – Edition I (Instant Cash & Loan Release)",
+    tagline: "Direct-response Tamil commercial ad produced for Durga Gold (T. Nagar, Chennai) via Strategy 360, demonstrating pledged gold release, digital appraisal, and instant cash settlement.",
     categoryKey: "ai-videos",
     subcategoryKey: "retail-jewellery-ads",
     subcategoryTitle: "Retail & Jewellery Commercials",
     badge: "🎬 9:16 Retail Commercial Ad",
     badgeColor: "bg-amber-50 text-amber-700 border-amber-200",
-    thumbnail: "/projects/durga-gold-thumb.jpg",
-    videoUrl: "/videos/video3.mp4",
+    thumbnail: "/projects/durga-gold-ad1-thumb.webp",
+    videoUrl: "/videos/durga-gold-ad1.mp4",
     videoAspect: "9:16",
     details: {
       type: "Commercial Video Ad (9:16 Reel)",
@@ -1577,7 +1587,7 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
     },
     overview: {
       challenge: "Durga Gold in T. Nagar, Chennai required an authentic, high-converting regional video ad addressing customers with gold pledged at high-interest pawn brokers or banks, communicating transparent digital valuation and immediate cash payout without expensive on-location video crews.",
-      solution: "Engineered an AI video production pipeline featuring an authentic Tamil dialogue script between an influencer and store manager in a lavish jewellery showroom, demonstrating precision digital scales (52.36g), bank gold loan pledge releases, transparent appraisal, and social call-to-actions.",
+      solution: "Engineered an AI video production pipeline featuring an authentic Tamil dialogue script between an influencer and store manager in a lavish jewellery showroom, demonstrating precision digital scales (52.36g), bank gold loan pledge releases, transparent appraisal, and official contact banners.",
       impact: "Delivered a broadcast-ready 9:16 vertical commercial optimized for Instagram Reels and YouTube Shorts at 90% cost savings, driving inbound calls and comment engagement.",
     },
     coreFeatures: [
@@ -1595,7 +1605,7 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
       },
       {
         title: "Direct-Response Conversion Call-to-Action",
-        description: "Crafted specifically for social media engagement with on-screen T. Nagar contact numbers and a 'Comment DURGA GOLD' viral lead trigger.",
+        description: "Crafted specifically for social media engagement with on-screen T. Nagar contact numbers (98844 42716 / 90251 38766) and immediate response CTA.",
       },
     ],
     gallery: [],
@@ -1610,7 +1620,184 @@ export const PROJECTS_DATA: Record<string, ProjectDetail> = {
       },
     ],
     links: {
-      liveUrl: "/videos/video3.mp4",
+      liveUrl: "/videos/durga-gold-ad1.mp4",
+    },
+  },
+
+  "durga-gold-jewellery-ad-2": {
+    slug: "durga-gold-jewellery-ad-2",
+    title: "Durga Gold – Edition II (Jewellery Valuation & Cash Settlement)",
+    tagline: "Second flagship commercial edition produced for Durga Gold (T. Nagar, Chennai) via Strategy 360, highlighting authentic gold purity testing, diamond appraisal, and instant cash settlement.",
+    categoryKey: "ai-videos",
+    subcategoryKey: "retail-jewellery-ads",
+    subcategoryTitle: "Retail & Jewellery Commercials",
+    badge: "🎬 9:16 Retail Commercial Ad",
+    badgeColor: "bg-amber-50 text-amber-700 border-amber-200",
+    thumbnail: "/projects/durga-gold-ad2-thumb.webp",
+    videoUrl: "/videos/durga-gold-ad2.mp4",
+    videoAspect: "9:16",
+    details: {
+      type: "Commercial Video Ad (9:16 Reel)",
+      duration: "48-Hour Turnaround",
+      role: "AI Video Creator & Prompt Engineer (Strategy 360 Intern)",
+      status: "Production Client Ad",
+      architecture: "Generative Video + Multilingual Voice Synthesis",
+      clientOrContext: "Durga Gold (T. Nagar, Chennai) via Strategy 360",
+    },
+    overview: {
+      challenge: "Providing an alternative creative angle for Durga Gold's social advertising campaign that targets affluent festive shoppers and families seeking transparent appraisal for antique and heritage jewellery.",
+      solution: "Produced a companion 9:16 video featuring a royal blue silk saree presenter in a high-end luxury boutique showroom, emphasizing instant cash for gold & diamonds with zero deduction on fair market rates.",
+      impact: "Complementary A/B testing asset for Meta & YouTube ad sets, expanding audience reach and boosting ad recall across Tamil Nadu demographics.",
+    },
+    coreFeatures: [
+      {
+        title: "Heritage Jewellery & Saree Aesthetic Diffusion",
+        description: "Photorealistic rendering of intricate temple gold necklaces, matching jhumkas, and royal blue Kanchipuram silk draping with true-to-life reflections.",
+      },
+      {
+        title: "Diamond & Gold Dual Valuation Hook",
+        description: "Expanded commercial messaging addressing both 22K/24K gold ornaments and certified diamonds with spot cash liquidation.",
+      },
+      {
+        title: "Broadcast Lower-Third Branding & Telephony",
+        description: "Official showroom banner featuring Durga Gold crest, verified T. Nagar address, and dual helpline contact numbers.",
+      },
+      {
+        title: "Mobile-First Conversion Pacing",
+        description: "Fast hook and rhythmic script pacing calibrated for retention past the critical 3-second social feed drop-off point.",
+      },
+    ],
+    gallery: [],
+    skillsUsed: [
+      {
+        group: "AI Video & Generative Tools",
+        skills: ["Google Vids", "Gemini Veo", "ChatGPT"],
+      },
+      {
+        group: "Video Editing & Post-Production",
+        skills: ["CapCut", "Edits"],
+      },
+    ],
+    links: {
+      liveUrl: "/videos/durga-gold-ad2.mp4",
+    },
+  },
+
+  "strategy360-performance-marketing-ad": {
+    slug: "strategy360-performance-marketing-ad",
+    title: "Strategy 360 – Performance Marketing & Social Growth Ad",
+    tagline: "High-impact podcast-style commercial ad engineered for Strategy 360, driving direct-response client acquisition for digital marketing services in Chennai.",
+    categoryKey: "ai-videos",
+    subcategoryKey: "agency-growth-ads",
+    subcategoryTitle: "Agency & Performance Marketing Ads",
+    badge: "🎬 9:16 Agency Commercial",
+    badgeColor: "bg-blue-50 text-[#0066ff] border-blue-200",
+    thumbnail: "/projects/strategy360-performance-thumb.webp",
+    videoUrl: "/videos/strategy360-performance-ad.mp4",
+    videoAspect: "9:16",
+    details: {
+      type: "Commercial Video Ad (9:16 Reel)",
+      duration: "48-Hour Turnaround",
+      role: "AI Video Creator & Motion Designer (Strategy 360 Intern)",
+      status: "Production Agency Ad",
+      architecture: "Generative Presenter Diffusion + 3D Motion Graphics",
+      clientOrContext: "Strategy 360 Digital Marketing Agency (Chennai)",
+    },
+    overview: {
+      challenge: "Digital marketing agencies struggle with generic static ads that get overlooked in founder feeds; Strategy 360 needed a high-authority conversational video ad to stand out and generate qualified client inquiries.",
+      solution: "Engineered a creator-style podcast studio AI video featuring a charismatic presenter with a studio microphone, integrating 3D floating social media platform elements (Instagram, LinkedIn, YouTube, Facebook) and clear agency contact details.",
+      impact: "High-trust presenter format delivered 3x higher watch time compared to static graphic carousels, driving inbound calls and WhatsApp consultations for Strategy 360.",
+    },
+    coreFeatures: [
+      {
+        title: "Studio Podcast Ambiance & Warm Lighting",
+        description: "Generative creator setup with professional Shure SM7B style microphone, modern wooden acoustic paneling, and warm bokeh background.",
+      },
+      {
+        title: "Integrated 3D Social Media App UI",
+        description: "Photorealistic smartphone floating display showcasing Instagram, Meta, and LinkedIn campaign management and follower growth.",
+      },
+      {
+        title: "Natural Indian English / Tamil Accent Synthesis",
+        description: "Engaging regional speaking cadence specifically tuned for South Indian business owners and startup founders.",
+      },
+      {
+        title: "Dual WhatsApp & Phone Call Conversion Bar",
+        description: "High-contrast animated bottom badge with one-tap contact numbers (+91 89402 46853 / +91 93846 05716).",
+      },
+    ],
+    gallery: [],
+    skillsUsed: [
+      {
+        group: "AI Video & Generative Tools",
+        skills: ["Google Vids", "Gemini Veo", "ChatGPT"],
+      },
+      {
+        group: "Video Editing & Post-Production",
+        skills: ["CapCut", "Edits"],
+      },
+    ],
+    links: {
+      liveUrl: "/videos/strategy360-performance-ad.mp4",
+    },
+  },
+
+  "strategy360-commercial-production-ad": {
+    slug: "strategy360-commercial-production-ad",
+    title: "Strategy 360 – Commercial Production & Brand Growth Ad",
+    tagline: "Corporate brand commercial engineered for Strategy 360, showcasing high-converting short-form video reels, studio shoots, and full-funnel digital brand expansion.",
+    categoryKey: "ai-videos",
+    subcategoryKey: "agency-growth-ads",
+    subcategoryTitle: "Agency & Performance Marketing Ads",
+    badge: "🎬 9:16 Corporate Commercial",
+    badgeColor: "bg-purple-50 text-purple-700 border-purple-200",
+    thumbnail: "/projects/strategy360-commercial-thumb.webp",
+    videoUrl: "/videos/strategy360-commercial-ad.mp4",
+    videoAspect: "9:16",
+    details: {
+      type: "Commercial Video Ad (9:16 Reel)",
+      duration: "48-Hour Turnaround",
+      role: "AI Video Creator & Motion Designer (Strategy 360 Intern)",
+      status: "Production Agency Ad",
+      architecture: "Generative Corporate Presenter + 3D Metric Visualization",
+      clientOrContext: "Strategy 360 Digital Marketing Agency (Chennai)",
+    },
+    overview: {
+      challenge: "Communicating the full breadth of Strategy 360's digital offerings—including influencer marketing, commercial video shoots, quality reels, and revenue scaling—within a tight 40-second social reel.",
+      solution: "Developed an authoritative corporate commercial with a female presenter in professional attire, seamlessly transitioning into 3D isometric revenue growth charts, marketing service circles, and agency office credentials in Adambakkam, Chennai.",
+      impact: "Comprehensive corporate positioning that demonstrates production caliber and establishes Strategy 360 as the premier end-to-end creative marketing partner in Tamil Nadu.",
+    },
+    coreFeatures: [
+      {
+        title: "Executive Presenter & Outdoor Cinematic Grading",
+        description: "Clean corporate styling with crisp lighting, natural motion, and authoritative business pitch delivery.",
+      },
+      {
+        title: "3D Isometric Revenue & Metrics Charting",
+        description: "Dynamic visual representation of business growth from zero to scalable revenue milestones with rupee (₹) currency graphics.",
+      },
+      {
+        title: "Multi-Service Creative Reel Breakdown",
+        description: "Highlighting product photography, viral short-form video production, influencer tie-ups, and brand marketing.",
+      },
+      {
+        title: "Verified Agency Office & Domain Footer",
+        description: "Complete contact block featuring official email (strategy360agency@gmail.com), portal (strategy360.in), and Adambakkam, Chennai address.",
+      },
+    ],
+    gallery: [],
+    skillsUsed: [
+      {
+        group: "AI Video & Generative Tools",
+        skills: ["Google Vids", "Gemini Veo", "ChatGPT"],
+      },
+      {
+        group: "Video Editing & Post-Production",
+        skills: ["CapCut", "Edits"],
+      },
+    ],
+    links: {
+      liveUrl: "/videos/strategy360-commercial-ad.mp4",
     },
   },
 };

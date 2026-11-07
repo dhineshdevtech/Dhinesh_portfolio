@@ -11,6 +11,7 @@ interface VideoCardProps {
   subtitle: string;
   category: string;
   videoSrc: string;
+  posterSrc: string;
   tags: string[];
   deliverable: string;
   clientContext: string;
@@ -22,6 +23,7 @@ function VideoPlayerCard({
   subtitle,
   category,
   videoSrc,
+  posterSrc,
   tags,
   deliverable,
   clientContext,
@@ -56,19 +58,20 @@ function VideoPlayerCard({
     <div className="flex flex-col h-full rounded-2xl bg-white border-2 border-[#bfd8f6] shadow-xs overflow-hidden transition-all duration-200 hover:border-[#0070f3] hover:shadow-md">
       
       {/* Compact 9:16 Portrait Video Viewport */}
-      <div className="py-3 px-4 bg-gradient-to-b from-[#f8fbfe] to-[#edf5fe] flex justify-center items-center border-b border-[#e2ecf8]">
+      <div className="py-3 px-3 sm:px-4 bg-gradient-to-b from-[#f8fbfe] to-[#edf5fe] flex justify-center items-center border-b border-[#e2ecf8]">
         <div
           onClick={togglePlay}
           className="relative w-full max-w-[170px] sm:max-w-[190px] aspect-[9/16] rounded-xl sm:rounded-2xl overflow-hidden bg-slate-950 border-2 border-slate-900 shadow-md cursor-pointer group select-none"
         >
-          {/* Native HTML5 Video Element */}
+          {/* Native HTML5 Video Element with Instant WebP Poster & FastStart Streaming */}
           <video
             ref={videoRef}
             src={videoSrc}
+            poster={posterSrc}
             playsInline
             loop
             muted={isMuted}
-            preload="metadata"
+            preload="none"
             className="w-full h-full object-cover"
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
@@ -190,37 +193,53 @@ export default function AIVideoSpotlight() {
     {
       id: "durga-gold-jewellery-ad",
       slug: "durga-gold-jewellery-ad",
-      title: "Durga Gold – Commercial AI Video Ad",
+      title: "Durga Gold – Edition I (Instant Cash & Loan Release)",
       subtitle:
-        "Direct-response Tamil influencer commercial ad engineered for Durga Gold (T. Nagar), showcasing pledged gold release, digital appraisal, and instant cash settlement.",
-      category: "Retail Jewellery Commercial",
-      videoSrc: "/videos/video3.mp4",
+        "High-converting regional commercial for Durga Gold (T. Nagar), demonstrating pledged gold release, digital appraisal, and same-day cash payout.",
+      category: "Retail Jewellery",
+      videoSrc: "/videos/durga-gold-ad1.mp4",
+      posterSrc: "/projects/durga-gold-ad1-thumb.webp",
       deliverable: "9:16 Vertical Reel",
       clientContext: "Strategy 360 • Durga Gold",
       tags: ["Google Vids", "Gemini Veo", "ChatGPT", "CapCut", "Edits"],
     },
     {
-      id: "textile-ecommerce-ad",
-      slug: "textile-ecommerce-ad",
-      title: "AI Textile E-Commerce Showcase Ad",
+      id: "durga-gold-jewellery-ad-2",
+      slug: "durga-gold-jewellery-ad-2",
+      title: "Durga Gold – Edition II (Jewellery Valuation)",
       subtitle:
-        "Cinematic commercial promoting AI-featured textile & fashion e-commerce platform engineering with realistic fabric flow physics.",
-      category: "E-Commerce Fashion Ad",
-      videoSrc: "/videos/video2.mp4",
+        "Luxury boutique edition showcasing transparent gold purity testing, certified diamond appraisal, and instant spot cash liquidation.",
+      category: "Retail Jewellery",
+      videoSrc: "/videos/durga-gold-ad2.mp4",
+      posterSrc: "/projects/durga-gold-ad2-thumb.webp",
       deliverable: "9:16 Vertical Reel",
-      clientContext: "Strategy 360 • VANYA",
+      clientContext: "Strategy 360 • Durga Gold",
       tags: ["Google Vids", "Gemini Veo", "ChatGPT", "CapCut", "Edits"],
     },
     {
-      id: "app-development-ad",
-      slug: "app-development-ad",
-      title: "App Development Service Commercial",
+      id: "strategy360-performance-marketing-ad",
+      slug: "strategy360-performance-marketing-ad",
+      title: "Strategy 360 – Performance Marketing Ad",
       subtitle:
-        "High-energy vertical video ad engineered for mobile product development & agency client acquisition with photorealistic generative rendering.",
-      category: "Mobile Service Commercial",
-      videoSrc: "/videos/video1.mp4",
+        "High-authority podcast-style ad engineered for Strategy 360, driving direct-response client acquisition for digital marketing services.",
+      category: "Agency Marketing",
+      videoSrc: "/videos/strategy360-performance-ad.mp4",
+      posterSrc: "/projects/strategy360-performance-thumb.webp",
       deliverable: "9:16 Vertical Reel",
-      clientContext: "Strategy 360 Agency Ad",
+      clientContext: "Strategy 360 Agency",
+      tags: ["Google Vids", "Gemini Veo", "ChatGPT", "CapCut", "Edits"],
+    },
+    {
+      id: "strategy360-commercial-production-ad",
+      slug: "strategy360-commercial-production-ad",
+      title: "Strategy 360 – Commercial Brand Growth Ad",
+      subtitle:
+        "Corporate B2B commercial presenting Strategy 360's creative suite: viral short-form video reels, studio shoots, and full-funnel expansion.",
+      category: "Corporate Video",
+      videoSrc: "/videos/strategy360-commercial-ad.mp4",
+      posterSrc: "/projects/strategy360-commercial-thumb.webp",
+      deliverable: "9:16 Vertical Reel",
+      clientContext: "Strategy 360 Agency",
       tags: ["Google Vids", "Gemini Veo", "ChatGPT", "CapCut", "Edits"],
     },
   ];
@@ -228,7 +247,7 @@ export default function AIVideoSpotlight() {
   return (
     <section
       id="ai-video-showcase"
-      className="relative py-10 sm:py-12 px-6 sm:px-8 lg:px-12 bg-[#f8fbfe] text-slate-900 border-b border-slate-200/80 overflow-hidden"
+      className="relative py-10 sm:py-12 px-4 sm:px-6 lg:px-8 bg-[#f8fbfe] text-slate-900 border-b border-slate-200/80 overflow-hidden"
     >
       <div className="max-w-6xl mx-auto space-y-8 sm:space-y-9">
         
@@ -247,13 +266,13 @@ export default function AIVideoSpotlight() {
 
           <FadeUp delay={80} duration={650}>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-              Commercial-grade 9:16 vertical video ads engineered during my creative technologist internship at Strategy 360 (Chennai) for retail jewellery, haute fashion e-commerce, and software agency launches.
+              Commercial-grade 9:16 vertical video ads engineered during my creative technologist internship at Strategy 360 (Chennai) for retail jewellery, haute fashion e-commerce, and software agency launches. FastStart streaming optimized for instant mobile playback.
             </p>
           </FadeUp>
         </div>
 
-        {/* 3-Column Portrait Video Showcase Grid (Sleek & Compact) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-6 max-w-5xl mx-auto items-stretch">
+        {/* 4-Column Portrait Video Showcase Grid (Sleek & Ultra-Fast Loading) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 max-w-6xl mx-auto items-stretch">
           {videoAds.map((ad, idx) => (
             <FadeUp key={ad.id} delay={120 + idx * 80} duration={700} className="h-full">
               <VideoPlayerCard {...ad} />
@@ -278,7 +297,7 @@ export default function AIVideoSpotlight() {
                 href="/projects?category=ai-videos"
                 className="px-3 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors"
               >
-                Browse Video Directory
+                Browse All 6 Video Campaigns
               </Link>
               <Link
                 href="/contact"

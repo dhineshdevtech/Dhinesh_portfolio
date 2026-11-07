@@ -163,6 +163,7 @@ function ProjectsContent() {
                 <FadeUp delay={150} duration={700}>
                   <CompactVideoShowcase
                     videoUrl={activeProject.videoUrl}
+                    poster={activeProject.thumbnail}
                     title="Commercial Video"
                     subtitle="9:16 Reel"
                   />
@@ -541,10 +542,12 @@ function ProjectsContent() {
                             <div className="relative w-full h-full bg-slate-950 flex items-center justify-center overflow-hidden">
                               <video
                                 src={proj.videoUrl}
+                                poster={proj.thumbnail}
                                 playsInline
                                 muted
                                 loop
                                 autoPlay
+                                preload="metadata"
                                 className="h-full w-full object-contain"
                               />
                             </div>

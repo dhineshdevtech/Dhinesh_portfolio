@@ -54,6 +54,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         "vanya-ecommerce",
         "mpnmjec-bus-tracker",
         "durga-gold-jewellery-ad",
+        "durga-gold-jewellery-ad-2",
+        "strategy360-performance-marketing-ad",
+        "strategy360-commercial-production-ad",
         "bubbleworks-pos",
         "quizforge-ai",
       ].includes(slug);
